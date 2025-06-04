@@ -1,7 +1,8 @@
-
 import React, { useState, useMemo } from 'react';
 import Navigation from '../components/Navigation';
+import FloatingCheckout from '../components/FloatingCheckout';
 import { ShoppingCart, Plus, Minus, Search, Filter, Star, Heart, Truck, Shield, ArrowUpDown } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Store = () => {
   const [cart, setCart] = useState<{[key: number]: number}>({});
@@ -10,6 +11,7 @@ const Store = () => {
   const [sortBy, setSortBy] = useState('name');
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [favorites, setFavorites] = useState<number[]>([]);
+  const { toast } = useToast();
 
   const products = [
     {
@@ -160,6 +162,14 @@ const Store = () => {
       const product = products.find(p => p.id === parseInt(productId));
       return total + (product ? product.price * count : 0);
     }, 0);
+  };
+
+  const handleCheckout = () => {
+    toast({
+      title: "Proceeding to Checkout",
+      description: `${getTotalItems()} items - Total: $${getTotalPrice()}`,
+    });
+    // Add checkout logic here
   };
 
   return (
@@ -429,6 +439,13 @@ const Store = () => {
           </div>
         </div>
       </div>
+
+      {/* Floating Checkout */}
+      <FloatingCheckout 
+        totalItems={getTotalItems()}
+        totalPrice={getTotalPrice()}
+        onCheckout={handleCheckout}
+      />
     </div>
   );
 };
