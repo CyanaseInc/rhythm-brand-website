@@ -1,85 +1,117 @@
 
 import React from 'react';
-import { Play, ExternalLink } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900"></div>
-      
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
-      </div>
+    <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
+      {/* Navigation Bar */}
+      <nav className="relative z-20 w-full bg-[#1A1A1A] px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Social Media Icons - Left */}
+          <div className="flex items-center space-x-4">
+            <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+              <span className="text-[#1A1A1A] text-xs font-bold">T</span>
+            </div>
+            <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+              <span className="text-[#1A1A1A] text-xs font-bold">F</span>
+            </div>
+            <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+              <span className="text-[#1A1A1A] text-xs font-bold">I</span>
+            </div>
+            <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
+              <span className="text-[#1A1A1A] text-xs font-bold">S</span>
+            </div>
+          </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl">
-        {/* Artist Image */}
-        <div className="mb-8">
-          <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-blue-400 p-1">
-            <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
-              <span className="text-6xl font-bold text-white">A</span>
+          {/* Logo - Center */}
+          <div className="text-white text-2xl font-bold">
+            carl<span className="text-red-500">/</span>cox
+          </div>
+
+          {/* Navigation Links - Right */}
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">HOME</a>
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">EVENTS</a>
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">BIOGRAPHY</a>
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">MUSIC</a>
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">STORE</a>
+            <a href="#" className="text-white text-sm font-semibold tracking-wider hover:text-red-500 transition-colors">CONTACT</a>
+            <Search className="w-5 h-5 text-white hover:text-red-500 cursor-pointer transition-colors" />
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex min-h-[calc(100vh-80px)]">
+        {/* Left Side - Face Image */}
+        <div className="relative w-1/2 h-full">
+          {/* Gradient overlay to fade the image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A] z-10"></div>
+          
+          {/* Face Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=1200&fit=crop&crop=face')`,
+              backgroundPosition: 'center 20%'
+            }}
+          ></div>
+        </div>
+
+        {/* Right Side - Text Content */}
+        <div className="w-1/2 flex items-center justify-start pl-16 pr-24">
+          <div className="space-y-8">
+            {/* Main Title */}
+            <div className="space-y-2">
+              <h1 className="text-white text-8xl font-black tracking-wider leading-none">
+                CARL
+              </h1>
+              <div className="flex items-center space-x-4">
+                <h1 className="text-white text-8xl font-black tracking-wider leading-none">
+                  COX
+                </h1>
+                <div className="w-16 h-2 bg-red-500"></div>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="max-w-lg">
+              <blockquote className="text-white text-2xl font-semibold tracking-wide leading-relaxed">
+                "THE RAVE WAS BUILT ON ENERGY AND THE EXCITEMENT OF IT ALL AND THIS DESIRE TO GET LOST. IT'S LIKE A NEW ERA FOR ME NOW..."
+              </blockquote>
             </div>
           </div>
         </div>
-
-        {/* Artist Name */}
-        <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-white to-blue-400 bg-clip-text text-transparent">
-          ARTIST NAME
-        </h1>
-
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-          Electronic Music Producer & DJ • Creating Sonic Experiences That Move Souls
-        </p>
-
-        {/* Featured Track */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 max-w-md mx-auto">
-          <h3 className="text-lg font-semibold text-white mb-4">Featured Track</h3>
-          <div className="flex items-center justify-between bg-black/30 rounded-lg p-4">
-            <div>
-              <p className="font-medium text-white">Latest Single</p>
-              <p className="text-sm text-gray-400">"Digital Dreams"</p>
-            </div>
-            <button className="bg-purple-500 hover:bg-purple-600 rounded-full p-3 transition-colors">
-              <Play className="w-6 h-6 text-white fill-current" />
-            </button>
-          </div>
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105">
-            Listen Now
-          </button>
-          <button className="border-2 border-white/30 hover:border-white text-white font-semibold py-3 px-8 rounded-full transition-all duration-200 hover:bg-white/10">
-            Shop Merch
-          </button>
-        </div>
-
-        {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-8 mt-12 max-w-lg mx-auto">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-purple-400">50M+</p>
-            <p className="text-sm text-gray-400">Streams</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold text-blue-400">200+</p>
-            <p className="text-sm text-gray-400">Shows</p>
-          </div>
-          <div className="text-center">
-            <p className="text-2xl font-bold text-green-400">15</p>
-            <p className="text-sm text-gray-400">Albums</p>
-          </div>
-        </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+      {/* Mobile Version */}
+      <div className="md:hidden absolute inset-0 flex flex-col">
+        {/* Mobile Background */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale opacity-40"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=1200&fit=crop&crop=face')`,
+          }}
+        ></div>
+        
+        {/* Mobile Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center px-8 space-y-8">
+          <div className="space-y-4">
+            <h1 className="text-white text-6xl font-black tracking-wider leading-none">
+              CARL
+            </h1>
+            <div className="flex items-center justify-center space-x-4">
+              <h1 className="text-white text-6xl font-black tracking-wider leading-none">
+                COX
+              </h1>
+              <div className="w-12 h-2 bg-red-500"></div>
+            </div>
+          </div>
+
+          <blockquote className="text-white text-lg font-semibold tracking-wide leading-relaxed max-w-sm">
+            "THE RAVE WAS BUILT ON ENERGY AND THE EXCITEMENT OF IT ALL AND THIS DESIRE TO GET LOST. IT'S LIKE A NEW ERA FOR ME NOW..."
+          </blockquote>
         </div>
       </div>
     </div>
