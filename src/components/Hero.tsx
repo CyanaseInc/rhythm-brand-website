@@ -5,8 +5,19 @@ import { Search } from 'lucide-react';
 const Hero = () => {
   return (
     <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=1920&h=1080&fit=crop')`,
+        }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60"></div>
+      </div>
+
       {/* Navigation Bar */}
-      <nav className="relative z-20 w-full bg-[#1A1A1A] px-6 py-4">
+      <nav className="relative z-20 w-full bg-[#1A1A1A]/90 backdrop-blur-sm px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Social Media Icons - Left */}
           <div className="flex items-center space-x-4">
@@ -43,41 +54,26 @@ const Hero = () => {
       </nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex min-h-[calc(100vh-80px)]">
-        {/* Left Side - Face Image */}
-        <div className="relative w-1/2 h-full">
-          {/* Gradient overlay to fade the image */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A] z-10"></div>
-          
-          {/* Face Image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=1200&fit=crop&crop=face')`,
-              backgroundPosition: 'center 20%'
-            }}
-          ></div>
-        </div>
-
-        {/* Right Side - Text Content */}
-        <div className="w-1/2 flex items-center justify-start pl-16 pr-24">
+      <div className="relative z-10 flex min-h-[calc(100vh-80px)] items-center">
+        {/* Left Side - Text Content */}
+        <div className="w-full md:w-1/2 flex items-center justify-start pl-8 md:pl-16 pr-8 md:pr-24">
           <div className="space-y-8">
             {/* Main Title */}
             <div className="space-y-2">
-              <h1 className="text-white text-8xl font-black tracking-wider leading-none">
+              <h1 className="text-white text-6xl md:text-8xl font-black tracking-wider leading-none">
                 CARL
               </h1>
               <div className="flex items-center space-x-4">
-                <h1 className="text-white text-8xl font-black tracking-wider leading-none">
+                <h1 className="text-white text-6xl md:text-8xl font-black tracking-wider leading-none">
                   COX
                 </h1>
-                <div className="w-16 h-2 bg-red-500"></div>
+                <div className="w-12 md:w-16 h-2 bg-red-500"></div>
               </div>
             </div>
 
             {/* Quote */}
             <div className="max-w-lg">
-              <blockquote className="text-white text-2xl font-semibold tracking-wide leading-relaxed">
+              <blockquote className="text-white text-lg md:text-2xl font-semibold tracking-wide leading-relaxed">
                 "THE RAVE WAS BUILT ON ENERGY AND THE EXCITEMENT OF IT ALL AND THIS DESIRE TO GET LOST. IT'S LIKE A NEW ERA FOR ME NOW..."
               </blockquote>
             </div>
@@ -85,34 +81,13 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Mobile Version */}
-      <div className="md:hidden absolute inset-0 flex flex-col">
-        {/* Mobile Background */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale opacity-40"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&h=1200&fit=crop&crop=face')`,
-          }}
-        ></div>
-        
-        {/* Mobile Content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center px-8 space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-white text-6xl font-black tracking-wider leading-none">
-              CARL
-            </h1>
-            <div className="flex items-center justify-center space-x-4">
-              <h1 className="text-white text-6xl font-black tracking-wider leading-none">
-                COX
-              </h1>
-              <div className="w-12 h-2 bg-red-500"></div>
-            </div>
-          </div>
-
-          <blockquote className="text-white text-lg font-semibold tracking-wide leading-relaxed max-w-sm">
-            "THE RAVE WAS BUILT ON ENERGY AND THE EXCITEMENT OF IT ALL AND THIS DESIRE TO GET LOST. IT'S LIKE A NEW ERA FOR ME NOW..."
-          </blockquote>
-        </div>
+      {/* Mobile Menu Toggle (hidden by default, can be implemented later) */}
+      <div className="md:hidden absolute top-6 right-6 z-30">
+        <button className="text-white p-2">
+          <div className="w-6 h-0.5 bg-white mb-1"></div>
+          <div className="w-6 h-0.5 bg-white mb-1"></div>
+          <div className="w-6 h-0.5 bg-white"></div>
+        </button>
       </div>
     </div>
   );
