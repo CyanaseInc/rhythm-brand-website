@@ -4,31 +4,47 @@ import { Search } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen bg-[#2A2317] overflow-hidden">
-      {/* Background Image - Wheat Field */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1500673922987-e212871fec22?w=1920&h=1080&fit=crop')`,
-        }}
-      >
-        {/* Sepia overlay for that sun-faded film texture */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#8B7355]/80 via-[#2A2317]/70 to-[#2A2317]/90"></div>
+    <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
+      {/* Dark textured background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#1A1A1A] to-[#0F0F0F]">
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-10" 
+             style={{
+               backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 50%)`
+             }}>
+        </div>
+      </div>
+
+      {/* Grayscale portrait image on left side */}
+      <div className="absolute inset-y-0 left-0 w-1/2 lg:w-2/5">
+        <div 
+          className="h-full w-full bg-cover bg-center bg-no-repeat grayscale"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
+            backgroundPosition: 'center center',
+            transform: 'scale(1.1)',
+          }}
+        >
+          {/* Gradient fade to the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
+        </div>
       </div>
 
       {/* Navigation Bar */}
-      <nav className="relative z-20 w-full bg-[#2A2317]/90 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 animate-fade-in">
+      <nav className="relative z-20 w-full bg-[#1A1A1A]/90 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 animate-fade-in">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Natural Icons - Left */}
           <div className="flex items-center space-x-2 md:space-x-4">
             <div className="w-5 h-5 md:w-6 md:h-6 bg-[#D4B896] rounded-full flex items-center justify-center hover:bg-[#C4975A] transition-all duration-300 hover:scale-110">
-              <span className="text-[#2A2317] text-xs font-bold">🌾</span>
+              <span className="text-[#1A1A1A] text-xs font-bold">🌾</span>
             </div>
             <div className="w-5 h-5 md:w-6 md:h-6 bg-[#D4B896] rounded-full flex items-center justify-center hover:bg-[#C4975A] transition-all duration-300 hover:scale-110">
-              <span className="text-[#2A2317] text-xs font-bold">🌙</span>
+              <span className="text-[#1A1A1A] text-xs font-bold">🌙</span>
             </div>
             <div className="w-5 h-5 md:w-6 md:h-6 bg-[#D4B896] rounded-full flex items-center justify-center hover:bg-[#C4975A] transition-all duration-300 hover:scale-110">
-              <span className="text-[#2A2317] text-xs font-bold">🔥</span>
+              <span className="text-[#1A1A1A] text-xs font-bold">🔥</span>
             </div>
           </div>
 
@@ -57,11 +73,10 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hero Content */}
+      {/* Hero Content - Positioned on the right side */}
       <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
-        {/* Text Content - Left Side */}
-        <div className="w-full flex items-center justify-start px-6 md:px-8 lg:px-16">
-          <div className="max-w-4xl space-y-6 md:space-y-8">
+        <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
+          <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
             {/* Main Title */}
             <div className="space-y-2 md:space-y-4">
               <h1 className="text-[#F5E6D3] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif" 
@@ -79,9 +94,9 @@ const Hero = () => {
             </div>
 
             {/* Poetic Quote */}
-            <div className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl animate-fade-in opacity-0 animation-delay-1000" 
+            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000" 
                  style={{ animationFillMode: 'forwards' }}>
-              <blockquote className="text-[#F5E6D3] text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light tracking-wide leading-relaxed font-serif italic">
+              <blockquote className="text-[#F5E6D3] text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic">
                 "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
               </blockquote>
             </div>
