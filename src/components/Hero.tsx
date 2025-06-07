@@ -77,17 +77,20 @@ const Hero = () => {
       <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
         <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
           <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
-            {/* Main Title */}
-            <div className="space-y-2 md:space-y-4">
-              <h1 className="text-[#F5E6D3] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif" 
+            {/* Main Title with Creative Typography */}
+            <div className="space-y-4 md:space-y-6">
+              {/* DIMITRI - Large, bold, prominent */}
+              <h1 className="text-[#F5E6D3] text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow" 
                   style={{ animationFillMode: 'forwards' }}>
                 DIMITRI
               </h1>
+              
+              {/* & THE SCARECROW - Smaller, elegant, complementary */}
               <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500" 
                    style={{ animationFillMode: 'forwards' }}>
-                <h1 className="text-[#F5E6D3] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-wider leading-none font-serif">
+                <h2 className="text-[#D4B896] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.3em] leading-none font-serif italic">
                   & THE SCARECROW
-                </h1>
+                </h2>
                 <div className="w-8 md:w-12 lg:w-16 h-1.5 md:h-2 bg-[#C4975A] animate-slide-in-right opacity-0 animation-delay-700" 
                      style={{ animationFillMode: 'forwards' }}></div>
               </div>
