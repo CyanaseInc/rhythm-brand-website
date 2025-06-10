@@ -18,8 +18,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Grayscale portrait image on left side - Full screen coverage */}
-      <div className="absolute inset-0 w-1/2 lg:w-2/5">
+      {/* Grayscale portrait image - Full width coverage */}
+      <div className="absolute inset-0 w-full lg:w-3/5">
         <div 
           className="h-full w-full bg-cover bg-center bg-no-repeat grayscale"
           style={{
@@ -33,7 +33,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Navigation Bar - Updated to match the standard navigation */}
+      {/* Navigation Bar */}
       <nav className="relative z-20 w-full bg-[#1A1A1A]/90 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 animate-fade-in border-b border-[#D4B896]/20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Natural Icons - Left */}
@@ -54,12 +54,13 @@ const Hero = () => {
             dimitri<span className="text-[#C4975A]">&</span>scarecrow
           </Link>
 
-          {/* Navigation Links - Right - Fixed to work properly */}
+          {/* Navigation Links - Right */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link to="/music" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">THE CROP</Link>
-            <Link to="/biography" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">FIELD NOTES</Link>
-            <Link to="/events" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">FOOTPRINTS</Link>
-            <Link to="/contact" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">WHISPERS</Link>
+            <Link to="/" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">HOME</Link>
+            <Link to="/music" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">MUSIC</Link>
+            <Link to="/biography" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">BIOGRAPHY</Link>
+            <Link to="/events" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">EVENTS</Link>
+            <Link to="/contact" className="text-[#F5E6D3] text-xs lg:text-sm font-semibold tracking-wider hover:text-[#C4975A] transition-all duration-300 hover:scale-110 font-serif">CONTACT</Link>
             <Search className="w-4 h-4 lg:w-5 lg:h-5 text-[#F5E6D3] hover:text-[#C4975A] cursor-pointer transition-all duration-300 hover:scale-110" />
           </div>
 
@@ -74,22 +75,22 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hero Content - Positioned on the right side with padding for DIMITRI */}
+      {/* Hero Content - Positioned on the right side with proper padding for DIMITRI */}
       <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
         <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
           <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
             {/* Main Title with Creative Typography and Padding */}
             <div className="space-y-4 md:space-y-6">
               {/* DIMITRI - Large, bold, prominent with padding */}
-              <h1 className="text-[#F5E6D3] text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-4 md:px-6 lg:px-8" 
+              <h1 className="text-[#F5E6D3] text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16" 
                   style={{ animationFillMode: 'forwards' }}>
                 DIMITRI
               </h1>
               
               {/* & THE SCARECROW - Smaller, elegant, complementary */}
-              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-4 md:px-6 lg:px-8" 
+              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-8 md:px-12 lg:px-16" 
                    style={{ animationFillMode: 'forwards' }}>
-                <h2 className="text-[#D4B896] text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.3em] leading-none font-serif italic">
+                <h2 className="text-[#D4B896] text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] leading-none font-serif italic">
                   & THE SCARECROW
                 </h2>
                 <div className="w-8 md:w-12 lg:w-16 h-1.5 md:h-2 bg-[#C4975A] animate-slide-in-right opacity-0 animation-delay-700" 
@@ -98,7 +99,7 @@ const Hero = () => {
             </div>
 
             {/* Poetic Quote */}
-            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-4 md:px-6 lg:px-8" 
+            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-8 md:px-12 lg:px-16" 
                  style={{ animationFillMode: 'forwards' }}>
               <blockquote className="text-[#F5E6D3] text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic">
                 "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
@@ -106,7 +107,7 @@ const Hero = () => {
             </div>
 
             {/* Call to Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-4 md:px-6 lg:px-8" 
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-8 md:px-12 lg:px-16" 
                  style={{ animationFillMode: 'forwards' }}>
               <Link to="/music" className="bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#C4975A]/25 font-serif text-center">
                 HARVEST THE SOUND
@@ -127,7 +128,6 @@ const Hero = () => {
         <div className="text-2xl">🦅</div>
       </div>
 
-      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-[#F5E6D3]/50 rounded-full p-2">
           <div className="w-1 h-3 bg-[#F5E6D3]/50 rounded-full animate-pulse"></div>

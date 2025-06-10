@@ -8,19 +8,15 @@ const Navigation = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'THE CROP', path: '/music' },
-    { name: 'FIELD NOTES', path: '/biography' },
-    { name: 'SCARECROW\'S CLOSET', path: '/store' },
-    { name: 'FOOTPRINTS', path: '/events' },
-    { name: 'WHISPERS', path: '/contact' },
+    { name: 'HOME', path: '/' },
+    { name: 'MUSIC', path: '/music' },
+    { name: 'BIOGRAPHY', path: '/biography' },
+    { name: 'STORE', path: '/store' },
+    { name: 'EVENTS', path: '/events' },
+    { name: 'CONTACT', path: '/contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
-
-  // Don't render on home page since hero has its own nav
-  if (location.pathname === '/') {
-    return null;
-  }
 
   return (
     <nav className="fixed top-0 w-full bg-[#1A1A1A]/90 backdrop-blur-sm z-50 border-b border-[#D4B896]/20">
