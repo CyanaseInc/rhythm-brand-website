@@ -39,7 +39,7 @@ const Music = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1A1A1A]">
+    <div className="min-h-screen bg-[#2A2317]">
       <Navigation />
       
       {/* Hero Artist Section */}
@@ -51,7 +51,7 @@ const Music = () => {
             backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=800&fit=crop&crop=face')`,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A]/60 via-[#1A1A1A]/80 to-[#1A1A1A]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2A2317]/60 via-[#2A2317]/80 to-[#2A2317]"></div>
         </div>
         
         <div className="relative z-10 px-4 max-w-7xl mx-auto">
@@ -91,7 +91,7 @@ const Music = () => {
               <a
                 key={platform.name}
                 href={platform.url}
-                className={`${platform.color} text-[#1A1A1A] px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-200 flex items-center space-x-2 font-serif`}
+                className={`${platform.color} text-[#2A2317] px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-200 flex items-center space-x-2 font-serif`}
               >
                 <span>{platform.name}</span>
                 <ExternalLink className="w-4 h-4" />
@@ -104,7 +104,7 @@ const Music = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-[#F5E6D3] mb-8 text-center font-serif">Featured Video</h2>
           <div className="max-w-4xl mx-auto">
-            <div className="relative aspect-video bg-[#2A2317] rounded-2xl overflow-hidden border border-[#D4B896]/20">
+            <div className="relative aspect-video bg-[#3A3127] rounded-2xl overflow-hidden border border-[#D4B896]/20">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-[#C4975A] rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-[#8B7355] transition-colors cursor-pointer">
@@ -130,7 +130,7 @@ const Music = () => {
                     alt={album.title}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[#2A2317]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button className="bg-[#C4975A] rounded-full p-4 hover:bg-[#8B7355] transition-colors">
                       <Play className="w-6 h-6 text-[#F5E6D3] fill-current" />
                     </button>
@@ -177,7 +177,7 @@ const Music = () => {
                     <button className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] py-2 px-4 rounded-full text-sm font-semibold transition-colors font-serif">
                       Play Album
                     </button>
-                    <button className="bg-[#2A2317] hover:bg-[#3A3127] text-[#F5E6D3] p-2 rounded-full transition-colors border border-[#D4B896]/20">
+                    <button className="bg-[#3A3127] hover:bg-[#4A4137] text-[#F5E6D3] p-2 rounded-full transition-colors border border-[#D4B896]/20">
                       <Download className="w-4 h-4" />
                     </button>
                   </div>
