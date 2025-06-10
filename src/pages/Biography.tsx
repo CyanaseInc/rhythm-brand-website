@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '../components/Navigation';
 import { Award, Music, Users, Globe } from 'lucide-react';
@@ -25,15 +24,30 @@ const Biography = () => {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900">
       <Navigation />
       
-      <div className="pt-24 px-4 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Biography
-          </h1>
-          <p className="text-xl text-gray-300">The story behind the music</p>
+      {/* Hero Section with Artist Portrait */}
+      <div className="relative pt-24 pb-16 px-4">
+        <div className="absolute inset-0 pt-24">
+          <div className="relative h-64 md:h-80 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1920&h=1080&fit=crop"
+              alt="Dimitri & The Scarecrow Portrait"
+              className="w-full h-full object-cover grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+          </div>
         </div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="text-center pt-32 md:pt-48">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Biography
+            </h1>
+            <p className="text-xl text-gray-300">The story behind the music</p>
+          </div>
+        </div>
+      </div>
 
+      <div className="px-4 max-w-6xl mx-auto">
         {/* Main Bio Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
@@ -42,7 +56,7 @@ const Biography = () => {
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
                   Born from a passion for electronic soundscapes and driven by an insatiable desire to push 
-                  musical boundaries, Artist Name has emerged as one of the most innovative voices in contemporary 
+                  musical boundaries, Dimitri & The Scarecrow has emerged as one of the most innovative voices in contemporary 
                   electronic music.
                 </p>
                 <p>
@@ -62,8 +76,13 @@ const Biography = () => {
           <div className="space-y-6">
             {/* Artist Photo */}
             <div className="bg-gradient-to-br from-purple-500 to-blue-500 p-1 rounded-2xl">
-              <div className="bg-gray-800 rounded-2xl p-8 h-64 flex items-center justify-center">
-                <span className="text-6xl font-bold text-white">ARTIST</span>
+              <div className="relative overflow-hidden rounded-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&h=400&fit=crop"
+                  alt="Dimitri in the studio"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
               </div>
             </div>
 
@@ -73,7 +92,47 @@ const Biography = () => {
                 "Music is the universal language that connects us all. Through electronic sounds, 
                 I try to create bridges between hearts and minds."
               </blockquote>
-              <p className="text-purple-400 text-center mt-4 font-semibold">- Artist Name</p>
+              <p className="text-purple-400 text-center mt-4 font-semibold">- Dimitri & The Scarecrow</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Artist Gallery */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Behind the Scenes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop"
+                alt="Studio Sessions"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Studio Life</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"
+                alt="Creative Process"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Creative Process</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&h=400&fit=crop"
+                alt="Inspiration"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Finding Inspiration</p>
+              </div>
             </div>
           </div>
         </div>

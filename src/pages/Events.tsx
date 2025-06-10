@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '../components/Navigation';
 import { Calendar, MapPin, Clock, ExternalLink, Ticket } from 'lucide-react';
@@ -107,15 +106,30 @@ const Events = () => {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900">
       <Navigation />
       
-      <div className="pt-24 px-4 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
-            Events
-          </h1>
-          <p className="text-xl text-gray-300">Join me on the electronic music journey</p>
+      {/* Hero Section with Artist Image */}
+      <div className="relative pt-24 pb-16 px-4">
+        <div className="absolute inset-0 pt-24">
+          <div className="relative h-64 md:h-80 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face"
+              alt="Dimitri & The Scarecrow Live Performance"
+              className="w-full h-full object-cover grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+          </div>
         </div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="text-center pt-32 md:pt-48">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+              Events
+            </h1>
+            <p className="text-xl text-gray-300">Join me on the electronic music journey</p>
+          </div>
+        </div>
+      </div>
 
+      <div className="px-4 max-w-6xl mx-auto">
         {/* Upcoming Events */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8">Upcoming Shows</h2>
@@ -166,6 +180,49 @@ const Events = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Artist Performance Gallery */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-white mb-8">Live in Action</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop"
+                alt="Festival Performance"
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Mountain Festival 2024</p>
+                <p className="text-gray-300 text-sm">Epic performance under the stars</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop"
+                alt="Sunset Set"
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Sunset Sessions</p>
+                <p className="text-gray-300 text-sm">Golden hour magic</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-xl">
+              <img 
+                src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600&h=400&fit=crop"
+                alt="River Stage"
+                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold">Riverside Vibes</p>
+                <p className="text-gray-300 text-sm">Nature meets beats</p>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin, Send, Instagram, Twitter, Youtube } from 'lucide-react';
@@ -43,15 +42,30 @@ const Contact = () => {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900">
       <Navigation />
       
-      <div className="pt-24 px-4 max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-            Contact
-          </h1>
-          <p className="text-xl text-gray-300">Let's connect and create something amazing together</p>
+      {/* Hero Section with Artist Image */}
+      <div className="relative pt-24 pb-16 px-4">
+        <div className="absolute inset-0 pt-24">
+          <div className="relative h-64 md:h-80 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=1920&h=1080&fit=crop"
+              alt="Dimitri & The Scarecrow"
+              className="w-full h-full object-cover grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+          </div>
         </div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <div className="text-center pt-32 md:pt-48">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Contact
+            </h1>
+            <p className="text-xl text-gray-300">Let's connect and create something amazing together</p>
+          </div>
+        </div>
+      </div>
 
+      <div className="px-4 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
@@ -154,6 +168,20 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
+            {/* Artist Contact Image */}
+            <div className="relative overflow-hidden rounded-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&h=300&fit=crop"
+                alt="Get in touch with Dimitri"
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div className="absolute bottom-4 left-4">
+                <p className="text-white font-semibold text-lg">Ready to Connect</p>
+                <p className="text-gray-300 text-sm">Let's make music magic happen</p>
+              </div>
+            </div>
+
             {/* Contact Details */}
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">Get in Touch</h2>
@@ -163,7 +191,7 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-indigo-400 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
-                    <p className="text-gray-300">info@artistname.com</p>
+                    <p className="text-gray-300">info@dimitriscarecrow.com</p>
                     <p className="text-gray-400 text-sm">General inquiries</p>
                   </div>
                 </div>
@@ -172,7 +200,7 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-purple-400 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Booking</h3>
-                    <p className="text-gray-300">booking@artistname.com</p>
+                    <p className="text-gray-300">booking@dimitriscarecrow.com</p>
                     <p className="text-gray-400 text-sm">Performance bookings</p>
                   </div>
                 </div>
@@ -211,7 +239,7 @@ const Contact = () => {
                     <social.icon className="w-6 h-6" />
                     <div>
                       <p className="font-semibold">{social.name}</p>
-                      <p className="text-sm text-gray-400">@artistname</p>
+                      <p className="text-sm text-gray-400">@dimitriscarecrow</p>
                     </div>
                   </a>
                 ))}
