@@ -1,11 +1,30 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
-import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, Feather, Wheat, Moon } from 'lucide-react';
+import FloatingCheckout from '../components/FloatingCheckout';
+import CheckoutModal from '../components/CheckoutModal';
+import { Music, BookOpen, Calendar, Mail, Play, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
+  const [cartItems] = useState(3); // Simulate cart items
+  const [cartTotal] = useState(89.99); // Simulate cart total
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleCheckout = () => {
+    setIsCheckoutOpen(true);
+  };
+
+  const handleOrderComplete = () => {
+    toast({
+      title: "Order Completed! 🌾",
+      description: "Thank you for your purchase. You'll receive a confirmation email shortly.",
+      duration: 5000,
+    });
+  };
+
   const quickLinks = [
     {
       title: 'The Crop',
@@ -186,6 +205,20 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Floating Checkout and Modal */}
+      <FloatingCheckout 
+        totalItems={cartItems}
+        totalPrice={cartTotal}
+        onCheckout={handleCheckout}
+      />
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        totalItems={cartItems}
+        totalPrice={cartTotal}
+        onOrderComplete={handleOrderComplete}
+      />
     </div>
   );
 };
