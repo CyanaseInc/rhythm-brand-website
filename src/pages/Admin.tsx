@@ -1,15 +1,35 @@
 
 import React, { useState } from 'react';
-import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter } from 'lucide-react';
+import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X } from 'lucide-react';
 import Navigation from '../components/Navigation';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  category: string;
+  stock: number;
+  sizes: string[];
+  colors: string[];
+  description: string;
+  inStock: boolean;
+  bestseller: boolean;
+}
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const { toast } = useToast();
 
   // Mock data for demonstration
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
       name: "Digital Dreams Hoodie",
@@ -66,6 +86,20 @@ const Admin = () => {
     }
   ]);
 
+  const [productForm, setProductForm] = useState<Partial<Product>>({
+    name: '',
+    price: 0,
+    originalPrice: 0,
+    image: '',
+    category: 'tshirts',
+    stock: 0,
+    sizes: [],
+    colors: [],
+    description: '',
+    inStock: true,
+    bestseller: false
+  });
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Simple authentication - in real app, this would be secure
@@ -74,6 +108,97 @@ const Admin = () => {
     } else {
       alert('Invalid credentials. Use admin/admin123');
     }
+  };
+
+  const openAddProductModal = () => {
+    setEditingProduct(null);
+    setProductForm({
+      name: '',
+      price: 0,
+      originalPrice: 0,
+      image: '',
+      category: 'tshirts',
+      stock: 0,
+      sizes: [],
+      colors: [],
+      description: '',
+      inStock: true,
+      bestseller: false
+    });
+    setIsProductModalOpen(true);
+  };
+
+  const openEditProductModal = (product: Product) => {
+    setEditingProduct(product);
+    setProductForm(product);
+    setIsProductModalOpen(true);
+  };
+
+  const handleDeleteProduct = (productId: number) => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      setProducts(prev => prev.filter(p => p.id !== productId));
+      toast({
+        title: "Product Deleted",
+        description: "The product has been successfully deleted.",
+      });
+    }
+  };
+
+  const handleSaveProduct = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!productForm.name || !productForm.price || !productForm.image) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (editingProduct) {
+      // Update existing product
+      setProducts(prev => prev.map(p => 
+        p.id === editingProduct.id 
+          ? { ...productForm as Product, id: editingProduct.id }
+          : p
+      ));
+      toast({
+        title: "Product Updated",
+        description: "The product has been successfully updated.",
+      });
+    } else {
+      // Add new product
+      const newProduct = {
+        ...productForm as Product,
+        id: Math.max(...products.map(p => p.id)) + 1
+      };
+      setProducts(prev => [...prev, newProduct]);
+      toast({
+        title: "Product Added",
+        description: "The new product has been successfully added.",
+      });
+    }
+    
+    setIsProductModalOpen(false);
+  };
+
+  const handleSizeToggle = (size: string) => {
+    setProductForm(prev => ({
+      ...prev,
+      sizes: prev.sizes?.includes(size) 
+        ? prev.sizes.filter(s => s !== size)
+        : [...(prev.sizes || []), size]
+    }));
+  };
+
+  const handleColorToggle = (color: string) => {
+    setProductForm(prev => ({
+      ...prev,
+      colors: prev.colors?.includes(color) 
+        ? prev.colors.filter(c => c !== color)
+        : [...(prev.colors || []), color]
+    }));
   };
 
   if (!isAuthenticated) {
@@ -209,48 +334,42 @@ const Admin = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-[#F5E6D3] font-serif">Product Management</h2>
-        <button className="bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
-          <Plus className="w-4 h-4" />
-          <span>Add Product</span>
-        </button>
+        <Button 
+          onClick={openAddProductModal}
+          className="bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3]"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Add Product
+        </Button>
       </div>
 
       <div className="bg-[#F5E6D3]/10 rounded-lg p-6">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#D4B896] w-4 h-4" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2 bg-[#F5E6D3]/20 border border-[#D4B896]/30 rounded-lg text-[#F5E6D3] placeholder-[#D4B896]"
-            />
-          </div>
-          <select className="px-4 py-2 bg-[#F5E6D3]/20 border border-[#D4B896]/30 rounded-lg text-[#F5E6D3]">
-            <option value="">All Categories</option>
-            <option value="hoodies">Hoodies</option>
-            <option value="tshirts">T-Shirts</option>
-            <option value="accessories">Accessories</option>
-          </select>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <div key={product.id} className="bg-[#F5E6D3]/20 rounded-lg p-4">
               <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="font-semibold text-[#F5E6D3] mb-2">{product.name}</h3>
+              <p className="text-sm text-[#D4B896] mb-2">{product.description}</p>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-[#C4975A] font-bold">${product.price}</span>
                 <span className="text-[#D4B896] text-sm">Stock: {product.stock}</span>
               </div>
               <div className="flex space-x-2">
-                <button className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] py-2 px-3 rounded text-sm flex items-center justify-center space-x-1">
-                  <Edit className="w-3 h-3" />
-                  <span>Edit</span>
-                </button>
-                <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-3 rounded text-sm flex items-center justify-center space-x-1">
-                  <Trash2 className="w-3 h-3" />
-                  <span>Delete</span>
-                </button>
+                <Button 
+                  onClick={() => openEditProductModal(product)}
+                  className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] text-sm"
+                >
+                  <Edit className="w-3 h-3 mr-1" />
+                  Edit
+                </Button>
+                <Button 
+                  onClick={() => handleDeleteProduct(product.id)}
+                  variant="destructive"
+                  className="flex-1 text-sm"
+                >
+                  <Trash2 className="w-3 h-3 mr-1" />
+                  Delete
+                </Button>
               </div>
             </div>
           ))}
@@ -376,6 +495,197 @@ const Admin = () => {
           </div>
         </div>
       </div>
+
+      {/* Product Modal */}
+      {isProductModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#F5E6D3] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-[#2A2317]">
+                  {editingProduct ? 'Edit Product' : 'Add New Product'}
+                </h2>
+                <button 
+                  onClick={() => setIsProductModalOpen(false)}
+                  className="text-[#8B7355] hover:text-[#2A2317]"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <form onSubmit={handleSaveProduct} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Product Name *</label>
+                    <input
+                      type="text"
+                      value={productForm.name}
+                      onChange={(e) => setProductForm({...productForm, name: e.target.value})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      placeholder="Enter product name"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Category</label>
+                    <select
+                      value={productForm.category}
+                      onChange={(e) => setProductForm({...productForm, category: e.target.value})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                    >
+                      <option value="tshirts">T-Shirts</option>
+                      <option value="hoodies">Hoodies</option>
+                      <option value="accessories">Accessories</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Price *</label>
+                    <input
+                      type="number"
+                      value={productForm.price}
+                      onChange={(e) => setProductForm({...productForm, price: parseFloat(e.target.value)})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Original Price</label>
+                    <input
+                      type="number"
+                      value={productForm.originalPrice}
+                      onChange={(e) => setProductForm({...productForm, originalPrice: parseFloat(e.target.value)})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Stock Quantity</label>
+                    <input
+                      type="number"
+                      value={productForm.stock}
+                      onChange={(e) => setProductForm({...productForm, stock: parseInt(e.target.value)})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      placeholder="0"
+                      min="0"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[#2A2317] font-semibold mb-2">Image URL *</label>
+                    <input
+                      type="url"
+                      value={productForm.image}
+                      onChange={(e) => setProductForm({...productForm, image: e.target.value})}
+                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      placeholder="https://example.com/image.jpg"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[#2A2317] font-semibold mb-2">Description</label>
+                  <textarea
+                    value={productForm.description}
+                    onChange={(e) => setProductForm({...productForm, description: e.target.value})}
+                    className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                    rows={3}
+                    placeholder="Enter product description"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[#2A2317] font-semibold mb-2">Sizes</label>
+                  <div className="flex flex-wrap gap-2">
+                    {['XS', 'S', 'M', 'L', 'XL', 'XXL', 'One Size'].map((size) => (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => handleSizeToggle(size)}
+                        className={`px-3 py-1 rounded border transition-colors ${
+                          productForm.sizes?.includes(size)
+                            ? 'bg-[#C4975A] text-[#F5E6D3] border-[#C4975A]'
+                            : 'bg-white text-[#2A2317] border-[#D4B896] hover:bg-[#F5E6D3]'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[#2A2317] font-semibold mb-2">Colors</label>
+                  <div className="flex flex-wrap gap-2">
+                    {['Black', 'White', 'Gray', 'Navy', 'Blue', 'Red', 'Green', 'Natural'].map((color) => (
+                      <button
+                        key={color}
+                        type="button"
+                        onClick={() => handleColorToggle(color)}
+                        className={`px-3 py-1 rounded border transition-colors ${
+                          productForm.colors?.includes(color)
+                            ? 'bg-[#C4975A] text-[#F5E6D3] border-[#C4975A]'
+                            : 'bg-white text-[#2A2317] border-[#D4B896] hover:bg-[#F5E6D3]'
+                        }`}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={productForm.inStock}
+                      onChange={(e) => setProductForm({...productForm, inStock: e.target.checked})}
+                      className="mr-2"
+                    />
+                    <span className="text-[#2A2317]">In Stock</span>
+                  </label>
+
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={productForm.bestseller}
+                      onChange={(e) => setProductForm({...productForm, bestseller: e.target.checked})}
+                      className="mr-2"
+                    />
+                    <span className="text-[#2A2317]">Bestseller</span>
+                  </label>
+                </div>
+
+                <div className="flex space-x-4 pt-4">
+                  <Button
+                    type="submit"
+                    className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3]"
+                  >
+                    {editingProduct ? 'Update Product' : 'Add Product'}
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() => setIsProductModalOpen(false)}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
