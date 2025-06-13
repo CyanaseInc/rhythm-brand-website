@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X } from 'lucide-react';
 import Navigation from '../components/Navigation';
@@ -203,38 +202,38 @@ const Admin = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#2A2317] to-[#1A1A1A] flex items-center justify-center">
-        <div className="bg-[#F5E6D3] rounded-2xl p-8 shadow-2xl max-w-md w-full mx-4">
-          <h1 className="text-3xl font-bold text-[#2A2317] mb-6 text-center font-serif">Admin Login</h1>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="bg-gray-900 rounded-2xl p-8 shadow-2xl max-w-md w-full mx-4">
+          <h1 className="text-3xl font-bold text-white mb-6 text-center font-serif">Admin Login</h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-[#2A2317] font-semibold mb-2">Username</label>
+              <label className="block text-white font-semibold mb-2">Username</label>
               <input
                 type="text"
                 value={credentials.username}
                 onChange={(e) => setCredentials({...credentials, username: e.target.value})}
-                className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                 placeholder="Enter username"
               />
             </div>
             <div>
-              <label className="block text-[#2A2317] font-semibold mb-2">Password</label>
+              <label className="block text-white font-semibold mb-2">Password</label>
               <input
                 type="password"
                 value={credentials.password}
                 onChange={(e) => setCredentials({...credentials, password: e.target.value})}
-                className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                 placeholder="Enter password"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] py-3 rounded-lg font-semibold transition-colors"
+              className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg font-semibold transition-colors"
             >
               Login
             </button>
           </form>
-          <p className="text-center text-[#8B7355] text-sm mt-4">
+          <p className="text-center text-gray-400 text-sm mt-4">
             Demo: admin / admin123
           </p>
         </div>
@@ -252,73 +251,73 @@ const Admin = () => {
 
   const renderDashboard = () => (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-[#F5E6D3] font-serif">Dashboard Overview</h2>
+      <h2 className="text-3xl font-bold text-white font-serif">Dashboard Overview</h2>
       
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-[#F5E6D3] rounded-lg p-6">
+        <div className="bg-gray-900 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#8B7355] text-sm font-medium">Total Sales</p>
-              <p className="text-2xl font-bold text-[#2A2317]">$12,345</p>
+              <p className="text-gray-400 text-sm font-medium">Total Sales</p>
+              <p className="text-2xl font-bold text-white">$12,345</p>
             </div>
-            <div className="w-12 h-12 bg-[#C4975A] rounded-lg flex items-center justify-center">
-              <BarChart3 className="w-6 h-6 text-[#F5E6D3]" />
+            <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center">
+              <BarChart3 className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
         
-        <div className="bg-[#F5E6D3] rounded-lg p-6">
+        <div className="bg-gray-900 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#8B7355] text-sm font-medium">Total Orders</p>
-              <p className="text-2xl font-bold text-[#2A2317]">{orders.length}</p>
+              <p className="text-gray-400 text-sm font-medium">Total Orders</p>
+              <p className="text-2xl font-bold text-white">{orders.length}</p>
             </div>
-            <div className="w-12 h-12 bg-[#C4975A] rounded-lg flex items-center justify-center">
-              <ShoppingCart className="w-6 h-6 text-[#F5E6D3]" />
+            <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center">
+              <ShoppingCart className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
         
-        <div className="bg-[#F5E6D3] rounded-lg p-6">
+        <div className="bg-gray-900 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#8B7355] text-sm font-medium">Products</p>
-              <p className="text-2xl font-bold text-[#2A2317]">{products.length}</p>
+              <p className="text-gray-400 text-sm font-medium">Products</p>
+              <p className="text-2xl font-bold text-white">{products.length}</p>
             </div>
-            <div className="w-12 h-12 bg-[#C4975A] rounded-lg flex items-center justify-center">
-              <Package className="w-6 h-6 text-[#F5E6D3]" />
+            <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center">
+              <Package className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
         
-        <div className="bg-[#F5E6D3] rounded-lg p-6">
+        <div className="bg-gray-900 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#8B7355] text-sm font-medium">Customers</p>
-              <p className="text-2xl font-bold text-[#2A2317]">1,234</p>
+              <p className="text-gray-400 text-sm font-medium">Customers</p>
+              <p className="text-2xl font-bold text-white">1,234</p>
             </div>
-            <div className="w-12 h-12 bg-[#C4975A] rounded-lg flex items-center justify-center">
-              <Users className="w-6 h-6 text-[#F5E6D3]" />
+            <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center">
+              <Users className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-[#F5E6D3]/10 rounded-lg p-6">
-        <h3 className="text-xl font-bold text-[#F5E6D3] mb-4">Recent Orders</h3>
+      <div className="bg-gray-900 rounded-lg p-6">
+        <h3 className="text-xl font-bold text-white mb-4">Recent Orders</h3>
         <div className="space-y-3">
           {orders.slice(0, 5).map((order) => (
-            <div key={order.id} className="flex items-center justify-between p-3 bg-[#F5E6D3]/20 rounded-lg">
+            <div key={order.id} className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
               <div>
-                <p className="font-semibold text-[#F5E6D3]">{order.id}</p>
-                <p className="text-sm text-[#D4B896]">{order.customer}</p>
+                <p className="font-semibold text-white">{order.id}</p>
+                <p className="text-sm text-gray-400">{order.customer}</p>
               </div>
               <div className="text-right">
-                <p className="font-semibold text-[#F5E6D3]">${order.total}</p>
+                <p className="font-semibold text-white">${order.total}</p>
                 <span className={`text-xs px-2 py-1 rounded-full ${
-                  order.status === 'Completed' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-black'
+                  order.status === 'Completed' ? 'bg-green-600 text-white' : 'bg-yellow-600 text-black'
                 }`}>
                   {order.status}
                 </span>
@@ -333,31 +332,31 @@ const Admin = () => {
   const renderProducts = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-[#F5E6D3] font-serif">Product Management</h2>
+        <h2 className="text-3xl font-bold text-white font-serif">Product Management</h2>
         <Button 
           onClick={openAddProductModal}
-          className="bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3]"
+          className="bg-gray-700 hover:bg-gray-600 text-white"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Product
         </Button>
       </div>
 
-      <div className="bg-[#F5E6D3]/10 rounded-lg p-6">
+      <div className="bg-gray-900 rounded-lg p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <div key={product.id} className="bg-[#F5E6D3]/20 rounded-lg p-4">
+            <div key={product.id} className="bg-gray-800 rounded-lg p-4">
               <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
-              <h3 className="font-semibold text-[#F5E6D3] mb-2">{product.name}</h3>
-              <p className="text-sm text-[#D4B896] mb-2">{product.description}</p>
+              <h3 className="font-semibold text-white mb-2">{product.name}</h3>
+              <p className="text-sm text-gray-400 mb-2">{product.description}</p>
               <div className="flex justify-between items-center mb-2">
-                <span className="text-[#C4975A] font-bold">${product.price}</span>
-                <span className="text-[#D4B896] text-sm">Stock: {product.stock}</span>
+                <span className="text-gray-300 font-bold">${product.price}</span>
+                <span className="text-gray-400 text-sm">Stock: {product.stock}</span>
               </div>
               <div className="flex space-x-2">
                 <Button 
                   onClick={() => openEditProductModal(product)}
-                  className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3] text-sm"
+                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-sm"
                 >
                   <Edit className="w-3 h-3 mr-1" />
                   Edit
@@ -365,7 +364,7 @@ const Admin = () => {
                 <Button 
                   onClick={() => handleDeleteProduct(product.id)}
                   variant="destructive"
-                  className="flex-1 text-sm"
+                  className="flex-1 text-sm bg-red-600 hover:bg-red-700"
                 >
                   <Trash2 className="w-3 h-3 mr-1" />
                   Delete
@@ -380,48 +379,48 @@ const Admin = () => {
 
   const renderOrders = () => (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-[#F5E6D3] font-serif">Order Management</h2>
+      <h2 className="text-3xl font-bold text-white font-serif">Order Management</h2>
       
-      <div className="bg-[#F5E6D3]/10 rounded-lg p-6">
+      <div className="bg-gray-900 rounded-lg p-6">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#D4B896]/30">
-                <th className="text-left py-3 text-[#F5E6D3]">Order ID</th>
-                <th className="text-left py-3 text-[#F5E6D3]">Customer</th>
-                <th className="text-left py-3 text-[#F5E6D3]">Date</th>
-                <th className="text-left py-3 text-[#F5E6D3]">Total</th>
-                <th className="text-left py-3 text-[#F5E6D3]">Status</th>
-                <th className="text-left py-3 text-[#F5E6D3]">Actions</th>
+              <tr className="border-b border-gray-700">
+                <th className="text-left py-3 text-white">Order ID</th>
+                <th className="text-left py-3 text-white">Customer</th>
+                <th className="text-left py-3 text-white">Date</th>
+                <th className="text-left py-3 text-white">Total</th>
+                <th className="text-left py-3 text-white">Status</th>
+                <th className="text-left py-3 text-white">Actions</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr key={order.id} className="border-b border-[#D4B896]/20">
-                  <td className="py-3 text-[#F5E6D3]">{order.id}</td>
-                  <td className="py-3 text-[#F5E6D3]">
+                <tr key={order.id} className="border-b border-gray-800">
+                  <td className="py-3 text-white">{order.id}</td>
+                  <td className="py-3 text-white">
                     <div>
                       <p>{order.customer}</p>
-                      <p className="text-sm text-[#D4B896]">{order.email}</p>
+                      <p className="text-sm text-gray-400">{order.email}</p>
                     </div>
                   </td>
-                  <td className="py-3 text-[#F5E6D3]">{order.date}</td>
-                  <td className="py-3 text-[#F5E6D3] font-semibold">${order.total}</td>
+                  <td className="py-3 text-white">{order.date}</td>
+                  <td className="py-3 text-white font-semibold">${order.total}</td>
                   <td className="py-3">
                     <span className={`px-2 py-1 text-xs rounded-full ${
-                      order.status === 'Completed' ? 'bg-green-500 text-white' : 
-                      order.status === 'Processing' ? 'bg-yellow-500 text-black' : 
-                      'bg-red-500 text-white'
+                      order.status === 'Completed' ? 'bg-green-600 text-white' : 
+                      order.status === 'Processing' ? 'bg-yellow-600 text-black' : 
+                      'bg-red-600 text-white'
                     }`}>
                       {order.status}
                     </span>
                   </td>
                   <td className="py-3">
                     <div className="flex space-x-2">
-                      <button className="text-[#C4975A] hover:text-[#8B7355]">
+                      <button className="text-gray-400 hover:text-white">
                         <Edit className="w-4 h-4" />
                       </button>
-                      <button className="text-red-500 hover:text-red-700">
+                      <button className="text-red-500 hover:text-red-400">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -440,23 +439,23 @@ const Admin = () => {
       case 'dashboard': return renderDashboard();
       case 'products': return renderProducts();
       case 'orders': return renderOrders();
-      case 'customers': return <div className="text-[#F5E6D3]">Customer management coming soon...</div>;
-      case 'settings': return <div className="text-[#F5E6D3]">Settings panel coming soon...</div>;
+      case 'customers': return <div className="text-white">Customer management coming soon...</div>;
+      case 'settings': return <div className="text-white">Settings panel coming soon...</div>;
       default: return renderDashboard();
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2A2317] to-[#1A1A1A]">
+    <div className="min-h-screen bg-black">
       <Navigation />
       
       <div className="pt-20">
         <div className="flex">
           {/* Sidebar */}
-          <div className="w-64 bg-[#F5E6D3]/10 min-h-screen p-6">
+          <div className="w-64 bg-gray-900 min-h-screen p-6">
             <div className="mb-8">
-              <h1 className="text-2xl font-bold text-[#F5E6D3] font-serif">Admin Panel</h1>
-              <p className="text-[#D4B896] text-sm">E-commerce Management</p>
+              <h1 className="text-2xl font-bold text-white font-serif">Admin Panel</h1>
+              <p className="text-gray-400 text-sm">E-commerce Management</p>
             </div>
             
             <nav className="space-y-2">
@@ -468,8 +467,8 @@ const Admin = () => {
                     onClick={() => setActiveTab(item.id)}
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                       activeTab === item.id
-                        ? 'bg-[#C4975A] text-[#F5E6D3]'
-                        : 'text-[#D4B896] hover:bg-[#F5E6D3]/20 hover:text-[#F5E6D3]'
+                        ? 'bg-gray-700 text-white'
+                        : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -479,7 +478,7 @@ const Admin = () => {
               })}
             </nav>
 
-            <div className="mt-8 pt-8 border-t border-[#D4B896]/30">
+            <div className="mt-8 pt-8 border-t border-gray-700">
               <button
                 onClick={() => setIsAuthenticated(false)}
                 className="w-full text-red-400 hover:text-red-300 px-4 py-2 text-left transition-colors"
@@ -499,15 +498,15 @@ const Admin = () => {
       {/* Product Modal */}
       {isProductModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-[#F5E6D3] rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-900 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-[#2A2317]">
+                <h2 className="text-2xl font-bold text-white">
                   {editingProduct ? 'Edit Product' : 'Add New Product'}
                 </h2>
                 <button 
                   onClick={() => setIsProductModalOpen(false)}
-                  className="text-[#8B7355] hover:text-[#2A2317]"
+                  className="text-gray-400 hover:text-white"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -516,23 +515,23 @@ const Admin = () => {
               <form onSubmit={handleSaveProduct} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Product Name *</label>
+                    <label className="block text-white font-semibold mb-2">Product Name *</label>
                     <input
                       type="text"
                       value={productForm.name}
                       onChange={(e) => setProductForm({...productForm, name: e.target.value})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                       placeholder="Enter product name"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Category</label>
+                    <label className="block text-white font-semibold mb-2">Category</label>
                     <select
                       value={productForm.category}
                       onChange={(e) => setProductForm({...productForm, category: e.target.value})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                     >
                       <option value="tshirts">T-Shirts</option>
                       <option value="hoodies">Hoodies</option>
@@ -541,12 +540,12 @@ const Admin = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Price *</label>
+                    <label className="block text-white font-semibold mb-2">Price *</label>
                     <input
                       type="number"
                       value={productForm.price}
                       onChange={(e) => setProductForm({...productForm, price: parseFloat(e.target.value)})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                       placeholder="0.00"
                       min="0"
                       step="0.01"
@@ -555,12 +554,12 @@ const Admin = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Original Price</label>
+                    <label className="block text-white font-semibold mb-2">Original Price</label>
                     <input
                       type="number"
                       value={productForm.originalPrice}
                       onChange={(e) => setProductForm({...productForm, originalPrice: parseFloat(e.target.value)})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                       placeholder="0.00"
                       min="0"
                       step="0.01"
@@ -568,24 +567,24 @@ const Admin = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Stock Quantity</label>
+                    <label className="block text-white font-semibold mb-2">Stock Quantity</label>
                     <input
                       type="number"
                       value={productForm.stock}
                       onChange={(e) => setProductForm({...productForm, stock: parseInt(e.target.value)})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                       placeholder="0"
                       min="0"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[#2A2317] font-semibold mb-2">Image URL *</label>
+                    <label className="block text-white font-semibold mb-2">Image URL *</label>
                     <input
                       type="url"
                       value={productForm.image}
                       onChange={(e) => setProductForm({...productForm, image: e.target.value})}
-                      className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                       placeholder="https://example.com/image.jpg"
                       required
                     />
@@ -593,18 +592,18 @@ const Admin = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[#2A2317] font-semibold mb-2">Description</label>
+                  <label className="block text-white font-semibold mb-2">Description</label>
                   <textarea
                     value={productForm.description}
                     onChange={(e) => setProductForm({...productForm, description: e.target.value})}
-                    className="w-full p-3 border border-[#D4B896] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C4975A]"
+                    className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
                     rows={3}
                     placeholder="Enter product description"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[#2A2317] font-semibold mb-2">Sizes</label>
+                  <label className="block text-white font-semibold mb-2">Sizes</label>
                   <div className="flex flex-wrap gap-2">
                     {['XS', 'S', 'M', 'L', 'XL', 'XXL', 'One Size'].map((size) => (
                       <button
@@ -613,8 +612,8 @@ const Admin = () => {
                         onClick={() => handleSizeToggle(size)}
                         className={`px-3 py-1 rounded border transition-colors ${
                           productForm.sizes?.includes(size)
-                            ? 'bg-[#C4975A] text-[#F5E6D3] border-[#C4975A]'
-                            : 'bg-white text-[#2A2317] border-[#D4B896] hover:bg-[#F5E6D3]'
+                            ? 'bg-gray-700 text-white border-gray-600'
+                            : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700'
                         }`}
                       >
                         {size}
@@ -624,7 +623,7 @@ const Admin = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[#2A2317] font-semibold mb-2">Colors</label>
+                  <label className="block text-white font-semibold mb-2">Colors</label>
                   <div className="flex flex-wrap gap-2">
                     {['Black', 'White', 'Gray', 'Navy', 'Blue', 'Red', 'Green', 'Natural'].map((color) => (
                       <button
@@ -633,8 +632,8 @@ const Admin = () => {
                         onClick={() => handleColorToggle(color)}
                         className={`px-3 py-1 rounded border transition-colors ${
                           productForm.colors?.includes(color)
-                            ? 'bg-[#C4975A] text-[#F5E6D3] border-[#C4975A]'
-                            : 'bg-white text-[#2A2317] border-[#D4B896] hover:bg-[#F5E6D3]'
+                            ? 'bg-gray-700 text-white border-gray-600'
+                            : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700'
                         }`}
                       >
                         {color}
@@ -649,9 +648,9 @@ const Admin = () => {
                       type="checkbox"
                       checked={productForm.inStock}
                       onChange={(e) => setProductForm({...productForm, inStock: e.target.checked})}
-                      className="mr-2"
+                      className="mr-2 accent-gray-600"
                     />
-                    <span className="text-[#2A2317]">In Stock</span>
+                    <span className="text-white">In Stock</span>
                   </label>
 
                   <label className="flex items-center">
@@ -659,16 +658,16 @@ const Admin = () => {
                       type="checkbox"
                       checked={productForm.bestseller}
                       onChange={(e) => setProductForm({...productForm, bestseller: e.target.checked})}
-                      className="mr-2"
+                      className="mr-2 accent-gray-600"
                     />
-                    <span className="text-[#2A2317]">Bestseller</span>
+                    <span className="text-white">Bestseller</span>
                   </label>
                 </div>
 
                 <div className="flex space-x-4 pt-4">
                   <Button
                     type="submit"
-                    className="flex-1 bg-[#C4975A] hover:bg-[#8B7355] text-[#F5E6D3]"
+                    className="flex-1 bg-gray-700 hover:bg-gray-600 text-white"
                   >
                     {editingProduct ? 'Update Product' : 'Add Product'}
                   </Button>
@@ -676,7 +675,7 @@ const Admin = () => {
                     type="button"
                     onClick={() => setIsProductModalOpen(false)}
                     variant="outline"
-                    className="flex-1"
+                    className="flex-1 border-gray-700 bg-gray-800 text-white hover:bg-gray-700"
                   >
                     Cancel
                   </Button>
