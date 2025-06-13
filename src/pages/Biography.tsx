@@ -22,7 +22,7 @@ const Biography = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2A2317] via-[#3A3127] to-[#2A2317]">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <Navigation />
       
       {/* Hero Section with Artist Portrait */}
@@ -34,16 +34,16 @@ const Biography = () => {
               alt="Dimitri & The Scarecrow Portrait"
               className="w-full h-full object-cover grayscale"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2A2317] via-[#2A2317]/70 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
           </div>
         </div>
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center pt-32 md:pt-48">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#C4975A] to-[#D4B896] bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">
               Biography
             </h1>
-            <p className="text-xl text-[#D4B896]">The story behind the music</p>
+            <p className="text-xl text-gray-300">The story behind the music</p>
           </div>
         </div>
       </div>
@@ -52,9 +52,9 @@ const Biography = () => {
         {/* Main Bio Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
-            <div className="bg-[#F5E6D3]/10 backdrop-blur-sm rounded-2xl p-8 border border-[#D4B896]/20">
-              <h2 className="text-3xl font-bold text-[#F5E6D3] mb-6">The Journey</h2>
-              <div className="space-y-4 text-[#D4B896] leading-relaxed">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-gray-600/20">
+              <h2 className="text-3xl font-bold text-white mb-6">The Journey</h2>
+              <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
                   Born from a passion for electronic soundscapes and driven by an insatiable desire to push 
                   musical boundaries, Dimitri & The Scarecrow has emerged as one of the most innovative voices in contemporary 
@@ -76,31 +76,31 @@ const Biography = () => {
 
           <div className="space-y-6">
             {/* Artist Photo */}
-            <div className="bg-gradient-to-br from-[#C4975A] to-[#8B7355] p-1 rounded-2xl">
+            <div className="bg-gradient-to-br from-gray-600 to-gray-800 p-1 rounded-2xl">
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&h=400&fit=crop"
                   alt="Dimitri in the studio"
                   className="w-full h-64 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3A3127]/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
               </div>
             </div>
 
             {/* Quote */}
-            <div className="bg-[#F5E6D3]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#D4B896]/20">
-              <blockquote className="text-lg text-[#F5E6D3] italic text-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-600/20">
+              <blockquote className="text-lg text-white italic text-center">
                 "Music is the universal language that connects us all. Through electronic sounds, 
                 I try to create bridges between hearts and minds."
               </blockquote>
-              <p className="text-[#C4975A] text-center mt-4 font-semibold">- Dimitri & The Scarecrow</p>
+              <p className="text-gray-400 text-center mt-4 font-semibold">- Dimitri & The Scarecrow</p>
             </div>
           </div>
         </div>
 
         {/* Artist Gallery */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#F5E6D3] mb-8 text-center">Behind the Scenes</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Behind the Scenes</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="relative group overflow-hidden rounded-xl">
               <img 
@@ -108,9 +108,9 @@ const Biography = () => {
                 alt="Studio Sessions"
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2A2317]/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-4 left-4">
-                <p className="text-[#F5E6D3] font-semibold">Studio Life</p>
+                <p className="text-white font-semibold">Studio Life</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-xl">
@@ -119,9 +119,9 @@ const Biography = () => {
                 alt="Creative Process"
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2A2317]/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-4 left-4">
-                <p className="text-[#F5E6D3] font-semibold">Creative Process</p>
+                <p className="text-white font-semibold">Creative Process</p>
               </div>
             </div>
             <div className="relative group overflow-hidden rounded-xl">
@@ -130,9 +130,9 @@ const Biography = () => {
                 alt="Inspiration"
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2A2317]/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
               <div className="absolute bottom-4 left-4">
-                <p className="text-[#F5E6D3] font-semibold">Finding Inspiration</p>
+                <p className="text-white font-semibold">Finding Inspiration</p>
               </div>
             </div>
           </div>
@@ -140,13 +140,13 @@ const Biography = () => {
 
         {/* Achievements */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#F5E6D3] mb-8 text-center">Achievements</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => (
-              <div key={index} className="bg-[#F5E6D3]/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-[#F5E6D3]/20 transition-all duration-300 border border-[#D4B896]/20">
-                <achievement.icon className="w-12 h-12 text-[#C4975A] mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-[#F5E6D3] mb-2">{achievement.title}</h3>
-                <p className="text-[#D4B896] text-sm">{achievement.description}</p>
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300 border border-gray-600/20">
+                <achievement.icon className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-white mb-2">{achievement.title}</h3>
+                <p className="text-gray-300 text-sm">{achievement.description}</p>
               </div>
             ))}
           </div>
@@ -154,16 +154,16 @@ const Biography = () => {
 
         {/* Timeline */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#F5E6D3] mb-8 text-center">Career Timeline</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Career Timeline</h2>
           <div className="space-y-6">
             {timeline.map((item, index) => (
               <div key={index} className="flex items-center space-x-6 group">
                 <div className="flex-shrink-0 w-20 text-right">
-                  <span className="text-[#C4975A] font-bold text-lg">{item.year}</span>
+                  <span className="text-gray-400 font-bold text-lg">{item.year}</span>
                 </div>
-                <div className="flex-shrink-0 w-4 h-4 bg-[#C4975A] rounded-full group-hover:scale-125 transition-transform duration-200"></div>
-                <div className="flex-grow bg-[#F5E6D3]/10 backdrop-blur-sm rounded-lg p-4 group-hover:bg-[#F5E6D3]/20 transition-all duration-300 border border-[#D4B896]/20">
-                  <p className="text-[#F5E6D3]">{item.event}</p>
+                <div className="flex-shrink-0 w-4 h-4 bg-gray-600 rounded-full group-hover:scale-125 transition-transform duration-200"></div>
+                <div className="flex-grow bg-white/10 backdrop-blur-sm rounded-lg p-4 group-hover:bg-white/20 transition-all duration-300 border border-gray-600/20">
+                  <p className="text-white">{item.event}</p>
                 </div>
               </div>
             ))}
@@ -172,16 +172,16 @@ const Biography = () => {
 
         {/* Press Features */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#F5E6D3] mb-8 text-center">Press & Media</h2>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Press & Media</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { publication: "Electronic Music Weekly", quote: "A revolutionary force in electronic music" },
               { publication: "DJ Magazine", quote: "Consistently pushing boundaries with innovative sounds" },
               { publication: "Music Producer News", quote: "The future of electronic music is here" },
             ].map((press, index) => (
-              <div key={index} className="bg-[#F5E6D3]/10 backdrop-blur-sm rounded-xl p-6 border border-[#D4B896]/20">
-                <p className="text-[#D4B896] italic mb-4">"{press.quote}"</p>
-                <p className="text-[#C4975A] font-semibold">- {press.publication}</p>
+              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-gray-600/20">
+                <p className="text-gray-300 italic mb-4">"{press.quote}"</p>
+                <p className="text-gray-400 font-semibold">- {press.publication}</p>
               </div>
             ))}
           </div>

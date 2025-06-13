@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin, Send, Instagram, Twitter, Youtube } from 'lucide-react';
@@ -33,13 +34,13 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, url: '#', color: 'hover:text-pink-400' },
-    { name: 'Twitter', icon: Twitter, url: '#', color: 'hover:text-blue-400' },
-    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-red-400' },
+    { name: 'Instagram', icon: Instagram, url: '#', color: 'hover:text-gray-400' },
+    { name: 'Twitter', icon: Twitter, url: '#', color: 'hover:text-gray-400' },
+    { name: 'YouTube', icon: Youtube, url: '#', color: 'hover:text-gray-400' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <Navigation />
       
       {/* Hero Section with Artist Image */}
@@ -57,7 +58,7 @@ const Contact = () => {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center pt-32 md:pt-48">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
               Contact
             </h1>
             <p className="text-xl text-gray-300">Let's connect and create something amazing together</p>
@@ -81,7 +82,7 @@ const Contact = () => {
                   name="inquiryType"
                   value={formData.inquiryType}
                   onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-400 transition-colors"
+                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gray-400 transition-colors"
                 >
                   <option value="general">General Inquiry</option>
                   <option value="booking">Booking Request</option>
@@ -102,7 +103,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 transition-colors"
+                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors"
                   placeholder="Your full name"
                 />
               </div>
@@ -118,7 +119,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 transition-colors"
+                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -134,7 +135,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 transition-colors"
+                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors"
                   placeholder="What's this about?"
                 />
               </div>
@@ -150,7 +151,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 transition-colors resize-none"
+                  className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400 transition-colors resize-none"
                   placeholder="Tell me more about your inquiry..."
                 />
               </div>
@@ -158,7 +159,7 @@ const Contact = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
                 <Send className="w-5 h-5" />
                 <span>Send Message</span>
@@ -188,7 +189,7 @@ const Contact = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <Mail className="w-6 h-6 text-indigo-400 mt-1" />
+                  <Mail className="w-6 h-6 text-gray-400 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
                     <p className="text-gray-300">info@dimitriscarecrow.com</p>
@@ -197,7 +198,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <Mail className="w-6 h-6 text-purple-400 mt-1" />
+                  <Mail className="w-6 h-6 text-gray-500 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Booking</h3>
                     <p className="text-gray-300">booking@dimitriscarecrow.com</p>
@@ -206,7 +207,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <Phone className="w-6 h-6 text-green-400 mt-1" />
+                  <Phone className="w-6 h-6 text-gray-600 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Phone</h3>
                     <p className="text-gray-300">+1 (555) 123-4567</p>
@@ -215,7 +216,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-red-400 mt-1" />
+                  <MapPin className="w-6 h-6 text-gray-400 mt-1" />
                   <div>
                     <h3 className="text-white font-semibold mb-1">Location</h3>
                     <p className="text-gray-300">Los Angeles, CA</p>
@@ -247,9 +248,9 @@ const Contact = () => {
             </div>
 
             {/* Response Time */}
-            <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-2xl p-6 border border-green-400/30">
+            <div className="bg-gradient-to-r from-gray-600/20 to-gray-800/20 rounded-2xl p-6 border border-gray-400/30">
               <h3 className="text-lg font-bold text-white mb-2">Quick Response</h3>
-              <p className="text-green-200 text-sm">
+              <p className="text-gray-200 text-sm">
                 I typically respond to messages within 24-48 hours. For urgent booking inquiries, 
                 please call the phone number above.
               </p>

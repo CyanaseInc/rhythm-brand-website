@@ -103,7 +103,7 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       <Navigation />
       
       {/* Hero Section with Artist Image */}
@@ -111,7 +111,7 @@ const Events = () => {
         <div className="absolute inset-0 pt-24">
           <div className="relative h-64 md:h-80 overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face"
+              src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0d952?w=1920&h=1080&fit=crop&crop=face"
               alt="Dimitri & The Scarecrow Live Performance"
               className="w-full h-full object-cover grayscale"
             />
@@ -121,7 +121,7 @@ const Events = () => {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center pt-32 md:pt-48">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
               Events
             </h1>
             <p className="text-xl text-gray-300">Join me on the electronic music journey</p>
@@ -140,7 +140,7 @@ const Events = () => {
                   {/* Date & Time */}
                   <div className="text-center lg:text-left">
                     <div className="flex items-center justify-center lg:justify-start space-x-2 mb-2">
-                      <Calendar className="w-5 h-5 text-red-400" />
+                      <Calendar className="w-5 h-5 text-gray-400" />
                       <span className="text-white font-semibold">{formatDate(event.date)}</span>
                     </div>
                     <div className="flex items-center justify-center lg:justify-start space-x-2">
@@ -168,7 +168,7 @@ const Events = () => {
                       {event.status !== 'Coming Soon' && (
                         <a 
                           href={event.ticketLink}
-                          className="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors inline-flex items-center space-x-2"
+                          className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-6 rounded-full font-semibold transition-colors inline-flex items-center space-x-2"
                         >
                           <Ticket className="w-4 h-4" />
                           <span>Get Tickets</span>
@@ -227,7 +227,7 @@ const Events = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="bg-gradient-to-r from-purple-500/20 to-red-500/20 rounded-2xl p-8 mb-16">
+        <div className="bg-gradient-to-r from-gray-600/20 to-gray-800/20 rounded-2xl p-8 mb-16">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-white mb-4">Never Miss a Show</h2>
             <p className="text-gray-300 mb-6">Subscribe to get notified about new tour dates and exclusive pre-sale access</p>
@@ -235,9 +235,9 @@ const Events = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                className="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-gray-400"
               />
-              <button className="bg-purple-500 hover:bg-purple-600 text-white py-3 px-8 rounded-full font-semibold transition-colors">
+              <button className="bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-full font-semibold transition-colors">
                 Subscribe
               </button>
             </div>
@@ -269,7 +269,7 @@ const Events = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact" 
-                className="bg-red-500 hover:bg-red-600 text-white py-3 px-8 rounded-full font-semibold transition-colors"
+                className="bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-full font-semibold transition-colors"
               >
                 Contact for Booking
               </a>
