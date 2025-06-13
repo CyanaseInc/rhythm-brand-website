@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Navigation from '../components/Navigation';
 import FloatingCheckout from '../components/FloatingCheckout';
+import CheckoutModal from '../components/CheckoutModal';
 import { ShoppingCart, Plus, Minus, Search, Filter, Star, Heart, Truck, Shield, ArrowUpDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -11,6 +12,7 @@ const Store = () => {
   const [sortBy, setSortBy] = useState('name');
   const [priceRange, setPriceRange] = useState([0, 100]);
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
   const { toast } = useToast();
 
   const products = [
@@ -165,11 +167,15 @@ const Store = () => {
   };
 
   const handleCheckout = () => {
+    setIsCheckoutModalOpen(true);
+  };
+
+  const handleOrderComplete = () => {
+    setCart({});
     toast({
-      title: "Proceeding to Checkout",
-      description: `${getTotalItems()} items - Total: $${getTotalPrice()}`,
+      title: "Order Completed!",
+      description: "Your order has been successfully placed. You'll receive a confirmation email shortly.",
     });
-    // Add checkout logic here
   };
 
   return (
@@ -282,7 +288,10 @@ const Store = () => {
                   </div>
                   <p className="text-xl font-bold text-blue-600">${getTotalPrice()}</p>
                   {getTotalItems() > 0 && (
-                    <button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded-lg text-sm font-semibold transition-colors">
+                    <button 
+                      onClick={handleCheckout}
+                      className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded-lg text-sm font-semibold transition-colors"
+                    >
                       Checkout
                     </button>
                   )}
@@ -445,6 +454,15 @@ const Store = () => {
         totalItems={getTotalItems()}
         totalPrice={getTotalPrice()}
         onCheckout={handleCheckout}
+      />
+
+      {/* Checkout Modal */}
+      <CheckoutModal
+        isOpen={isCheckoutModalOpen}
+        onClose={() => setIsCheckoutModalOpen(false)}
+        totalItems={getTotalItems()}
+        totalPrice={getTotalPrice()}
+        onOrderComplete={handleOrderComplete}
       />
     </div>
   );
