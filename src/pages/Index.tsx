@@ -56,22 +56,22 @@ const Index = () => {
     }
   ];
 
-  // Updated platforms to include logo images
+  // Platforms with official logo images.
   const platforms = [
     {
       name: 'Spotify',
       url: '#',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=facearea&w=80&q=80' // Placeholder
+      image: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg'
     },
     {
       name: 'Bandcamp',
       url: '#',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=facearea&w=80&q=80' // Placeholder
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Bandcamp-logotype-color.svg'
     },
     {
       name: 'SoundCloud',
       url: '#',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=facearea&w=80&q=80' // Placeholder
+      image: 'https://upload.wikimedia.org/wikipedia/commons/2/20/SoundCloud_logo.svg'
     },
     {
       name: 'Cassette Tapes',
