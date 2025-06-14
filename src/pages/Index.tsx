@@ -25,30 +25,30 @@ const Index = () => {
     });
   };
 
-  // Placeholder musician images from Unsplash - you can replace these later
+  // Updated placeholder musician images for full-card backgrounds
   const quickLinks = [
     {
       title: 'The Crop',
       description: 'Albums shown as hand-drawn seed packets',
-      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=facearea&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=facearea&w=700&q=80',
       link: '/music'
     },
     {
       title: 'Field Notes',
       description: 'Art meets lifestyle - nature retreats and creative rituals',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=700&q=80',
       link: '/biography'
     },
     {
       title: 'Footprints on Dust',
       description: 'Rustic calendar pinned on a barn wall',
-      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=700&q=80',
       link: '/events'
     },
     {
       title: 'Whispers from the Wheat',
       description: 'Letters from the Scarecrow - notes, dreams, and secret sound drops',
-      image: 'https://images.unsplash.com/photo-1526178613658-3c702b2bc418?auto=format&fit=facearea&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1526178613658-3c702b2bc418?auto=format&fit=facearea&w=700&q=80',
       link: '/contact'
     }
   ];
@@ -86,7 +86,7 @@ const Index = () => {
       <Navigation />
       <Hero />
       
-      {/* Quick Links Section - "Into the Field" */}
+      {/* Quick Links Section - Immersive cards */}
       <section className="py-20 px-4 bg-black font-sans">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-4 font-sans uppercase tracking-widest">
@@ -100,17 +100,37 @@ const Index = () => {
               <Link
                 key={index}
                 to={link.link}
-                className="group bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-800 flex flex-col items-center"
+                className="group rounded-2xl shadow-lg overflow-hidden h-72 relative cursor-pointer focus:outline-none focus:ring-4 focus:ring-white/20"
+                tabIndex={0}
               >
-                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden bg-gray-800 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                  <img
-                    src={link.image}
-                    alt={link.title}
-                    className="w-full h-full object-cover"
-                  />
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    backgroundImage: `url(${link.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300"></div>
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col justify-center items-center h-full p-6 text-center">
+                  <h3 className="text-2xl font-bold text-white drop-shadow-lg mb-2 font-sans uppercase group-hover:text-gray-100 transition-colors duration-200">
+                    {link.title}
+                  </h3>
+                  <p className="text-gray-300 font-sans text-base group-hover:text-white transition-colors duration-200">
+                    {link.description}
+                  </p>
+                  <span className="mt-6 inline-block px-4 py-2 bg-white/10 text-white rounded-full text-xs tracking-wide uppercase font-semibold group-hover:bg-white/20 transition-colors">
+                    Explore
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 font-sans uppercase">{link.title}</h3>
-                <p className="text-gray-400 text-sm font-sans">{link.description}</p>
+
+                {/* Hover effect */}
+                <span className="absolute inset-0 transition-transform duration-300 group-hover:scale-105 group-active:scale-100" />
               </Link>
             ))}
           </div>
