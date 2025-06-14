@@ -22,12 +22,12 @@ const Hero = () => {
         }}
       />
 
-      {/* Bottom-up dark overlay */}
+      {/* Bottom-up very dark overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, rgba(20,20,28,0.85) 0%, rgba(20,20,28,0.7) 38%, rgba(20,20,28,0.44) 62%, rgba(20,20,28,0.0) 84%, rgba(0,0,0,0.0) 100%)",
+            "linear-gradient(to top, rgba(10,10,15,0.99) 0%, rgba(20,20,28,0.93) 20%, rgba(20,20,28,0.7) 42%, rgba(20,20,28,0.38) 70%, rgba(20,20,28,0.0) 85%, rgba(0,0,0,0.0) 100%)",
         }}
       />
 
