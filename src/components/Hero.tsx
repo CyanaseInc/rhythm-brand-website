@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const backgroundImage =
@@ -35,7 +34,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full py-16 text-center">
         <h1
-          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-fade-in animation-delay-300 animate-float"
+          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-title hero-text-delay-1 select-text"
           style={{
             textShadow: "0 1px 18px rgba(0,0,0,0.60)",
             lineHeight: 1.05,
@@ -44,12 +43,12 @@ const Hero = () => {
         >
           DIMITRI
           <br />
-          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-scale-in animation-delay-1000">
+          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-subtitle hero-text-delay-2 select-text">
             &amp; THE SCARECROW
           </span>
         </h1>
         <div
-          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-fade-in animation-delay-1200"
+          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-quote hero-text-delay-3 select-text"
           style={{
             textShadow:
               "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
@@ -64,4 +63,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
