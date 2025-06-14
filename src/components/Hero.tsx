@@ -4,7 +4,19 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-transparent">
+    <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
+      {/* Dark textured background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#1A1A1A] to-[#0F0F0F]">
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 opacity-10" 
+             style={{
+               backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 50%)`
+             }}>
+        </div>
+      </div>
+
       {/* Grayscale portrait image - Full width coverage with subtle infinite zoom animation */}
       <div className="absolute inset-0 w-full lg:w-3/5">
         <div 
@@ -15,7 +27,8 @@ const Hero = () => {
             backgroundSize: 'cover',
           }}
         >
-          {/* REMOVED gradient fade overlay here */}
+          {/* Gradient fade to the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
         </div>
       </div>
 
@@ -61,7 +74,7 @@ const Hero = () => {
         </div>
       </nav>
 
-      {/* Hero Content */}
+      {/* Hero Content - Positioned on the right side with proper padding for DIMITRI */}
       <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
         <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
           <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
@@ -113,6 +126,7 @@ const Hero = () => {
       <div className="absolute top-32 right-32 animate-pulse opacity-40">
         <div className="text-2xl">🦅</div>
       </div>
+
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-[#F5E6D3]/50 rounded-full p-2">
           <div className="w-1 h-3 bg-[#F5E6D3]/50 rounded-full animate-pulse"></div>
