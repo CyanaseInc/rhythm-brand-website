@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const backgroundImage =
@@ -41,11 +42,25 @@ const Hero = () => {
           }}
         >
           DIMITRI
-          <br />
-          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
-            &amp; THE SCARECROW
-          </span>
         </h1>
+        {/* $ separator */}
+        <div
+          className="my-2 animate-fade-in"
+          style={{
+            fontFamily: "'Montserrat', Arial, sans-serif",
+            fontWeight: 900,
+            fontSize: "2.5rem",
+            color: "#fff",
+            textShadow: "0 1px 14px #00ffc3, 0 0px 6px #000a",
+            lineHeight: 1,
+            letterSpacing: "0.05em",
+          }}
+        >
+          $
+        </div>
+        <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
+          &amp; THE SCARECROW
+        </span>
         <div
           className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-music-quote select-text"
           style={{
