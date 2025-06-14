@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import CheckoutModal from '../components/CheckoutModal';
-import { Music, BookOpen, Calendar, Mail, Play, ExternalLink } from 'lucide-react';
+import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import FeaturedTracksCarousel from '../components/FeaturedTracksCarousel';
@@ -56,7 +56,7 @@ const Index = () => {
     }
   ];
 
-  // Platforms with official logo images and tie
+  // Platforms with logos and icon-based YouTube logo included
   const platforms = [
     {
       name: 'Spotify',
@@ -76,12 +76,18 @@ const Index = () => {
     {
       name: 'Cassette Tapes',
       url: '#',
-      image: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cassette_tape_icon.svg' // Real Cassette Tape icon SVG
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cassette_tape_icon.svg'
+    },
+    {
+      name: 'YouTube',
+      url: '#',
+      icon: youtube,
+      isIcon: true
     },
     {
       name: 'Your Tie',
       url: '#',
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=facearea&w=80&q=80' // Tie placeholder from Unsplash context
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=facearea&w=80&q=80'
     }
   ];
 
@@ -158,15 +164,25 @@ const Index = () => {
                 key={platform.name}
                 href={platform.url}
                 className="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-transform duration-200 flex items-center space-x-3 font-sans"
-                onClick={() => handlePlatformClick(platform)}
+                onClick={() => {
+                  // @ts-ignore (platform.icon is for YouTube only)
+                  console.log(`Platform clicked:`, platform.name, '-', platform.url);
+                }}
               >
-                {/* Platform Logo */}
-                <img 
-                  src={platform.image}
-                  alt={`${platform.name} logo`}
-                  className="w-7 h-7 object-cover rounded-full shadow-md ring-2 ring-white/20"
-                  style={{ background: "#1a1a1a"}}
-                />
+                {/* Platform Logo or Lucide Icon */}
+                {platform.isIcon && platform.icon ? (
+                  <platform.icon
+                    className="w-7 h-7 text-red-500 bg-white rounded-full shadow-md ring-2 ring-white/20 p-1"
+                    aria-label="YouTube"
+                  />
+                ) : (
+                  <img 
+                    src={platform.image}
+                    alt={`${platform.name} logo`}
+                    className="w-7 h-7 object-cover rounded-full shadow-md ring-2 ring-white/20"
+                    style={{ background: "#1a1a1a"}}
+                  />
+                )}
                 <span>{platform.name}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
