@@ -1,133 +1,82 @@
 
 import React from 'react';
-import { Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { AudioWaveform } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
-      {/* Dark textured background without color overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#1A1A1A] to-[#0F0F0F]">
-        {/* Subtle gray/white texture only */}
-        <div className="absolute inset-0 opacity-10" 
-             style={{
-               backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
-                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 50%)`
-             }}>
+    <section className="relative min-h-screen bg-black font-sans flex flex-col">
+      {/* Top navigation bar */}
+      <nav className="w-full py-6 px-8 flex items-center justify-between z-30 relative">
+        {/* Logo top left */}
+        <div className="flex items-center space-x-3">
+          <span className="text-white text-2xl font-black tracking-widest uppercase opacity-90 select-none">dimitri&scarecrow</span>
         </div>
-      </div>
-
-      {/* Grayscale portrait image without colored overlay */}
-      <div className="absolute inset-0 w-full lg:w-3/5">
-        <div 
-          className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
-            backgroundPosition: 'center center',
-            backgroundSize: 'cover',
-          }}
-        >
-          {/* No colored gradient, just transparent fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
-        </div>
-      </div>
-
-      {/* Navigation Bar */}
-      <nav className="relative z-20 w-full bg-[#1A1A1A]/90 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 animate-fade-in border-b border-white/20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Natural Icons - Left */}
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🌾</span>
-            </div>
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🌙</span>
-            </div>
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🔥</span>
-            </div>
-          </div>
-
-          {/* Logo - Center */}
-          <Link to="/" className="text-white text-lg md:text-2xl font-bold animate-scale-in font-serif">
-            dimitri<span className="text-gray-300">&</span>scarecrow
-          </Link>
-
-          {/* Navigation Links - Right */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link to="/" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">HOME</Link>
-            <Link to="/music" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">MUSIC</Link>
-            <Link to="/biography" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">BIOGRAPHY</Link>
-            <Link to="/events" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">EVENTS</Link>
-            <Link to="/contact" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">CONTACT</Link>
-            <Search className="w-4 h-4 lg:w-5 lg:h-5 text-white hover:text-gray-300 cursor-pointer transition-all duration-300 hover:scale-110" />
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <button className="text-white p-2 hover:text-gray-300 transition-colors">
-              <div className="w-5 h-0.5 bg-current mb-1 transition-all duration-300"></div>
-              <div className="w-5 h-0.5 bg-current mb-1 transition-all duration-300"></div>
-              <div className="w-5 h-0.5 bg-current transition-all duration-300"></div>
-            </button>
-          </div>
+        {/* Minimal nav links */}
+        <ul className="hidden md:flex space-x-10">
+          <li><a href="/" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Home</a></li>
+          <li><a href="/music" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Music</a></li>
+          <li><a href="/events" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Events</a></li>
+          <li><a href="/biography" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Biography</a></li>
+          <li><a href="/contact" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Contact</a></li>
+        </ul>
+        {/* Search icon */}
+        <div className="hidden md:flex">
+          <svg className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
         </div>
       </nav>
 
-      {/* Hero Content - no brown/orange highlights, only white/gray/black */}
-      <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
-        <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
-          <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
-            {/* Main Title */}
-            <div className="space-y-4 md:space-y-6">
-              <h1 className="text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16" 
-                  style={{ animationFillMode: 'forwards' }}>
-                DIMITRI
-              </h1>
-              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-8 md:px-12 lg:px-16" 
-                   style={{ animationFillMode: 'forwards' }}>
-                <h2 className="text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] leading-none font-serif italic">
-                  & THE SCARECROW
-                </h2>
-                <div className="w-8 md:w-12 lg:w-16 h-1.5 md:h-2 bg-white/30 animate-slide-in-right opacity-0 animation-delay-700" 
-                     style={{ animationFillMode: 'forwards' }}></div>
-              </div>
-            </div>
-            {/* Poetic Quote */}
-            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-8 md:px-12 lg:px-16" 
-                 style={{ animationFillMode: 'forwards' }}>
-              <blockquote className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic">
-                "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
-              </blockquote>
-            </div>
-            {/* Call to Action Buttons - fully neutral colors */}
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-8 md:px-12 lg:px-16" 
-                 style={{ animationFillMode: 'forwards' }}>
-              <Link to="/music" className="bg-white text-[#1A1A1A] font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/10 font-serif text-center">
-                HARVEST THE SOUND
-              </Link>
-              <Link to="/music" className="border-2 border-white/30 hover:border-white text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 hover:bg-white/10 transform hover:scale-105 font-serif text-center">
-                INTO THE FIELD
-              </Link>
-            </div>
+      {/* Main hero content */}
+      <div className="flex-1 flex flex-col md:flex-row w-full justify-between items-stretch">
+        {/* Left: Main content */}
+        <div className="flex flex-col justify-center items-start md:w-[52%] w-full px-8 md:px-16 py-20 z-10 relative">
+          {/* LOGO or Main Title */}
+          <div className="mb-10 mt-16 md:mt-0 text-left w-full">
+            <h1 className="text-white font-black text-[2.5rem] sm:text-6xl md:text-7xl leading-tight uppercase mb-6 tracking-widest drop-shadow font-sans select-none">
+              dimitri<span className="font-light">&amp;scarecrow</span>
+            </h1>
+          </div>
+          {/* Poetic/creative Quote */}
+          <div className="mb-10 w-full">
+            <blockquote className="text-white text-lg md:text-2xl lg:text-3xl font-extralight tracking-wide w-full leading-relaxed text-left italic select-none" style={{ textShadow: '0 2px 20px #000' }}>
+              "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS<br className="hidden md:block"/> AND SILENCE HOLDS THE DEEPEST TRUTHS..."
+            </blockquote>
+          </div>
+          {/* Animated Music Waves */}
+          <div className="mt-6 flex items-center space-x-2">
+            {/* 5 animated waves */}
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.2s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.4s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.6s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.8s' }} />
+            <style>
+              {`
+                @keyframes wavebounce {
+                  0%, 100% { transform: translateY(0); opacity: 1; }
+                  50%      { transform: translateY(-20%); opacity: 0.8; }
+                }
+              `}
+            </style>
           </div>
         </div>
-      </div>
-      {/* Floating Elements */}
-      <div className="absolute bottom-20 right-20 animate-bounce opacity-60">
-        <div className="text-4xl">🌾</div>
-      </div>
-      <div className="absolute top-32 right-32 animate-pulse opacity-40">
-        <div className="text-2xl">🦅</div>
-      </div>
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full p-2">
-          <div className="w-1 h-3 bg-white/50 rounded-full animate-pulse"></div>
+        {/* Right: Hero photo */}
+        <div className="md:w-[48%] w-full h-[400px] md:h-auto relative overflow-hidden flex items-center justify-center">
+          <img
+            src="/lovable-uploads/bf7d600c-1e7e-4be1-a802-d9544cfb568e.png"
+            alt="Hero"
+            className="w-full h-full object-cover object-right md:rounded-l-[5rem] opacity-80 shadow-2xl"
+            style={{
+              borderLeft: '8px solid rgba(0,0,0,0.25)',
+              minHeight: '400px'
+            }}
+          />
+          {/* Optional: subtle overlay */}
+          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-black/0 pointer-events-none"></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Hero;
+
