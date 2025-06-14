@@ -1,7 +1,7 @@
+
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
-import FloatingCheckout from '../components/FloatingCheckout';
 import CheckoutModal from '../components/CheckoutModal';
 import { Music, BookOpen, Calendar, Mail, Play, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,6 @@ const Index = () => {
     });
   };
 
-  // Updated placeholder musician images for full-card backgrounds
   const quickLinks = [
     {
       title: 'The Crop',
@@ -170,12 +169,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Floating Checkout and Modal */}
-      <FloatingCheckout 
-        totalItems={cartItems}
-        totalPrice={cartTotal}
-        onCheckout={handleCheckout}
-      />
+      {/* Checkout Modal only (NO floating checkout) */}
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
