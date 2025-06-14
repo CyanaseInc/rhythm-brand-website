@@ -56,11 +56,28 @@ const Index = () => {
     }
   ];
 
+  // Updated platforms to include logo images
   const platforms = [
-    { name: 'Spotify', url: '#' },
-    { name: 'Bandcamp', url: '#' },
-    { name: 'SoundCloud', url: '#' },
-    { name: 'Cassette Tapes', url: '#' }
+    {
+      name: 'Spotify',
+      url: '#',
+      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=facearea&w=80&q=80' // Placeholder
+    },
+    {
+      name: 'Bandcamp',
+      url: '#',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=facearea&w=80&q=80' // Placeholder
+    },
+    {
+      name: 'SoundCloud',
+      url: '#',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=facearea&w=80&q=80' // Placeholder
+    },
+    {
+      name: 'Cassette Tapes',
+      url: '#',
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=facearea&w=80&q=80' // Placeholder
+    }
   ];
 
   return (
@@ -126,7 +143,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Platforms - "Where to Find Us" */}
+      {/* Platforms - "Listen in the Sacred Spaces" */}
       <section className="py-16 px-4 bg-black font-sans">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold text-white mb-8 font-sans uppercase tracking-widest">Listen in the Sacred Spaces</h3>
@@ -135,9 +152,16 @@ const Index = () => {
               <a
                 key={platform.name}
                 href={platform.url}
-                className="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-transform duration-200 flex items-center space-x-2 font-sans"
+                className="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-transform duration-200 flex items-center space-x-3 font-sans"
                 onClick={() => handlePlatformClick(platform)}
               >
+                {/* Platform Logo */}
+                <img 
+                  src={platform.image}
+                  alt={`${platform.name} logo`}
+                  className="w-7 h-7 object-cover rounded-full shadow-md ring-2 ring-white/20"
+                  style={{ background: "#1a1a1a"}}
+                />
                 <span>{platform.name}</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
