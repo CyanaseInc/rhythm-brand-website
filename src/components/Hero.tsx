@@ -1,7 +1,6 @@
 
 import React from "react";
 
-// Unsplash image with a face-painted figure for hero background
 const backgroundImage =
   "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80";
 
@@ -17,21 +16,21 @@ const Hero = () => {
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{
-          opacity: 0.35,
-          filter: "brightness(0.8) blur(0.5px)",
+          opacity: 0.55, // Increase from 0.35 for more visibility
+          filter: "brightness(0.9) blur(0.5px)", // Slightly less dark
           mixBlendMode: "lighten",
           transition: "opacity 0.5s",
         }}
       />
-      {/* Semi-transparent overlay for darkening */}
-      <div className="absolute inset-0 bg-black/80 z-10 pointer-events-none" />
+      {/* Semi-transparent overlay for darkening (lighter than before) */}
+      <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
       {/* Top ethereal fade */}
       <div
         className="absolute inset-0 z-20 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg,rgba(245,245,250,0.62) 0%,rgba(0,0,0,0) 60%)",
-          opacity: 0.55,
+            "linear-gradient(180deg,rgba(245,245,250,0.58) 0%,rgba(0,0,0,0) 65%)",
+          opacity: 0.50, // a little softer
         }}
       />
       {/* Main Content */}
