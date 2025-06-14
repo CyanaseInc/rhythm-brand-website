@@ -182,7 +182,7 @@
 }
 
 .animate-slow-zoom-hero {
-  animation: slowZoomHero 18s ease-in-out infinite;
+  animation: slowZoomHero 7s ease-in-out infinite;
 }
 
 /* Animation delays */
