@@ -2,7 +2,7 @@
 import React from "react";
 
 const backgroundImage =
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80";
+  "/lovable-uploads/bb9d7d96-7f44-4246-b82b-dd94292d360b.png";
 
 const Hero = () => {
   return (
@@ -16,8 +16,8 @@ const Hero = () => {
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{
-          opacity: 0.55, // Increase from 0.35 for more visibility
-          filter: "brightness(0.9) blur(0.5px)", // Slightly less dark
+          opacity: 0.55,
+          filter: "brightness(0.9) blur(0.5px)",
           mixBlendMode: "lighten",
           transition: "opacity 0.5s",
         }}
@@ -30,7 +30,7 @@ const Hero = () => {
         style={{
           background:
             "linear-gradient(180deg,rgba(245,245,250,0.58) 0%,rgba(0,0,0,0) 65%)",
-          opacity: 0.50, // a little softer
+          opacity: 0.50,
         }}
       />
       {/* Main Content */}
@@ -44,11 +44,7 @@ const Hero = () => {
             letterSpacing: "0.01em",
           }}
         >
-          DIMITRI
-          <br />
-          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1">
-            &amp; THE SCARECROW
-          </span>
+          DIMITRI &amp; THE SCARECROW
         </h1>
         {/* Subtitle / Quote */}
         <div
