@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import CheckoutModal from '../components/CheckoutModal';
-import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, youtube } from 'lucide-react';
+import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import FeaturedTracksCarousel from '../components/FeaturedTracksCarousel';
@@ -81,7 +82,7 @@ const Index = () => {
     {
       name: 'YouTube',
       url: '#',
-      icon: youtube,
+      icon: Youtube,
       isIcon: true
     },
     {
