@@ -6,6 +6,7 @@ import CheckoutModal from '../components/CheckoutModal';
 import { Music, BookOpen, Calendar, Mail, Play, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import FeaturedTracksCarousel from '../components/FeaturedTracksCarousel';
 
 const Index = () => {
   const [cartItems] = useState(3);
@@ -50,27 +51,6 @@ const Index = () => {
       description: 'Letters from the Scarecrow - notes, dreams, and secret sound drops',
       image: 'https://images.unsplash.com/photo-1526178613658-3c702b2bc418?auto=format&fit=facearea&w=700&q=80',
       link: '/contact'
-    }
-  ];
-
-  const featuredTracks = [
-    {
-      title: 'Harvest Moon Sessions',
-      album: 'Songs from the Field (2024)',
-      duration: '4:32',
-      streams: 'Like whispers'
-    },
-    {
-      title: 'Scarecrow\'s Lament',
-      album: 'Songs from the Field (2024)',
-      duration: '3:47',
-      streams: 'In the wind'
-    },
-    {
-      title: 'Morning Dew',
-      album: 'Songs from the Field (2024)',
-      duration: '5:12',
-      streams: 'Between dreams'
     }
   ];
 
@@ -137,46 +117,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Music Section - "Songs from the Field" */}
+      {/* Featured Music Section - NEW Modern Carousel */}
       <section className="py-20 px-4 bg-gray-900 font-sans">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-4 font-sans uppercase tracking-widest">
-            Songs from the Field
-          </h2>
-          <p className="text-center text-gray-400 mb-16 font-sans italic">
-            "Melodies grown in moonlight, harvested at dawn"
-          </p>
-          
-          <div className="bg-gray-800 rounded-2xl p-8 border border-gray-700">
-            <div className="space-y-4">
-              {featuredTracks.map((track, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors group">
-                  <div className="flex items-center space-x-4">
-                    <button className="bg-gray-700 hover:bg-gray-600 rounded-full p-2 group-hover:scale-110 transition-transform">
-                      <Play className="w-4 h-4 text-white" />
-                    </button>
-                    <div>
-                      <h4 className="text-white font-semibold font-sans">{track.title}</h4>
-                      <p className="text-gray-400 text-sm font-sans">{track.album}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-white text-sm font-sans">{track.duration}</p>
-                    <p className="text-gray-400 text-xs font-sans italic">{track.streams}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="mt-8 text-center">
-              <Link
-                to="/music"
-                className="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105 inline-block font-sans"
-              >
-                Harvest More Music
-              </Link>
-            </div>
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <FeaturedTracksCarousel />
         </div>
       </section>
 
