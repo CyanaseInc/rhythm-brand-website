@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import { Mail, Phone, MapPin, Send, Instagram, Twitter, Youtube } from 'lucide-react';
@@ -248,12 +247,36 @@ const Contact = () => {
             </div>
 
             {/* Response Time */}
-            <div className="bg-gradient-to-r from-gray-600/20 to-gray-800/20 rounded-2xl p-6 border border-gray-400/30">
-              <h3 className="text-lg font-bold text-white mb-2">Quick Response</h3>
-              <p className="text-gray-200 text-sm">
-                I typically respond to messages within 24-48 hours. For urgent booking inquiries, 
-                please call the phone number above.
-              </p>
+            <div className="relative overflow-visible">
+              <div className="bg-gradient-to-r from-green-400/30 via-blue-500/20 to-yellow-400/30 rounded-3xl p-8 shadow-xl border border-green-300/30 flex items-center gap-5 sm:gap-8 ring-2 ring-green-400/20 animate-float transition-all">
+                {/* Animated glow/pulse icon */}
+                <div className="flex-shrink-0">
+                  <div className="rounded-full bg-white/20 ring-2 ring-green-300/70 p-4 animate-pulse shadow-xl">
+                    {/* Lucide Headphones icon represents fast/attentive support */}
+                    <svg xmlns="http://www.w3.org/2000/svg" width={38} height={38} fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" className="text-green-500 drop-shadow-lg">
+                      <path d="M3 18v-3a9 9 0 1 1 18 0v3" />
+                      <path d="M21 19a2 2 0 0 1-2 2h-.5a2.5 2.5 0 0 1-2.5-2.5V16a2.5 2.5 0 0 1 2.5-2.5H21" />
+                      <path d="M3 19a2 2 0 0 0 2 2h.5A2.5 2.5 0 0 0 8 18.5V16A2.5 2.5 0 0 0 5.5 13.5H3" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-1 drop-shadow leading-tight animate-fade-in">
+                      Quick Response
+                    </h3>
+                    <span className="bg-green-400/80 text-green-900 text-xs font-bold uppercase rounded-full px-3 py-1 ml-1 border border-green-800/30 hover:scale-105 transition-transform duration-200 animate-pulse shadow">
+                      usually &lt;48h
+                    </span>
+                  </div>
+                  <p className="text-gray-100 text-base sm:text-lg mt-1 mb-2 leading-relaxed animate-fade-in animation-delay-300">
+                    We value your time. Messages are answered as soon as possible—typically within <b>24-48 hours</b>.
+                  </p>
+                  <p className="text-green-300 text-xs italic animate-fade-in animation-delay-500">
+                    For urgent booking, call the phone number above.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
