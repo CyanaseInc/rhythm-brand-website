@@ -1,155 +1,82 @@
 
-import React from "react";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
-  Search,
-} from "lucide-react";
-
-// Placeholder grayscale profile image (can easily be swapped!)
-const PROFILE_IMG =
-  "https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=800&q=80&grayscale";
-
-// Placeholder simple white circular logo with 'carlCox'
-const Logo = () => (
-  <div className="mx-auto mt-3 mb-4 flex flex-col items-center pointer-events-none">
-    <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center shadow-lg border-4 border-white relative z-10">
-      <span
-        className="text-black font-extrabold text-4xl"
-        style={{ fontFamily: "Montserrat, Arial, Helvetica, sans-serif" }}
-      >
-        carl
-        <span className="text-red-600 text-4xl font-extrabold relative" style={{ fontFamily: "Montserrat" }}>
-          C
-        </span>
-        ox
-      </span>
-      <div className="absolute right-2 bottom-2 w-4 h-4 rounded-full bg-red-600 animate-pulse" />
-    </div>
-    <span className="text-xs uppercase text-white opacity-55 pt-2 tracking-widest" style={{ letterSpacing: 2 }}>
-      Worldwide
-    </span>
-  </div>
-);
-
-const HERO_NAV = [
-  "HOME",
-  "ONLINE STORE",
-  "EVENTS",
-  "ELECTRONIC GENERATIONS",
-  "MOTOR SPORT",
-  "DISCOGRAPHY",
-  "BIOGRAPHY",
-  "OH YES, OH YES, OH YES CARL COX'S AUTOBIOGRAPHY",
-  "CABIN FEVER",
-  "CONTACT",
-];
-
-const SOCIALS = [
-  { name: "Facebook", icon: Facebook, url: "#" },
-  { name: "Instagram", icon: Instagram, url: "#" },
-  { name: "Twitter", icon: Twitter, url: "#" },
-  { name: "Spotify", icon: Youtube, url: "#" }, // Spotify not present, use Youtube as placeholder
-  { name: "YouTube", icon: Youtube, url: "#" },
-];
+import React from 'react';
+import { AudioWaveform } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[98vh] bg-black flex flex-row items-stretch overflow-hidden">
-      {/* Social icons - top left */}
-      <div className="absolute top-5 left-7 z-20 flex gap-4">
-        {SOCIALS.map((s, i) => (
-          <a
-            href={s.url}
-            key={s.name + i}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={s.name}
-            className="inline-flex items-center justify-center hover:scale-110 transition-transform duration-150"
-          >
-            <s.icon className="w-5 h-5 text-white opacity-80 hover:text-red-600 transition-colors" />
-          </a>
-        ))}
-      </div>
-
-      {/* Search icon - top right */}
-      <div className="absolute top-5 right-8 z-20">
-        <button aria-label="Search" className="p-2 hover:scale-110 transition-transform duration-150">
-          <Search className="w-6 h-6 text-white opacity-90 hover:text-red-600 transition duration-200" />
-        </button>
-      </div>
-
-      {/* Left (text + nav + logo + animated waves) */}
-      <div className="flex-1 flex flex-col items-center justify-center relative z-10 px-4 sm:px-10 py-6 sm:py-14">
-        <Logo />
-        {/* Horizontal Nav Menu */}
-        <nav className="w-full mx-auto flex flex-wrap justify-center gap-x-4 gap-y-2 mb-8">
-          {HERO_NAV.map((item, idx) => (
-            <a
-              key={item + idx}
-              href="#"
-              className="text-xs sm:text-sm uppercase tracking-widest font-bold px-2 py-0.5 text-white/90 hover:text-red-600 transition-colors"
-              style={{ letterSpacing: 2, fontFamily: "Montserrat, Arial, Helvetica, sans-serif" }}
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        {/* Heading */}
-        <h1
-          className="mb-5 text-center text-[2.6rem] sm:text-[3.8rem] md:text-[4.4rem] font-black uppercase text-white tracking-tight font-sans select-none drop-shadow"
-          style={{ letterSpacing: 3 }}
-        >
-          carl
-          <span className="text-red-600 drop-shadow-2xl">C</span>
-          ox
-        </h1>
-
-        {/* Creative Quote */}
-        <blockquote className="mx-auto text-center max-w-2xl text-white font-bold uppercase text-lg sm:text-2xl tracking-wider leading-tight drop-shadow-lg mb-10 select-none font-sans">
-          THE RAVE WAS BUILT ON{" "}
-          <span className="text-red-600">ENERGY</span> AND THE{" "}
-          <span className="text-red-600">EXCITEMENT</span> OF IT ALL<br className="hidden md:block"/>
-          AND THIS DESIRE TO GET LOST. IT'S LIKE A NEW ERA FOR ME NOW...
-        </blockquote>
-
-        {/* Animated Music Waves */}
-        <div className="my-4 flex flex-row justify-center items-center space-x-1 sm:space-x-2">
-          {[0, .15, .3, .45, .6].map((delay, idx) => (
-            <span
-              key={idx}
-              className="block w-6 sm:w-8 h-10 sm:h-14 bg-white rounded-full opacity-80"
-              style={{
-                animation: `heroWave 1.15s ${delay}s infinite ease-in-out`,
-              }}
-            />
-          ))}
-          <style>
-            {`
-              @keyframes heroWave {
-                0%, 100% { transform: scaleY(1); opacity: 0.85; }
-                50% { transform: scaleY(1.7); opacity: 1; }
-              }
-            `}
-          </style>
+    <section className="relative min-h-screen bg-black font-sans flex flex-col">
+      {/* Top navigation bar */}
+      <nav className="w-full py-6 px-8 flex items-center justify-between z-30 relative">
+        {/* Logo top left */}
+        <div className="flex items-center space-x-3">
+          <span className="text-white text-2xl font-black tracking-widest uppercase opacity-90 select-none">dimitri&scarecrow</span>
         </div>
-      </div>
+        {/* Minimal nav links */}
+        <ul className="hidden md:flex space-x-10">
+          <li><a href="/" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Home</a></li>
+          <li><a href="/music" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Music</a></li>
+          <li><a href="/events" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Events</a></li>
+          <li><a href="/biography" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Biography</a></li>
+          <li><a href="/contact" className="text-gray-300 hover:text-white tracking-wider font-light text-sm">Contact</a></li>
+        </ul>
+        {/* Search icon */}
+        <div className="hidden md:flex">
+          <svg className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+        </div>
+      </nav>
 
-      {/* Right (Profile image, slightly overlaps) */}
-      <div className="flex items-center justify-center w-[350px] md:w-[430px] min-h-[480px] relative z-10 -mr-8 md:-mr-12">
-        <div className="absolute left-[-30px] top-14 w-full h-[430px] md:w-[450px] md:h-[630px] rounded-3xl bg-gradient-to-br from-white/10 via-gray-500/20 to-black/5 blur-2xl z-0" />
-        <img
-          src={PROFILE_IMG}
-          alt="Profile placeholder"
-          className="relative rounded-2xl object-cover object-top grayscale w-[280px] md:w-[375px] h-[355px] md:h-[500px] border-4 border-white shadow-2xl z-10"
-          style={{ marginLeft: "-40px", background: "#222" }}
-        />
+      {/* Main hero content */}
+      <div className="flex-1 flex flex-col md:flex-row w-full justify-between items-stretch">
+        {/* Left: Main content */}
+        <div className="flex flex-col justify-center items-start md:w-[52%] w-full px-8 md:px-16 py-20 z-10 relative">
+          {/* LOGO or Main Title */}
+          <div className="mb-10 mt-16 md:mt-0 text-left w-full">
+            <h1 className="text-white font-black text-[2.5rem] sm:text-6xl md:text-7xl leading-tight uppercase mb-6 tracking-widest drop-shadow font-sans select-none">
+              dimitri<span className="font-light">&amp;scarecrow</span>
+            </h1>
+          </div>
+          {/* Poetic/creative Quote */}
+          <div className="mb-10 w-full">
+            <blockquote className="text-white text-lg md:text-2xl lg:text-3xl font-extralight tracking-wide w-full leading-relaxed text-left italic select-none" style={{ textShadow: '0 2px 20px #000' }}>
+              "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS<br className="hidden md:block"/> AND SILENCE HOLDS THE DEEPEST TRUTHS..."
+            </blockquote>
+          </div>
+          {/* Animated Music Waves */}
+          <div className="mt-6 flex items-center space-x-2">
+            {/* 5 animated waves */}
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.2s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.4s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.6s' }} />
+            <AudioWaveform className="text-white w-8 h-8 animate-[wavebounce_0.9s_infinite_ease-in-out]" style={{ animationDelay: '0.8s' }} />
+            <style>
+              {`
+                @keyframes wavebounce {
+                  0%, 100% { transform: translateY(0); opacity: 1; }
+                  50%      { transform: translateY(-20%); opacity: 0.8; }
+                }
+              `}
+            </style>
+          </div>
+        </div>
+        {/* Right: Hero photo */}
+        <div className="md:w-[48%] w-full h-[400px] md:h-auto relative overflow-hidden flex items-center justify-center">
+          <img
+            src="/lovable-uploads/bf7d600c-1e7e-4be1-a802-d9544cfb568e.png"
+            alt="Hero"
+            className="w-full h-full object-cover object-right md:rounded-l-[5rem] opacity-80 shadow-2xl"
+            style={{
+              borderLeft: '8px solid rgba(0,0,0,0.25)',
+              minHeight: '400px'
+            }}
+          />
+          {/* Optional: subtle overlay */}
+          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-black/0 pointer-events-none"></div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Hero;
+
