@@ -1,51 +1,52 @@
 
 import React from "react";
 
-// Placeholder profile image
-const profileImg =
-  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&w=400&q=80";
+const backgroundImage = "/lovable-uploads/543c0b1c-cf86-4d3c-ae93-40b463742a8a.png";
 
 const Hero = () => {
   return (
-    <section className="w-full min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-      <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row items-center justify-between pt-32 md:pt-48 pb-12 md:pb-20 px-4 md:px-0 relative">
-        {/* Left: Heading & Quote */}
-        <div className="flex-1 z-10 flex flex-col gap-8 md:gap-14">
-          {/* Heading */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white uppercase leading-tight tracking-tight drop-shadow-lg text-left md:text-left mb-2 font-sans">
-            carl
-            <span className="inline-block text-red-600 ml-2">
-              C
-            </span>
-            <span className="text-white">ox</span>
-          </h1>
-          {/* Quote */}
-          <blockquote className="text-white font-bold uppercase text-lg sm:text-2xl md:text-3xl leading-snug tracking-wide max-w-2xl font-sans">
-            THE RAVE WAS BUILT ON
-            <span className="mx-2 text-red-600 drop-shadow font-extrabold">
-              ENERGY
-            </span>
-            AND THE
-            <span className="mx-2 text-red-600 drop-shadow font-extrabold">
-              EXCITEMENT
-            </span>
-            OF IT ALL AND THIS DESIRE TO GET LOST.
-            <br />
-            IT'S LIKE A NEW ERA FOR ME NOW...
-          </blockquote>
+    <section
+      className="relative w-full h-[100dvh] min-h-[540px] flex items-center justify-center select-none overflow-hidden"
+      style={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
+    >
+      {/* Background Image with overlay */}
+      <img
+        src={backgroundImage}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+      />
+      <div className="absolute inset-0 bg-black/65 z-10" />
+      {/* Main Content */}
+      <div className="relative z-20 w-full flex flex-col items-center justify-center h-full py-16 text-center">
+        {/* Date */}
+        <div
+          className="text-[#F78386] text-xl md:text-2xl font-bold mb-3"
+          style={{ textShadow: "0 1px 10px rgba(0,0,0,0.4)" }}
+        >
+          2 Dec 2023
         </div>
-        {/* Right: Grayscale Profile Image (overlapping left on md+) */}
-        <div className="relative mt-10 md:mt-0 md:-mr-10 lg:-mr-20">
-          <img
-            src={profileImg}
-            alt="Carl Cox profile"
-            className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 object-cover rounded-full grayscale shadow-2xl border-4 border-white border-opacity-20 hover:scale-105 transition-transform duration-300"
-            style={{ objectPosition: "center top" }}
-          />
+        {/* Heading */}
+        <h1
+          className="text-white text-[2.5rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] font-black mb-3 leading-tight"
+          style={{
+            letterSpacing: "0.03em",
+            fontFamily: "'Monoton', 'Montserrat', Arial, cursive, sans-serif",
+            textShadow: "0 1px 12px rgba(0,0,0,0.55)",
+            lineHeight: 1.05,
+          }}
+        >
+          FESTIVAL 2023
+        </h1>
+        {/* Venue */}
+        <div
+          className="text-white text-xl md:text-2xl font-extrabold mt-2 drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)]"
+          style={{
+            textShadow: "0 2px 18px rgba(0,0,0,0.85),0 1px rgba(0,0,0,0.6)",
+          }}
+        >
+          Ragga Dee beach, Uganda
         </div>
       </div>
-      {/* Optional: Black overlay for extra contrast */}
-      <div className="absolute inset-0 bg-black opacity-70 pointer-events-none"></div>
     </section>
   );
 };
