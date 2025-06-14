@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const backgroundImage =
@@ -13,12 +14,11 @@ const Hero = () => {
       <img
         src={backgroundImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-center z-0 animate-slow-zoom-hero transition-opacity duration-1000"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0 animate-hero-music-bg transition-opacity duration-1000"
         style={{
           opacity: 1,
           filter: "brightness(0.93)",
           transition: "opacity 0.5s",
-          animation: "slowZoomHero 8s ease-in-out infinite, fadeIn 2.5s cubic-bezier(0.39, 0.575, 0.565, 1) both"
         }}
       />
 
@@ -34,7 +34,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full py-16 text-center">
         <h1
-          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-title hero-text-delay-1 select-text"
+          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-music-title select-text"
           style={{
             textShadow: "0 1px 18px rgba(0,0,0,0.60)",
             lineHeight: 1.05,
@@ -43,12 +43,12 @@ const Hero = () => {
         >
           DIMITRI
           <br />
-          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-subtitle hero-text-delay-2 select-text">
+          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
             &amp; THE SCARECROW
           </span>
         </h1>
         <div
-          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-quote hero-text-delay-3 select-text"
+          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-music-quote select-text"
           style={{
             textShadow:
               "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
@@ -63,3 +63,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
