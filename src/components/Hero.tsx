@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const backgroundImage =
@@ -16,29 +15,18 @@ const Hero = () => {
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{
-          opacity: 0.57,
-          filter: "brightness(0.93) blur(0.5px)",
+          opacity: 1,
+          filter: "brightness(0.93)",
           transition: "opacity 0.5s",
         }}
       />
 
-      {/* Bottom-half painted tone overlay */}
+      {/* Bottom-up dark overlay, keeping top clear */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          // Only darken and add tone to the BOTTOM half, fade in from transparent to deep dark
           background:
-            "linear-gradient(to top, rgba(24,24,30,0.75) 0%, rgba(24,24,30,0.61) 38%, rgba(24,24,30,0.0) 55%)",
-        }}
-      />
-
-      {/* Top ethereal fade - soft light overlay, only top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-1/2 z-20 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(180deg,rgba(234,230,240,0.43) 0%,rgba(24,24,30,0.07) 70%,rgba(0,0,0,0.03) 100%)",
-          opacity: 0.43,
+            "linear-gradient(to top, rgba(20,20,28,0.85) 0%, rgba(20,20,28,0.7) 38%, rgba(20,20,28,0.44) 62%, rgba(20,20,28,0.0) 84%, rgba(0,0,0,0.0) 100%)",
         }}
       />
 
