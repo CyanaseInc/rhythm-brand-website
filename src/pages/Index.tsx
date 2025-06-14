@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
@@ -26,29 +25,30 @@ const Index = () => {
     });
   };
 
+  // Placeholder musician images from Unsplash - you can replace these later
   const quickLinks = [
     {
       title: 'The Crop',
       description: 'Albums shown as hand-drawn seed packets',
-      icon: Music,
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=facearea&w=400&q=80',
       link: '/music'
     },
     {
       title: 'Field Notes',
       description: 'Art meets lifestyle - nature retreats and creative rituals',
-      icon: BookOpen,
+      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=400&q=80',
       link: '/biography'
     },
     {
       title: 'Footprints on Dust',
       description: 'Rustic calendar pinned on a barn wall',
-      icon: Calendar,
+      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=400&q=80',
       link: '/events'
     },
     {
       title: 'Whispers from the Wheat',
       description: 'Letters from the Scarecrow - notes, dreams, and secret sound drops',
-      icon: Mail,
+      image: 'https://images.unsplash.com/photo-1526178613658-3c702b2bc418?auto=format&fit=facearea&w=400&q=80',
       link: '/contact'
     }
   ];
@@ -87,7 +87,7 @@ const Index = () => {
       <Hero />
       
       {/* Quick Links Section - "Into the Field" */}
-      <section className="py-20 px-4 bg-gradient-to-r from-black via-gray-900 to-gray-800 font-sans">
+      <section className="py-20 px-4 bg-black font-sans">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-4 font-sans uppercase tracking-widest">
             EXPLORE OUR WORLD
@@ -100,10 +100,14 @@ const Index = () => {
               <Link
                 key={index}
                 to={link.link}
-                className="group bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-800"
+                className="group bg-gray-900 rounded-2xl p-6 hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 border border-gray-800 flex flex-col items-center"
               >
-                <div className="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <link.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 mb-4 rounded-2xl overflow-hidden bg-gray-800 group-hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                  <img
+                    src={link.image}
+                    alt={link.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 font-sans uppercase">{link.title}</h3>
                 <p className="text-gray-400 text-sm font-sans">{link.description}</p>
@@ -220,4 +224,3 @@ const Index = () => {
 };
 
 export default Index;
-
