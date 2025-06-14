@@ -1,7 +1,8 @@
 
 import React from "react";
 
-const backgroundImage = "/lovable-uploads/bb9d7d96-7f44-4246-b82b-dd94292d360b.png";
+const backgroundImage =
+  "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=facearea&w=1200&q=80"; // David Bowie, Unsplash
 
 const Hero = () => {
   return (
@@ -26,7 +27,8 @@ const Hero = () => {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           // Only darken and add tone to the BOTTOM half, fade in from transparent to deep dark
-          background: "linear-gradient(to top, rgba(24,24,30,0.75) 0%, rgba(24,24,30,0.61) 38%, rgba(24,24,30,0.0) 55%)",
+          background:
+            "linear-gradient(to top, rgba(24,24,30,0.75) 0%, rgba(24,24,30,0.61) 38%, rgba(24,24,30,0.0) 55%)",
         }}
       />
 
@@ -34,7 +36,8 @@ const Hero = () => {
       <div
         className="absolute top-0 left-0 right-0 h-1/2 z-20 pointer-events-none"
         style={{
-          background: "linear-gradient(180deg,rgba(234,230,240,0.43) 0%,rgba(24,24,30,0.07) 70%,rgba(0,0,0,0.03) 100%)",
+          background:
+            "linear-gradient(180deg,rgba(234,230,240,0.43) 0%,rgba(24,24,30,0.07) 70%,rgba(0,0,0,0.03) 100%)",
           opacity: 0.43,
         }}
       />
@@ -58,7 +61,8 @@ const Hero = () => {
         <div
           className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80"
           style={{
-            textShadow: "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
+            textShadow:
+              "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
             letterSpacing: "0.02em",
           }}
         >
