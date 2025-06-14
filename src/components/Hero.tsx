@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const backgroundImage =
@@ -9,19 +10,20 @@ const Hero = () => {
       className="relative w-full h-[100dvh] min-h-[540px] flex items-center justify-center select-none overflow-hidden"
       style={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
     >
-      {/* Background Image */}
+      {/* Animated Background Image */}
       <img
         src={backgroundImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0 animate-slow-zoom-hero transition-opacity duration-1000"
         style={{
           opacity: 1,
           filter: "brightness(0.93)",
           transition: "opacity 0.5s",
+          animation: "slowZoomHero 8s ease-in-out infinite, fadeIn 2.5s cubic-bezier(0.39, 0.575, 0.565, 1) both"
         }}
       />
 
-      {/* Bottom-up dark overlay, keeping top clear */}
+      {/* Bottom-up dark overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -33,7 +35,7 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full py-16 text-center">
         <h1
-          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none"
+          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-fade-in animation-delay-300 animate-float"
           style={{
             textShadow: "0 1px 18px rgba(0,0,0,0.60)",
             lineHeight: 1.05,
@@ -42,12 +44,12 @@ const Hero = () => {
         >
           DIMITRI
           <br />
-          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1">
+          <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-scale-in animation-delay-1000">
             &amp; THE SCARECROW
           </span>
         </h1>
         <div
-          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80"
+          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-fade-in animation-delay-1200"
           style={{
             textShadow:
               "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
@@ -62,3 +64,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
