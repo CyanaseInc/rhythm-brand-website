@@ -81,17 +81,8 @@ const Hero = () => {
           <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
             {/* Main Title */}
             <div className="space-y-4 md:space-y-6">
-              <h1
-                className="text-white 
-                           text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 
-                           font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16 
-                           max-w-full xl:max-w-[900px] 2xl:max-w-[1050px] truncate"
-                style={{
-                  animationFillMode: 'forwards',
-                  lineHeight: 1.05,
-                  // Prevent overflow on ultra-wide screens
-                }}
-              >
+              <h1 className="text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16" 
+                  style={{ animationFillMode: 'forwards' }}>
                 DIMITRI
               </h1>
               <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-8 md:px-12 lg:px-16" 
@@ -140,4 +131,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
