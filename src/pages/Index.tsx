@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
@@ -24,6 +23,10 @@ const Index = () => {
       description: "Thank you for your purchase. You'll receive a confirmation email shortly.",
       duration: 5000,
     });
+  };
+
+  const handlePlatformClick = (platform: { name: string; url: string }) => {
+    console.log(`Platform clicked:`, platform.name, '-', platform.url);
   };
 
   const quickLinks = [
@@ -133,6 +136,7 @@ const Index = () => {
                 key={platform.name}
                 href={platform.url}
                 className="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition-transform duration-200 flex items-center space-x-2 font-sans"
+                onClick={() => handlePlatformClick(platform)}
               >
                 <span>{platform.name}</span>
                 <ExternalLink className="w-4 h-4" />
