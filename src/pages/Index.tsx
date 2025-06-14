@@ -56,7 +56,7 @@ const Index = () => {
     }
   ];
 
-  // Platforms with official logo images.
+  // Platforms with official logo images and tie
   const platforms = [
     {
       name: 'Spotify',
@@ -76,7 +76,12 @@ const Index = () => {
     {
       name: 'Cassette Tapes',
       url: '#',
-      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=facearea&w=80&q=80' // Placeholder
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cassette_tape_icon.svg' // Real Cassette Tape icon SVG
+    },
+    {
+      name: 'Your Tie',
+      url: '#',
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=facearea&w=80&q=80' // Tie placeholder from Unsplash context
     }
   ];
 
