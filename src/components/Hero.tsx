@@ -21,11 +21,12 @@ const Hero = () => {
         }}
       />
 
-      {/* Bottom-half dark "painted" overlay */}
+      {/* Bottom-half painted tone overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(to bottom, rgba(24,24,30,0.0) 50%, rgba(24,24,30,0.61) 93%, rgba(24,24,30,0.75) 100%)",
+          // Only darken and add tone to the BOTTOM half, fade in from transparent to deep dark
+          background: "linear-gradient(to top, rgba(24,24,30,0.75) 0%, rgba(24,24,30,0.61) 38%, rgba(24,24,30,0.0) 55%)",
         }}
       />
 
@@ -69,4 +70,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
