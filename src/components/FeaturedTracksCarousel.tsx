@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
@@ -67,7 +66,10 @@ const FeaturedTracksCarousel: React.FC = () => {
           }}
           className="w-full"
         >
-          <CarouselPrevious />
+          {/* --- Made Arrows Larger Here --- */}
+          <CarouselPrevious
+            className="absolute -left-9 top-1/2 -translate-y-1/2 !h-14 !w-14 rounded-full z-30 bg-gray-950/80 hover:bg-green-400/80 text-white border-none shadow-2xl transition-all duration-200"
+          />
           <CarouselContent>
             {tracks.map((track, i) => (
               <CarouselItem
@@ -129,7 +131,9 @@ const FeaturedTracksCarousel: React.FC = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselNext />
+          <CarouselNext
+            className="absolute -right-9 top-1/2 -translate-y-1/2 !h-14 !w-14 rounded-full z-30 bg-gray-950/80 hover:bg-green-400/80 text-white border-none shadow-2xl transition-all duration-200"
+          />
         </Carousel>
       </div>
       <div className="text-center mt-10 mb-2">
@@ -170,4 +174,3 @@ const FeaturedTracksCarousel: React.FC = () => {
 };
 
 export default FeaturedTracksCarousel;
-
