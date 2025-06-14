@@ -1,8 +1,7 @@
 
 import React from "react";
 
-const backgroundImage =
-  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80";
+const backgroundImage = "/lovable-uploads/bb9d7d96-7f44-4246-b82b-dd94292d360b.png";
 
 const Hero = () => {
   return (
@@ -10,32 +9,40 @@ const Hero = () => {
       className="relative w-full h-[100dvh] min-h-[540px] flex items-center justify-center select-none overflow-hidden"
       style={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
     >
-      {/* Faint Background Image */}
+      {/* Background Image */}
       <img
         src={backgroundImage}
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{
-          opacity: 0.55, // Increase from 0.35 for more visibility
-          filter: "brightness(0.9) blur(0.5px)", // Slightly less dark
-          mixBlendMode: "lighten",
+          opacity: 0.57,
+          filter: "brightness(0.93) blur(0.5px)",
           transition: "opacity 0.5s",
         }}
       />
-      {/* Semi-transparent overlay for darkening (lighter than before) */}
-      <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
-      {/* Top ethereal fade */}
+
+      {/* LEFT Paint-Texture Overlay */}
       <div
-        className="absolute inset-0 z-20 pointer-events-none"
+        className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(180deg,rgba(245,245,250,0.58) 0%,rgba(0,0,0,0) 65%)",
-          opacity: 0.50, // a little softer
+          // Left half: overlay, right side: fades to transparent for an artistic textured feel
+          background: "linear-gradient(to right, rgba(24,24,30,0.65) 0%, rgba(24,24,30,0.56) 43%, rgba(40,40,50,0.18) 65%, rgba(24,24,30,0.0) 100%)",
+          // If you want to add a painted/texture look, you could also add a subtle repeating pattern here or a png brushstroke overlay
+          // For extra texture, you could use backgroundBlendMode: 'multiply', and further background images if desired.
         }}
       />
+      
+      {/* Top ethereal fade - soft, does not fully cover image */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1/2 z-20 pointer-events-none"
+        style={{
+          background: "linear-gradient(180deg,rgba(234,230,240,0.43) 0%,rgba(24,24,30,0.07) 70%,rgba(0,0,0,0.03) 100%)",
+          opacity: 0.43,
+        }}
+      />
+
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full py-16 text-center">
-        {/* Main Headings */}
         <h1
           className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none"
           style={{
@@ -50,7 +57,6 @@ const Hero = () => {
             &amp; THE SCARECROW
           </span>
         </h1>
-        {/* Subtitle / Quote */}
         <div
           className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80"
           style={{
