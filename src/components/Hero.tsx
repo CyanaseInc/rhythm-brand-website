@@ -17,10 +17,10 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Grayscale portrait image - Full width coverage with fade-in animation */}
-      <div className="absolute inset-0 w-full lg:w-3/5 animate-fade-in">
+      {/* Grayscale portrait image - Full width coverage with subtle infinite zoom animation */}
+      <div className="absolute inset-0 w-full lg:w-3/5">
         <div 
-          className="h-full w-full bg-cover bg-center bg-no-repeat grayscale"
+          className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
             backgroundPosition: 'center center',
