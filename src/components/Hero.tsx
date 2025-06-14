@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -18,8 +17,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Grayscale portrait image - Full width coverage */}
-      <div className="absolute inset-0 w-full lg:w-3/5">
+      {/* Grayscale portrait image - Full width coverage with fade-in animation */}
+      <div className="absolute inset-0 w-full lg:w-3/5 animate-fade-in">
         <div 
           className="h-full w-full bg-cover bg-center bg-no-repeat grayscale"
           style={{
