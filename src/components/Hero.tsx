@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const backgroundImage =
@@ -63,8 +64,42 @@ const Hero = () => {
           Enter the Field
         </a>
       </div>
+      {/* Decorative wave SVG at the bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+        <svg
+          viewBox="0 0 1440 120"
+          width="100%"
+          height="80"
+          className="block w-full"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="
+              M0,60 
+              Q360,110 720,60 
+              T1440,60 
+              V120 
+              H0 
+              Z"
+            fill="rgba(0,0,0,0.97)"
+          />
+          <path
+            d="
+              M0,90 
+              Q360,30 720,80 
+              T1440,90 
+              V120 
+              H0 
+              Z"
+            fill="rgba(20,20,28,0.98)"
+            opacity="0.65"
+          />
+        </svg>
+      </div>
     </section>
   );
 };
 
 export default Hero;
+
