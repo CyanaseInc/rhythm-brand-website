@@ -250,3 +250,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #606060;
 }
+
+/* Custom hero background overlay for musician vibe */
+.hero-music-vibe {
+  background: radial-gradient(ellipse at 60% 40%, rgba(196,151,90,0.10) 0%, transparent 80%) no-repeat;
+}
