@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const backgroundImage =
@@ -10,7 +9,7 @@ const Hero = () => {
       className="relative w-full h-[100dvh] min-h-[540px] flex items-center justify-center select-none overflow-hidden"
       style={{ fontFamily: "'Montserrat', Arial, sans-serif" }}
     >
-      {/* Animated Background Image */}
+      {/* Animated background image (unchanged) */}
       <img
         src={backgroundImage}
         alt=""
@@ -21,8 +20,7 @@ const Hero = () => {
           transition: "opacity 0.5s",
         }}
       />
-
-      {/* Bottom-up even darker overlay */}
+      {/* Dark overlay (unchanged) */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -34,43 +32,36 @@ const Hero = () => {
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-40 pb-10 md:pt-60 md:pb-12 lg:pt-72">
         <h1
-          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-music-title select-text"
+          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-4 leading-none animate-hero-elegant-title select-text"
           style={{
-            textShadow: "0 1px 18px rgba(0,0,0,0.60)",
-            lineHeight: 1.05,
+            textShadow: "0 1px 18px rgba(0,0,0,0.55)",
+            lineHeight: 1.04,
             letterSpacing: "0.01em",
           }}
         >
-          DIMITRI
+          DIMITRI &amp; THE SCARECROW
         </h1>
-        {/* Ampersand between */}
-        <div
-          className="my-0 animate-fade-in"
-          style={{
-            fontFamily: "'Montserrat', Arial, sans-serif",
-            fontWeight: 900,
-            fontSize: "3rem",
-            color: "#fff",
-            textShadow: "0 1px 14px #00ffc3, 0 0px 6px #000a",
-            lineHeight: 1,
-            letterSpacing: "0.03em",
-          }}
-        >
-          &amp;
-        </div>
-        <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
-          THE SCARECROW
-        </span>
-        <div
-          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-music-quote select-text"
+        <span
+          className="block text-white font-sans text-[1.3rem] sm:text-[2rem] md:text-[2.4rem] lg:text-[2.7rem] font-bold opacity-90 mb-6 animate-hero-elegant-subtitle select-text"
           style={{
             textShadow:
-              "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
+              "0 1px 12px rgba(0,0,0,0.42), 0 2px 20px rgba(0,0,0,0.6)",
             letterSpacing: "0.02em",
           }}
         >
-          "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
-        </div>
+          Where Songs Rise from Shadows &amp; Dust
+        </span>
+        <a
+          href="/music"
+          className="inline-block mt-4 px-8 py-4 text-lg rounded-full bg-white/[0.08] hover:bg-white/[0.13] transition-all duration-200 font-semibold text-white shadow-lg backdrop-blur-lg animate-hero-elegant-button border border-white/15"
+          style={{
+            letterSpacing: "0.04em",
+            boxShadow:
+              "0 2px 32px 4px rgba(30, 36, 38, 0.13), 0 2px 8px 1px #0102",
+          }}
+        >
+          Enter the Field
+        </a>
       </div>
     </section>
   );
