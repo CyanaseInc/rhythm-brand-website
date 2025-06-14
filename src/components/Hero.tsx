@@ -18,17 +18,17 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Grayscale portrait image - uses user-uploaded image */}
+      {/* Grayscale portrait image without colored overlay */}
       <div className="absolute inset-0 w-full lg:w-3/5">
         <div 
           className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
           style={{
-            backgroundImage: `url('/lovable-uploads/8e542cac-b5bf-437f-9bf5-e89730cc5f18.png')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
             backgroundPosition: 'center center',
             backgroundSize: 'cover',
           }}
         >
-          {/* Transparent fade out to black */}
+          {/* No colored gradient, just transparent fade */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
         </div>
       </div>
@@ -77,26 +77,17 @@ const Hero = () => {
 
       {/* Hero Content - no brown/orange highlights, only white/gray/black */}
       <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
-        <div className="w-full flex items-center justify-start px-6 md:px-8 lg:px-16">
-          <div className="max-w-2xl space-y-6 md:space-y-8 ml-0">
+        <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
+          <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
             {/* Main Title */}
             <div className="space-y-4 md:space-y-6">
-              <h1
-                className="text-white
-                           text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
-                           font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow
-                           px-0 md:px-0 lg:px-0
-                           max-w-full xl:max-w-[700px] 2xl:max-w-[800px] truncate text-left"
-                style={{
-                  animationFillMode: 'forwards',
-                  lineHeight: 1.05,
-                }}
-              >
+              <h1 className="text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16" 
+                  style={{ animationFillMode: 'forwards' }}>
                 DIMITRI
               </h1>
-              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-0 md:px-0 lg:px-0" 
-                   style={{ animationFillMode: 'forwards', justifyContent: 'flex-start' }}>
-                <h2 className="text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] leading-none font-serif italic text-left">
+              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-8 md:px-12 lg:px-16" 
+                   style={{ animationFillMode: 'forwards' }}>
+                <h2 className="text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] leading-none font-serif italic">
                   & THE SCARECROW
                 </h2>
                 <div className="w-8 md:w-12 lg:w-16 h-1.5 md:h-2 bg-white/30 animate-slide-in-right opacity-0 animation-delay-700" 
@@ -104,14 +95,14 @@ const Hero = () => {
               </div>
             </div>
             {/* Poetic Quote */}
-            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-0 md:px-0 lg:px-0" 
+            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-8 md:px-12 lg:px-16" 
                  style={{ animationFillMode: 'forwards' }}>
-              <blockquote className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic text-left">
+              <blockquote className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic">
                 "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
               </blockquote>
             </div>
             {/* Call to Action Buttons - fully neutral colors */}
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-0 md:px-0 lg:px-0" 
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-8 md:px-12 lg:px-16" 
                  style={{ animationFillMode: 'forwards' }}>
               <Link to="/music" className="bg-white text-[#1A1A1A] font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/10 font-serif text-center">
                 HARVEST THE SOUND
@@ -140,4 +131,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
