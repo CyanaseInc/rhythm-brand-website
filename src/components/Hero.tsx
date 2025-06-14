@@ -18,17 +18,17 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Grayscale portrait image without colored overlay */}
+      {/* Grayscale portrait image - uses user-uploaded image */}
       <div className="absolute inset-0 w-full lg:w-3/5">
         <div 
           className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
+            backgroundImage: `url('/lovable-uploads/8e542cac-b5bf-437f-9bf5-e89730cc5f18.png')`,
             backgroundPosition: 'center center',
             backgroundSize: 'cover',
           }}
         >
-          {/* No colored gradient, just transparent fade */}
+          {/* Transparent fade out to black */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
         </div>
       </div>
