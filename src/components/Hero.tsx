@@ -31,43 +31,16 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-40 pb-10 md:pt-60 md:pb-12 lg:pt-72">
-        {/* "DIMITRI" stands out prominently */}
-        <span
-          className="
-            text-white font-monoton
-            text-[3.3rem] sm:text-[4rem] md:text-[6.8rem] 
-            lg:text-[8rem] mb-0 leading-none animate-hero-elegant-title
-            select-text tracking-wide
-            drop-shadow-[0_2px_32px_rgba(160,244,255,0.4)]
-            "
+        <h1
+          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-4 leading-none animate-hero-elegant-title select-text"
           style={{
-            textShadow: "0 2px 32px #b5fdffff, 0 1px 18px rgba(0,0,0,0.63)",
-            letterSpacing: "0.04em",
-            fontWeight: 900,
-            lineHeight: 1.066
+            textShadow: "0 1px 18px rgba(0,0,0,0.55)",
+            lineHeight: 1.04,
+            letterSpacing: "0.01em",
           }}
         >
-          DIMITRI
-        </span>
-
-        {/* "& THE SCARECROW" subtle, slightly spaced, but still stylish */}
-        <span
-          className="
-            block text-white font-monoton
-            text-[1.4rem] sm:text-[1.85rem] md:text-[2.4rem] 
-            lg:text-[2.89rem] mt-3 mb-1 tracking-[0.28em]
-            animate-hero-elegant-subtitle select-text opacity-80
-          "
-          style={{
-            textShadow: "0 1px 14px #0009, 0 0px 18px rgba(160,244,255,0.11)",
-            fontWeight: 700,
-            letterSpacing: "0.26em",
-            lineHeight: 1.08,
-          }}
-        >
-          &nbsp;&amp; THE SCARECROW
-        </span>
-
+          DIMITRI &amp; THE SCARECROW
+        </h1>
         <span
           className="block text-white font-sans text-[1.3rem] sm:text-[2rem] md:text-[2.4rem] lg:text-[2.7rem] font-bold opacity-90 mb-6 animate-hero-elegant-subtitle select-text"
           style={{
@@ -89,39 +62,6 @@ const Hero = () => {
         >
           Enter the Field
         </a>
-      </div>
-      {/* Decorative wave SVG at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 120"
-          width="100%"
-          height="80"
-          className="block w-full"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            d="
-              M0,60 
-              Q360,110 720,60 
-              T1440,60 
-              V120 
-              H0 
-              Z"
-            fill="rgba(0,0,0,0.97)"
-          />
-          <path
-            d="
-              M0,90 
-              Q360,30 720,80 
-              T1440,90 
-              V120 
-              H0 
-              Z"
-            fill="rgba(20,20,28,0.98)"
-            opacity="0.65"
-          />
-        </svg>
       </div>
     </section>
   );
