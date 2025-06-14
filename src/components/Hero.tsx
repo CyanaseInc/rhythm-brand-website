@@ -21,18 +21,15 @@ const Hero = () => {
         }}
       />
 
-      {/* LEFT Paint-Texture Overlay */}
+      {/* Bottom-half dark "painted" overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          // Left half: overlay, right side: fades to transparent for an artistic textured feel
-          background: "linear-gradient(to right, rgba(24,24,30,0.65) 0%, rgba(24,24,30,0.56) 43%, rgba(40,40,50,0.18) 65%, rgba(24,24,30,0.0) 100%)",
-          // If you want to add a painted/texture look, you could also add a subtle repeating pattern here or a png brushstroke overlay
-          // For extra texture, you could use backgroundBlendMode: 'multiply', and further background images if desired.
+          background: "linear-gradient(to bottom, rgba(24,24,30,0.0) 50%, rgba(24,24,30,0.61) 93%, rgba(24,24,30,0.75) 100%)",
         }}
       />
-      
-      {/* Top ethereal fade - soft, does not fully cover image */}
+
+      {/* Top ethereal fade - soft light overlay, only top */}
       <div
         className="absolute top-0 left-0 right-0 h-1/2 z-20 pointer-events-none"
         style={{
@@ -72,3 +69,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
