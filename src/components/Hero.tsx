@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const backgroundImage =
@@ -22,12 +21,12 @@ const Hero = () => {
         }}
       />
 
-      {/* Bottom-up very dark overlay */}
+      {/* Bottom-up even darker overlay */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, rgba(10,10,15,0.99) 0%, rgba(20,20,28,0.93) 20%, rgba(20,20,28,0.7) 42%, rgba(20,20,28,0.38) 70%, rgba(20,20,28,0.0) 85%, rgba(0,0,0,0.0) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(10,10,15,0.98) 10%, rgba(20,20,28,0.93) 28%, rgba(20,20,28,0.7) 52%, rgba(20,20,28,0.32) 78%, rgba(20,20,28,0.0) 92%, rgba(0,0,0,0.0) 100%)",
         }}
       />
 
@@ -63,4 +62,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
