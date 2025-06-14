@@ -1,3 +1,4 @@
+
 import React from "react";
 
 // Use a royalty-free Unsplash image for the background
@@ -21,17 +22,15 @@ const Hero = () => {
       <div className="relative z-20 w-full flex flex-col items-center justify-center h-full py-16 text-center">
         {/* Date */}
         <div
-          className="text-[#F78386] text-xl md:text-2xl font-bold mb-3"
-          style={{ textShadow: "0 1px 10px rgba(0,0,0,0.4)" }}
+          className="text-[#F78386] text-xl md:text-2xl font-bold mb-3 tracking-widest uppercase"
+          style={{ textShadow: "0 1px 10px rgba(0,0,0,0.4)", letterSpacing: "0.13em" }}
         >
           2 Dec 2023
         </div>
         {/* Heading */}
         <h1
-          className="text-white text-[2.5rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] font-black mb-3 leading-tight"
+          className="text-white text-[2.5rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-3 leading-tight font-monoton"
           style={{
-            letterSpacing: "0.03em",
-            fontFamily: "'Monoton', 'Montserrat', Arial, cursive, sans-serif",
             textShadow: "0 1px 12px rgba(0,0,0,0.55)",
             lineHeight: 1.05,
           }}
@@ -40,7 +39,7 @@ const Hero = () => {
         </h1>
         {/* Venue */}
         <div
-          className="text-white text-xl md:text-2xl font-extrabold mt-2 drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)]"
+          className="text-white text-xl md:text-2xl font-extrabold mt-2 drop-shadow-[0_1px_10px_rgba(0,0,0,0.5)] tracking-wide"
           style={{
             textShadow: "0 2px 18px rgba(0,0,0,0.85),0 1px rgba(0,0,0,0.6)",
           }}

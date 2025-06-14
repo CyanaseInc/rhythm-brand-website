@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Montserrat', 'Arial', 'Helvetica', 'sans-serif'],
+				monoton: ['Monoton', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -98,4 +98,3 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
