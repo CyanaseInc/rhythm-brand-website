@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -22,7 +23,7 @@ const Hero = () => {
         <div 
           className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
           style={{
-            backgroundImage: `url('/lovable-uploads/0e92ea25-8f0b-44a8-a7b6-613bf4068204.png')`,
+            backgroundImage: `url('/lovable-uploads/8e542cac-b5bf-437f-9bf5-e89730cc5f18.png')`,
             backgroundPosition: 'center center',
             backgroundSize: 'cover',
           }}
@@ -139,3 +140,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
