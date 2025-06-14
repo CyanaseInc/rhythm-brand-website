@@ -1,7 +1,8 @@
+
 import React from "react";
 
 const backgroundImage =
-  "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=facearea&w=1200&q=80"; // David Bowie, Unsplash
+  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=1200&q=80"; // Rihanna, Unsplash (shades of black, famous, suitable for hero)
 
 const Hero = () => {
   return (
