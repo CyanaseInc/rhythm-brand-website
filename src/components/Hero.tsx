@@ -1,132 +1,73 @@
 
 import React from 'react';
-import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+// Placeholder background - replace with your event/festival image
+const bgImage = "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1500&q=80";
 
 const Hero = () => {
   return (
-    <div className="relative min-h-screen bg-[#1A1A1A] overflow-hidden">
-      {/* Dark textured background without color overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1A1A1A] via-[#1A1A1A] to-[#0F0F0F]">
-        {/* Subtle gray/white texture only */}
-        <div className="absolute inset-0 opacity-10" 
-             style={{
-               backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
-                                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 50%)`
-             }}>
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+      {/* Background image with overlay */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+        style={{
+          backgroundImage: `url('${bgImage}')`
+        }}
+      />
+      {/* Black overlay for readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-70 z-10"/>
+
+      {/* Header: logo left, nav center, button right */}
+      <header className="absolute top-0 left-0 w-full flex items-center justify-between px-8 py-6 z-20">
+        {/* Logo */}
+        <div className="flex-1 flex items-center">
+          <span className="font-bold text-white text-3xl md:text-4xl font-serif italic whitespace-nowrap drop-shadow-lg">
+            Once Upon <br className="block sm:hidden" />
+            <span className="ml-1">A Beach</span>
+          </span>
         </div>
-      </div>
-
-      {/* Grayscale portrait image without colored overlay */}
-      <div className="absolute inset-0 w-full lg:w-3/5">
-        <div 
-          className="h-full w-full bg-cover bg-center bg-no-repeat grayscale animate-slow-zoom-hero"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=1920&h=1080&fit=crop&crop=face')`,
-            backgroundPosition: 'center center',
-            backgroundSize: 'cover',
-          }}
-        >
-          {/* No colored gradient, just transparent fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#1A1A1A]"></div>
-        </div>
-      </div>
-
-      {/* Navigation Bar */}
-      <nav className="relative z-20 w-full bg-[#1A1A1A]/90 backdrop-blur-sm px-4 md:px-6 py-3 md:py-4 animate-fade-in border-b border-white/20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Natural Icons - Left */}
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🌾</span>
-            </div>
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🌙</span>
-            </div>
-            <div className="w-5 h-5 md:w-6 md:h-6 bg-white rounded-full flex items-center justify-center hover:bg-gray-300 transition-all duration-300 hover:scale-110">
-              <span className="text-[#1A1A1A] text-xs font-bold">🔥</span>
-            </div>
-          </div>
-
-          {/* Logo - Center */}
-          <Link to="/" className="text-white text-lg md:text-2xl font-bold animate-scale-in font-serif">
-            dimitri<span className="text-gray-300">&</span>scarecrow
+        {/* Navigation */}
+        <nav className="flex-1 flex justify-center space-x-10">
+          <Link to="/" className="text-white font-extrabold text-lg tracking-wider hover:text-pink-200 transition">HOME</Link>
+          <Link to="/lineup" className="text-white font-extrabold text-lg tracking-wider hover:text-pink-200 transition">LINE UP</Link>
+          <Link to="/tickets" className="text-white font-extrabold text-lg tracking-wider hover:text-pink-200 transition">BUY TICKET</Link>
+        </nav>
+        {/* Buy Ticket Button */}
+        <div className="flex-1 flex justify-end">
+          <Link to="/tickets" className="bg-pink-300 text-white font-bold py-3 px-8 rounded transition hover:bg-pink-400 text-lg shadow-lg">
+            Buy Tickets
           </Link>
-
-          {/* Navigation Links - Right */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link to="/" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">HOME</Link>
-            <Link to="/music" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">MUSIC</Link>
-            <Link to="/biography" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">BIOGRAPHY</Link>
-            <Link to="/events" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">EVENTS</Link>
-            <Link to="/contact" className="text-white text-xs lg:text-sm font-semibold tracking-wider hover:text-gray-300 transition-all duration-300 hover:scale-110 font-serif">CONTACT</Link>
-            <Search className="w-4 h-4 lg:w-5 lg:h-5 text-white hover:text-gray-300 cursor-pointer transition-all duration-300 hover:scale-110" />
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <button className="text-white p-2 hover:text-gray-300 transition-colors">
-              <div className="w-5 h-0.5 bg-current mb-1 transition-all duration-300"></div>
-              <div className="w-5 h-0.5 bg-current mb-1 transition-all duration-300"></div>
-              <div className="w-5 h-0.5 bg-current transition-all duration-300"></div>
-            </button>
-          </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Content - no brown/orange highlights, only white/gray/black */}
-      <div className="relative z-10 flex min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] items-center">
-        <div className="w-full flex items-center justify-end px-6 md:px-8 lg:px-16">
-          <div className="max-w-2xl space-y-6 md:space-y-8 ml-auto">
-            {/* Main Title */}
-            <div className="space-y-4 md:space-y-6">
-              <h1 className="text-white text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black tracking-wider leading-none animate-fade-in opacity-0 animation-delay-300 font-serif text-glow px-8 md:px-12 lg:px-16" 
-                  style={{ animationFillMode: 'forwards' }}>
-                DIMITRI
-              </h1>
-              <div className="flex items-center space-x-3 md:space-x-4 animate-fade-in opacity-0 animation-delay-500 px-8 md:px-12 lg:px-16" 
-                   style={{ animationFillMode: 'forwards' }}>
-                <h2 className="text-gray-300 text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-[0.3em] leading-none font-serif italic">
-                  & THE SCARECROW
-                </h2>
-                <div className="w-8 md:w-12 lg:w-16 h-1.5 md:h-2 bg-white/30 animate-slide-in-right opacity-0 animation-delay-700" 
-                     style={{ animationFillMode: 'forwards' }}></div>
-              </div>
-            </div>
-            {/* Poetic Quote */}
-            <div className="max-w-lg animate-fade-in opacity-0 animation-delay-1000 px-8 md:px-12 lg:px-16" 
-                 style={{ animationFillMode: 'forwards' }}>
-              <blockquote className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide leading-relaxed font-serif italic">
-                "IN THE SPACE BETWEEN EARTH AND SKY, WHERE WHISPERS BECOME SONGS AND SILENCE HOLDS THE DEEPEST TRUTHS..."
-              </blockquote>
-            </div>
-            {/* Call to Action Buttons - fully neutral colors */}
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-4 md:pt-8 animate-fade-in opacity-0 animation-delay-1200 px-8 md:px-12 lg:px-16" 
-                 style={{ animationFillMode: 'forwards' }}>
-              <Link to="/music" className="bg-white text-[#1A1A1A] font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-white/10 font-serif text-center">
-                HARVEST THE SOUND
-              </Link>
-              <Link to="/music" className="border-2 border-white/30 hover:border-white text-white font-bold py-3 md:py-4 px-6 md:px-8 rounded-full transition-all duration-300 hover:bg-white/10 transform hover:scale-105 font-serif text-center">
-                INTO THE FIELD
-              </Link>
-            </div>
-          </div>
+      {/* Main Content */}
+      <div className="relative z-20 w-full flex flex-col items-center justify-center min-h-screen">
+        {/* Date */}
+        <div className="mb-6">
+          <span className="text-pink-300 font-bold text-3xl sm:text-4xl md:text-4xl text-center block drop-shadow-lg">
+            2 Dec 2023
+          </span>
+        </div>
+        {/* FESTIVAL 2023 - lined text */}
+        <h1 className="text-white text-6xl sm:text-7xl md:text-8xl font-black text-center mb-4 overflow-visible drop-shadow-2xl tracking-wider"
+            style={{ fontFamily: '"Oswald", "Montserrat", Arial, sans-serif', letterSpacing: '0.05em', textShadow: '0 0 24px #000, 0 1px 4px #000' }}>
+          <span style={{
+            WebkitTextStroke: "2.5px white",
+            color: "transparent",
+            textShadow: "none"
+          }}>
+            FESTIVAL 2023
+          </span>
+        </h1>
+        {/* Venue */}
+        <div className="mt-2">
+          <span className="text-white text-3xl sm:text-4xl font-extrabold text-center block drop-shadow-lg">
+            Ragga Dee beach, Uganda
+          </span>
         </div>
       </div>
-      {/* Floating Elements */}
-      <div className="absolute bottom-20 right-20 animate-bounce opacity-60">
-        <div className="text-4xl">🌾</div>
-      </div>
-      <div className="absolute top-32 right-32 animate-pulse opacity-40">
-        <div className="text-2xl">🦅</div>
-      </div>
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full p-2">
-          <div className="w-1 h-3 bg-white/50 rounded-full animate-pulse"></div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 
