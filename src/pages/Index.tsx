@@ -85,32 +85,31 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#2A2317]">
+    <div className="min-h-screen bg-[#111112] font-sans">
       <Navigation />
       <Hero />
       
       {/* Quick Links Section - "Into the Field" */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#2A2317] to-[#3A3127]">
+      <section className="py-20 px-4 bg-[#18181b] font-sans">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-[#F5E6D3] mb-4 font-serif">
-            Explore Our World
+          <h2 className="text-4xl font-bold text-center text-white mb-4 font-sans uppercase tracking-widest">
+            EXPLORE OUR WORLD
           </h2>
-          <p className="text-center text-[#D4B896] mb-16 font-serif italic">
+          <p className="text-center text-gray-400 mb-16 font-sans italic">
             "Each path leads to a different field of dreams"
           </p>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {quickLinks.map((link, index) => (
               <Link
                 key={index}
                 to={link.link}
-                className="group bg-[#F5E6D3]/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-[#F5E6D3]/20 transition-all duration-300 transform hover:scale-105 border border-[#D4B896]/20"
+                className="group bg-[#18181b] rounded-2xl p-6 hover:bg-[#232323] transition-all duration-300 transform hover:scale-105 border border-[#232323]"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${link.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <link.icon className="w-8 h-8 text-[#F5E6D3]" />
+                <div className="w-16 h-16 bg-[#171717] rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <link.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#F5E6D3] mb-2 font-serif">{link.title}</h3>
-                <p className="text-[#D4B896] text-sm font-serif">{link.description}</p>
+                <h3 className="text-xl font-bold text-white mb-2 font-sans uppercase">{link.title}</h3>
+                <p className="text-gray-400 text-sm font-sans">{link.description}</p>
               </Link>
             ))}
           </div>
@@ -118,31 +117,31 @@ const Index = () => {
       </section>
 
       {/* Featured Music Section - "Songs from the Field" */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#3A3127] to-[#2A2317]">
+      <section className="py-20 px-4 bg-[#232323] font-sans">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-[#F5E6D3] mb-4 font-serif">
+          <h2 className="text-4xl font-bold text-center text-white mb-4 font-sans uppercase tracking-widest">
             Songs from the Field
           </h2>
-          <p className="text-center text-[#D4B896] mb-16 font-serif italic">
+          <p className="text-center text-gray-400 mb-16 font-sans italic">
             "Melodies grown in moonlight, harvested at dawn"
           </p>
           
-          <div className="bg-[#F5E6D3]/10 backdrop-blur-sm rounded-2xl p-8 border border-[#D4B896]/20">
+          <div className="bg-[#18181b] rounded-2xl p-8 border border-[#232323]">
             <div className="space-y-4">
               {featuredTracks.map((track, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-[#F5E6D3]/5 rounded-lg hover:bg-[#F5E6D3]/10 transition-colors group">
+                <div key={index} className="flex items-center justify-between p-4 bg-[#171717] rounded-lg hover:bg-[#232323] transition-colors group">
                   <div className="flex items-center space-x-4">
-                    <button className="bg-[#C4975A] hover:bg-[#8B7355] rounded-full p-2 group-hover:scale-110 transition-transform">
-                      <Play className="w-4 h-4 text-[#F5E6D3] fill-current" />
+                    <button className="bg-[#333333] hover:bg-[#444444] rounded-full p-2 group-hover:scale-110 transition-transform">
+                      <Play className="w-4 h-4 text-white fill-current" />
                     </button>
                     <div>
-                      <h4 className="text-[#F5E6D3] font-semibold font-serif">{track.title}</h4>
-                      <p className="text-[#D4B896] text-sm font-serif">{track.album}</p>
+                      <h4 className="text-white font-semibold font-sans">{track.title}</h4>
+                      <p className="text-gray-400 text-sm font-sans">{track.album}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-[#F5E6D3] text-sm font-serif">{track.duration}</p>
-                    <p className="text-[#D4B896] text-xs font-serif italic">{track.streams}</p>
+                    <p className="text-white text-sm font-sans">{track.duration}</p>
+                    <p className="text-gray-400 text-xs font-sans italic">{track.streams}</p>
                   </div>
                 </div>
               ))}
@@ -151,7 +150,7 @@ const Index = () => {
             <div className="mt-8 text-center">
               <Link
                 to="/music"
-                className="bg-gradient-to-r from-[#C4975A] to-[#8B7355] hover:from-[#8B7355] hover:to-[#C4975A] text-[#F5E6D3] font-semibold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105 inline-block font-serif"
+                className="bg-[#333333] hover:bg-[#444444] text-white font-semibold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105 inline-block font-sans"
               >
                 Harvest More Music
               </Link>
@@ -161,15 +160,15 @@ const Index = () => {
       </section>
 
       {/* Platforms - "Where to Find Us" */}
-      <section className="py-16 px-4 bg-[#2A2317]">
+      <section className="py-16 px-4 bg-[#111112] font-sans">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold text-[#F5E6D3] mb-8 font-serif">Listen in the Sacred Spaces</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 font-sans uppercase tracking-widest">Listen in the Sacred Spaces</h3>
           <div className="flex flex-wrap justify-center gap-4">
             {platforms.map((platform) => (
               <a
                 key={platform.name}
                 href={platform.url}
-                className={`${platform.color} text-[#F5E6D3] px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-200 flex items-center space-x-2 font-serif`}
+                className="bg-[#333333] text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-200 flex items-center space-x-2 font-sans"
               >
                 <span>{platform.name}</span>
                 <ExternalLink className="w-4 h-4" />
@@ -180,25 +179,25 @@ const Index = () => {
       </section>
 
       {/* Call to Action - "Join the Circle" */}
-      <section className="py-20 px-4 bg-gradient-to-r from-[#5A7C65] via-[#2A2317] to-[#6B5B73]">
+      <section className="py-20 px-4 bg-[#18181b] font-sans">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-[#F5E6D3] mb-6 font-serif">
+          <h2 className="text-4xl font-bold text-white mb-6 font-sans uppercase tracking-widest">
             Join the Circle
           </h2>
-          <p className="text-xl text-[#D4B896] mb-8 max-w-2xl mx-auto font-serif">
+          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto font-sans">
             Step into our mystical world where folklore meets sound. 
             Receive whispers from the wheat, stories from the road, and music that grows from the earth itself.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/music"
-              className="bg-gradient-to-r from-[#C4975A] to-[#8B7355] hover:from-[#8B7355] hover:to-[#C4975A] text-[#F5E6D3] font-semibold py-4 px-8 rounded-full transition-all duration-200 transform hover:scale-105 font-serif"
+              className="bg-[#333333] hover:bg-[#444444] text-white font-semibold py-4 px-8 rounded-full transition-all duration-200 transform hover:scale-105 font-sans"
             >
               Enter the Field
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-[#F5E6D3]/30 hover:border-[#F5E6D3] text-[#F5E6D3] font-semibold py-4 px-8 rounded-full transition-all duration-200 hover:bg-[#F5E6D3]/10 font-serif"
+              className="border-2 border-white/30 hover:border-white text-white font-semibold py-4 px-8 rounded-full transition-all duration-200 hover:bg-white/10 font-sans"
             >
               Send a Raven
             </Link>
