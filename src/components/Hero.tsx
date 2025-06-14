@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const backgroundImage =
@@ -32,7 +31,7 @@ const Hero = () => {
       />
 
       {/* Main Content */}
-      <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-24 pb-10 md:pt-36 md:pb-12 lg:pt-40">
+      <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-40 pb-10 md:pt-60 md:pb-12 lg:pt-72">
         <h1
           className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-music-title select-text"
           style={{
