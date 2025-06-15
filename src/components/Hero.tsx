@@ -1,8 +1,7 @@
 
 import React from "react";
 
-const backgroundImage =
-  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=1200&q=80"; // Rihanna, Unsplash (shades of black, famous, suitable for hero)
+const backgroundImage = "/lovable-uploads/0e27d1c4-7273-4385-808a-12adad4197c5.png"; // User uploaded black-and-white singing image
 
 const Hero = () => {
   return (
