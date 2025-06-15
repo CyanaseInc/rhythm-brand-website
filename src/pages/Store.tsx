@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import ProductModal from '../components/ProductModal';
 import StoreSidebar from '../components/StoreSidebar';
 import ProductCard from '../components/ProductCard';
+import { Truck, Shield, ShoppingCart } from "lucide-react";
 
 const Store = () => {
   const [cart, setCart] = useState<{[key: number]: number}>({});
