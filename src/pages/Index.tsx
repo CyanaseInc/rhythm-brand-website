@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import CheckoutModal from '../components/CheckoutModal';
-import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, Youtube } from 'lucide-react';
+import { Music, BookOpen, Calendar, Mail, Play, ExternalLink, Youtube, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import FeaturedTracksCarousel from '../components/FeaturedTracksCarousel';
 import ProfessionalCard from '../components/ProfessionalCard';
-import { Linkedin, Mail } from 'lucide-react';
 
 const professionals = [
   {
