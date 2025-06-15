@@ -37,18 +37,17 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Sidebar for desktop & mobile drawer/menu for small screens
   return (
     <>
-      {/* Mobile Top Bar */}
-      <div className="md:hidden w-full flex items-center justify-between bg-gray-900 p-4 border-b border-gray-800 fixed top-0 left-0 z-40">
+      {/* Mobile AppBar */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-40 bg-gray-900 flex items-center justify-between px-4 py-3 border-b border-gray-800">
         <h1 className="text-lg font-bold text-white font-serif">Admin Panel</h1>
         <button
-          onClick={() => setMobileOpen((v) => !v)}
+          onClick={() => setMobileOpen(true)}
           className="p-2 text-gray-300 hover:text-white focus:outline-none"
           aria-label="Open sidebar menu"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <Menu className="w-6 h-6" />
         </button>
       </div>
 
@@ -62,12 +61,23 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
       {/* Sidebar Drawer (Mobile) */}
       <aside
         className={`
-          fixed z-50 top-0 left-0 h-screen w-[80vw] max-w-xs bg-gray-900 p-6 transform md:translate-x-0 transition-transform duration-200
+          fixed z-50 top-0 left-0 h-screen w-[80vw] max-w-xs bg-gray-900 p-6 transform transition-transform duration-200
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
           md:relative md:top-auto md:left-auto md:h-auto md:w-64 md:translate-x-0 md:block
         `}
         style={{ maxWidth: "100vw" }}
       >
+        {/* Sidebar Top Bar with Close button on Mobile */}
+        <div className="flex items-center justify-between mb-6 md:hidden">
+          <h1 className="text-xl font-bold text-white font-serif">Admin Panel</h1>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="p-2 text-gray-300 hover:text-white focus:outline-none"
+            aria-label="Close sidebar menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
         {/* Logo/Header (Desktop Only) */}
         <div className="hidden md:block mb-8">
           <h1 className="text-2xl font-bold text-white font-serif">Admin Panel</h1>
@@ -105,7 +115,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
           </button>
         </div>
       </aside>
-      {/* Give space for the fixed top bar on mobile */}
+      {/* Spacer for fixed AppBar on mobile */}
       <div className="h-14 md:hidden" />
     </>
   );
