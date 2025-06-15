@@ -177,25 +177,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Meet the Team / Professional Cards Section */}
-      <section className="py-12 sm:py-20 px-2 sm:px-4 md:px-6 bg-black font-sans">
-        <div className="max-w-5xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 uppercase tracking-wider">Meet the Team</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {professionals.map((prof, idx) => (
-              <ProfessionalCard
-                key={idx}
-                name={prof.name}
-                title={prof.title}
-                image={prof.image}
-                description={prof.description}
-                social={prof.social}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Platforms - "Listen in the Sacred Spaces" */}
       <section className="py-10 sm:py-16 px-2 sm:px-4 md:px-6 bg-black font-sans">
         <div className="max-w-4xl mx-auto text-center">
