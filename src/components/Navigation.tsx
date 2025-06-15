@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Search } from 'lucide-react';
@@ -19,7 +20,7 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 w-full bg-[#1A1A1A]/90 backdrop-blur-sm z-50 border-b border-[#D4B896]/20">
-      <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Natural Icons - Left */}
           <div className="flex items-center space-x-2 md:space-x-4">
@@ -35,12 +36,12 @@ const Navigation = () => {
           </div>
 
           {/* Logo - Center */}
-          <Link to="/" className="text-[#F5E6D3] text-base xs:text-lg md:text-2xl font-bold font-serif">
+          <Link to="/" className="text-[#F5E6D3] text-lg md:text-2xl font-bold font-serif">
             dimitri<span className="text-[#C4975A]">&</span>scarecrow
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-3 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
