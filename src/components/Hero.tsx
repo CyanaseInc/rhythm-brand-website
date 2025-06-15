@@ -2,7 +2,7 @@
 import React from "react";
 
 const defaultBg =
-  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=facearea&w=1200&q=80";
+  "/lovable-uploads/543c0b1c-cf86-4d3c-ae93-40b463742a8a.png";
 
 interface HeroProps {
   overlayImageUrl?: string;
@@ -92,3 +92,4 @@ const Hero: React.FC<HeroProps> = ({ overlayImageUrl }) => {
 };
 
 export default Hero;
+
