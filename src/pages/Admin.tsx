@@ -8,7 +8,7 @@ import {
   getCustomers,
   deleteProduct as deleteProductApi,
 } from "../api/api";
-import { ProductModal } from "@/components/ProductModal";
+import ProductModal from "@/components/ProductModal";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
