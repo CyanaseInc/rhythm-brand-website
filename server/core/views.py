@@ -1,4 +1,3 @@
-
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
@@ -29,6 +28,7 @@ def upload_image(request):
 
 @csrf_exempt
 def add_product(request):
+    # Receives product data via POST (JSON), creates product & product images.
     if request.method == "POST":
         try:
             data = json.loads(request.body)
@@ -44,7 +44,7 @@ def add_product(request):
                 sizes=data.get("sizes", []),
                 colors=data.get("colors", []),
             )
-            # Support multiple image URLs (list of urls)
+            # Save images from data['images'] (list of URLs)
             for img_url in data.get("images", []):
                 ProductImage.objects.create(product=product, image=img_url)
             return JsonResponse({"status": "ok", "product_id": product.id})
@@ -54,4 +54,30 @@ def add_product(request):
 
 @csrf_exempt
 def add_order(request):
-    # ... keep existing code (add_order) the same ...
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            # Assuming the request body contains necessary order information
+            user = User.objects.get(id=data['user_id'])  # Assuming user_id is passed
+            order = Order.objects.create(
+                user=user,
+                order_number=data['order_number'],
+                status=data.get('status', 'Pending'),  # Default status
+                total=data['total'],
+                paid=data.get('paid', False)  # Default paid status
+            )
+
+            # Create OrderItems for the order
+            for item_data in data.get('items', []):
+                product = Product.objects.get(id=item_data['product_id'])
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=item_data['quantity'],
+                    price=item_data['price']  # Price at the time of order
+                )
+
+            return JsonResponse({"status": "ok", "order_id": order.id})
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+    return JsonResponse({"error": "Only POST allowed"}, status=405)
