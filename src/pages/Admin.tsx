@@ -93,6 +93,39 @@ const Admin = () => {
   const [customersLoading, setCustomersLoading] = useState(false);
   const [customersError, setCustomersError] = useState<string | null>(null);
 
+  // Settings form state & logic
+  const [changePwForm, setChangePwForm] = useState({
+    current: '',
+    next: '',
+    confirm: '',
+  });
+  const [pwError, setPwError] = useState<string | null>(null);
+
+  const handleSettingsPwChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setChangePwForm((prev) => ({ ...prev, [name]: value }));
+    setPwError(null);
+  };
+
+  const handleSettingsPwSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwError(null);
+    if (!changePwForm.current || !changePwForm.next || !changePwForm.confirm) {
+      setPwError("All fields are required.");
+      return;
+    }
+    if (changePwForm.next !== changePwForm.confirm) {
+      setPwError("New password and confirmation do not match.");
+      return;
+    }
+    // You can connect this to backend later
+    toast({
+      title: "Password changed (demo)",
+      description: "Your password change form was submitted successfully.",
+    });
+    setChangePwForm({ current: '', next: '', confirm: '' });
+  };
+
   useEffect(() => {
     setLoading(true);
     axios.get("http://localhost:8000/api/customers/")
@@ -583,11 +616,58 @@ const Admin = () => {
   );
 
   const renderSettings = () => (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-md">
       <h2 className="text-3xl font-bold text-white font-serif">Settings</h2>
       <div className="bg-gray-900 rounded-lg p-6 text-gray-200">
-        <p>This is a placeholder for admin settings.</p>
-        {/* Optionally you can load and display real settings, admin, or site info here */}
+        <h3 className="text-xl font-semibold mb-4">Change Password</h3>
+        <form className="space-y-4" onSubmit={handleSettingsPwSubmit} autoComplete="off">
+          <div>
+            <label className="block text-sm mb-1" htmlFor="current-password">Current password</label>
+            <input
+              type="password"
+              id="current-password"
+              name="current"
+              value={changePwForm.current}
+              onChange={handleSettingsPwChange}
+              className="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-full text-white"
+              autoComplete="off"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1" htmlFor="new-password">New password</label>
+            <input
+              type="password"
+              id="new-password"
+              name="next"
+              value={changePwForm.next}
+              onChange={handleSettingsPwChange}
+              className="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-full text-white"
+              autoComplete="off"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1" htmlFor="confirm-password">Confirm new password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm"
+              value={changePwForm.confirm}
+              onChange={handleSettingsPwChange}
+              className="bg-gray-800 border border-gray-700 rounded px-3 py-2 w-full text-white"
+              autoComplete="off"
+              required
+            />
+          </div>
+          {pwError && <div className="text-red-400 text-sm">{pwError}</div>}
+          <button
+            type="submit"
+            className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-2 mt-2 rounded font-bold"
+          >
+            Change Password
+          </button>
+        </form>
       </div>
     </div>
   );
