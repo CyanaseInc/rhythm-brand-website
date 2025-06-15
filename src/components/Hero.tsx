@@ -48,9 +48,9 @@ const Hero: React.FC<HeroProps> = ({ overlayImageUrl }) => {
         }}
       />
       {/* Main Content */}
-      <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-40 pb-10 md:pt-60 md:pb-12 lg:pt-72">
+      <div className="relative z-30 w-full flex flex-col items-center justify-center h-full text-center pt-32 pb-8 sm:pt-40 sm:pb-10 md:pt-60 md:pb-12 lg:pt-72">
         <h1
-          className="text-white font-monoton text-[2.6rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-music-title select-text"
+          className="text-white font-monoton text-[2.1rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6rem] mb-2 leading-none animate-hero-music-title select-text"
           style={{
             textShadow: "0 1px 18px rgba(0,0,0,0.60)",
             lineHeight: 1.05,
@@ -64,7 +64,7 @@ const Hero: React.FC<HeroProps> = ({ overlayImageUrl }) => {
           style={{
             fontFamily: "'Montserrat', Arial, sans-serif",
             fontWeight: 900,
-            fontSize: "3rem",
+            fontSize: "2.4rem",
             color: "#fff",
             textShadow: "0 1px 14px #00ffc3, 0 0px 6px #000a",
             lineHeight: 1,
@@ -73,11 +73,11 @@ const Hero: React.FC<HeroProps> = ({ overlayImageUrl }) => {
         >
           &amp;
         </div>
-        <span className="block text-white font-monoton text-[1.5rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
+        <span className="block text-white font-monoton text-[1.1rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.7rem] leading-tight mt-1 animate-hero-music-subtitle select-text">
           THE SCARECROW
         </span>
         <div
-          className="mt-5 md:mt-7 text-white text-md sm:text-lg md:text-2xl font-semibold italic max-w-2xl mx-auto opacity-80 animate-hero-music-quote select-text"
+          className="mt-3 sm:mt-5 md:mt-7 text-white text-sm sm:text-lg md:text-2xl font-semibold italic max-w-xs sm:max-w-2xl mx-auto opacity-80 animate-hero-music-quote select-text"
           style={{
             textShadow:
               "0 1px 10px rgba(0,0,0,0.43), 0 2px 24px rgba(0,0,0,0.7)",
@@ -92,4 +92,3 @@ const Hero: React.FC<HeroProps> = ({ overlayImageUrl }) => {
 };
 
 export default Hero;
-
