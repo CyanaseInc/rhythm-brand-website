@@ -99,3 +99,44 @@ def list_products(request):
         # Optionally clean up or combine fields if needed
         product_list.append(prod_dict)
     return JsonResponse(product_list, safe=False)
+
+@require_GET
+def list_orders(request):
+    orders = Order.objects.all().prefetch_related("items", "user")
+    order_list = []
+    for order in orders:
+        items = []
+        for item in order.items.all():
+            items.append({
+                "product_id": item.product.id,
+                "product_name": item.product.name,
+                "quantity": item.quantity,
+                "price": float(item.price),
+            })
+        order_list.append({
+            "id": order.id,
+            "order_number": order.order_number,
+            "user": order.user.username if order.user else "",
+            "user_id": order.user.id if order.user else None,
+            "total": float(order.total),
+            "status": order.status,
+            "created_at": order.created_at.isoformat(),
+            "paid": order.paid,
+            "items": items,
+        })
+    return JsonResponse(order_list, safe=False)
+
+@require_GET
+def list_customers(request):
+    users = User.objects.all()
+    customers = []
+    for user in users:
+        customers.append({
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "is_staff": user.is_staff,
+            "is_active": user.is_active,
+            "date_joined": user.date_joined.isoformat(),
+        })
+    return JsonResponse(customers, safe=False)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X, UploadCloud } from 'lucide-react';
+import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X, UploadCloud, Loader } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -63,32 +63,6 @@ const Admin = () => {
     }
   ]);
 
-  const [orders, setOrders] = useState([
-    {
-      id: 'ORD-001',
-      customer: 'John Doe',
-      email: 'john@example.com',
-      date: '2024-01-15',
-      total: 125.50,
-      status: 'Completed',
-      items: [
-        { name: 'Digital Dreams Hoodie', quantity: 1, price: 65 },
-        { name: 'Electronic Waves T-Shirt', quantity: 2, price: 35 }
-      ]
-    },
-    {
-      id: 'ORD-002',
-      customer: 'Jane Smith',
-      email: 'jane@example.com',
-      date: '2024-01-14',
-      total: 85.00,
-      status: 'Processing',
-      items: [
-        { name: 'Bass Drop Zip Hoodie', quantity: 1, price: 75 }
-      ]
-    }
-  ]);
-
   const [productForm, setProductForm] = useState<Partial<Product>>({
     name: '',
     price: 0,
@@ -106,10 +80,18 @@ const Admin = () => {
 
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreviews, setImagePreviews] = useState<string[]>([]);
-  const [customers, setCustomers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  // NEW: Real states for orders, customers, with loading/error
+  const [orders, setOrders] = useState<any[]>([]);
+  const [ordersLoading, setOrdersLoading] = useState(false);
+  const [ordersError, setOrdersError] = useState<string | null>(null);
+
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [customersLoading, setCustomersLoading] = useState(false);
+  const [customersError, setCustomersError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -118,6 +100,30 @@ const Admin = () => {
       .catch((err) => setError("Error fetching customer data"))
       .finally(() => setLoading(false));
   }, []);
+
+  // Fetch orders when tab opens
+  useEffect(() => {
+    if (activeTab === "orders") {
+      setOrdersLoading(true);
+      setOrdersError(null);
+      axios.get("http://localhost:8000/api/orders/")
+        .then((res) => setOrders(res.data))
+        .catch((err) => setOrdersError("Failed to load orders"))
+        .finally(() => setOrdersLoading(false));
+    }
+  }, [activeTab]);
+
+  // Fetch customers when tab opens
+  useEffect(() => {
+    if (activeTab === "customers") {
+      setCustomersLoading(true);
+      setCustomersError(null);
+      axios.get("http://localhost:8000/api/customers/")
+        .then((res) => setCustomers(res.data))
+        .catch((err) => setCustomersError("Failed to load customers"))
+        .finally(() => setCustomersLoading(false));
+    }
+  }, [activeTab]);
 
   // Image file selection: preview and store Files
   const handleSelectImages = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -479,56 +485,109 @@ const Admin = () => {
   const renderOrders = () => (
     <div className="space-y-6">
       <h2 className="text-3xl font-bold text-white font-serif">Order Management</h2>
-      
       <div className="bg-gray-900 rounded-lg p-6">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-700">
-                <th className="text-left py-3 text-white">Order ID</th>
-                <th className="text-left py-3 text-white">Customer</th>
-                <th className="text-left py-3 text-white">Date</th>
-                <th className="text-left py-3 text-white">Total</th>
-                <th className="text-left py-3 text-white">Status</th>
-                <th className="text-left py-3 text-white">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order.id} className="border-b border-gray-800">
-                  <td className="py-3 text-white">{order.id}</td>
-                  <td className="py-3 text-white">
-                    <div>
-                      <p>{order.customer}</p>
-                      <p className="text-sm text-gray-400">{order.email}</p>
-                    </div>
-                  </td>
-                  <td className="py-3 text-white">{order.date}</td>
-                  <td className="py-3 text-white font-semibold">${order.total}</td>
-                  <td className="py-3">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      order.status === 'Completed' ? 'bg-green-600 text-white' : 
-                      order.status === 'Processing' ? 'bg-yellow-600 text-black' : 
-                      'bg-red-600 text-white'
-                    }`}>
-                      {order.status}
-                    </span>
-                  </td>
-                  <td className="py-3">
-                    <div className="flex space-x-2">
-                      <button className="text-gray-400 hover:text-white">
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button className="text-red-500 hover:text-red-400">
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
+        {ordersLoading ? (
+          <div className="text-gray-300 flex items-center">
+            <span className="animate-spin mr-2"><Loader className="w-5 h-5" /></span> Loading orders...
+          </div>
+        ) : ordersError ? (
+          <div className="text-red-400">Error: {ordersError}</div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-700">
+                  <th className="text-left py-3 text-white">Order #</th>
+                  <th className="text-left py-3 text-white">User</th>
+                  <th className="text-left py-3 text-white">Status</th>
+                  <th className="text-left py-3 text-white">Total</th>
+                  <th className="text-left py-3 text-white">Paid</th>
+                  <th className="text-left py-3 text-white">Created</th>
+                  <th className="text-left py-3 text-white">Items</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order.id} className="border-b border-gray-800">
+                    <td className="py-3 text-white">{order.order_number}</td>
+                    <td className="py-3 text-white">{order.user}</td>
+                    <td className="py-3">
+                      <span className={`px-2 py-1 text-xs rounded-full ${
+                        order.status === "Completed" ? "bg-green-600 text-white"
+                          : order.status === "Processing" ? "bg-yellow-600 text-black"
+                          : "bg-red-600 text-white"
+                      }`}>
+                        {order.status}
+                      </span>
+                    </td>
+                    <td className="py-3 text-white">${order.total}</td>
+                    <td className="py-3 text-white">{order.paid ? "Yes" : "No"}</td>
+                    <td className="py-3 text-white">{order.created_at ? order.created_at.split("T")[0] : ""}</td>
+                    <td className="py-3 text-white">
+                      <ul className="space-y-1">
+                        {order.items.map((item: any, idx: number) => (
+                          <li key={idx} className="text-xs">
+                            {item.product_name} x{item.quantity} (${item.price})
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const renderCustomers = () => (
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-white font-serif">Customer Management</h2>
+      <div className="bg-gray-900 rounded-lg p-6">
+        {customersLoading ? (
+          <div className="text-gray-300 flex items-center">
+            <span className="animate-spin mr-2"><Loader className="w-5 h-5" /></span> Loading customers...
+          </div>
+        ) : customersError ? (
+          <div className="text-red-400">Error: {customersError}</div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-700">
+                  <th className="text-left py-3 text-white">Username</th>
+                  <th className="text-left py-3 text-white">Email</th>
+                  <th className="text-left py-3 text-white">Is Staff</th>
+                  <th className="text-left py-3 text-white">Active</th>
+                  <th className="text-left py-3 text-white">Date Joined</th>
+                </tr>
+              </thead>
+              <tbody>
+                {customers.map((c) => (
+                  <tr key={c.id} className="border-b border-gray-800">
+                    <td className="py-3 text-white">{c.username}</td>
+                    <td className="py-3 text-white">{c.email}</td>
+                    <td className="py-3 text-white">{c.is_staff ? "Yes" : "No"}</td>
+                    <td className="py-3 text-white">{c.is_active ? "Yes" : "No"}</td>
+                    <td className="py-3 text-white">{c.date_joined ? c.date_joined.split("T")[0] : ""}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const renderSettings = () => (
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-white font-serif">Settings</h2>
+      <div className="bg-gray-900 rounded-lg p-6 text-gray-200">
+        <p>This is a placeholder for admin settings.</p>
+        {/* Optionally you can load and display real settings, admin, or site info here */}
       </div>
     </div>
   );
@@ -538,8 +597,8 @@ const Admin = () => {
       case 'dashboard': return renderDashboard();
       case 'products': return renderProducts();
       case 'orders': return renderOrders();
-      case 'customers': return <div className="text-white">Customer management coming soon...</div>;
-      case 'settings': return <div className="text-white">Settings panel coming soon...</div>;
+      case 'customers': return renderCustomers();
+      case 'settings': return renderSettings();
       default: return renderDashboard();
     }
   };
