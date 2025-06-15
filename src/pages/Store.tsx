@@ -2,9 +2,11 @@ import React, { useState, useMemo } from 'react';
 import Navigation from '../components/Navigation';
 import FloatingCheckout from '../components/FloatingCheckout';
 import CheckoutModal from '../components/CheckoutModal';
-import { ShoppingCart, Plus, Minus, Search, Filter, Star, Heart, Truck, Shield, ArrowUpDown, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import axios from "axios";
+import { useToast } from '@/hooks/use-toast';
+import ProductModal from '../components/ProductModal';
+import StoreSidebar from '../components/StoreSidebar';
+import ProductCard from '../components/ProductCard';
 
 const Store = () => {
   const [cart, setCart] = useState<{[key: number]: number}>({});
@@ -313,62 +315,16 @@ const Store = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Sidebar Filters */}
             <div className="lg:w-1/4">
-              <div className="bg-gray-900 rounded-lg shadow-sm p-6 sticky top-24">
-                {/* Search */}
-                <div className="mb-6">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <input
-                      type="text"
-                      placeholder="Search products..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
-                    />
-                  </div>
-                </div>
-
-                {/* Categories */}
-                <div className="mb-6">
-                  <h3 className="font-semibold text-white mb-3">Categories</h3>
-                  <div className="space-y-2">
-                    {categories.map(category => (
-                      <button
-                        key={category.id}
-                        onClick={() => setSelectedCategory(category.id)}
-                        className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                          selectedCategory === category.id
-                            ? 'bg-gray-700 text-white'
-                            : 'text-gray-300 hover:bg-gray-800'
-                        }`}
-                      >
-                        {category.name} ({category.count})
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Price Range */}
-                <div className="mb-6">
-                  <h3 className="font-semibold text-white mb-3">Price Range</h3>
-                  <div className="space-y-2">
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={priceRange[1]}
-                      onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                      className="w-full accent-gray-600"
-                    />
-                    <div className="flex justify-between text-sm text-gray-400">
-                      <span>${priceRange[0]}</span>
-                      <span>${priceRange[1]}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <StoreSidebar
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                categories={categories}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+              />
             </div>
-
             {/* Main Content */}
             <div className="lg:w-3/4">
               {/* Top Bar */}
@@ -409,123 +365,16 @@ const Store = () => {
               {/* Products Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredAndSortedProducts.map((product) => (
-                  <div key={product.id} className="bg-gray-900 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
-                    <div className="relative">
-                      <img 
-                        src={product.images[0]} 
-                        alt={product.name}
-                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
-                        onClick={() => openProductModal(product)}
-                      />
-                      
-                      {/* Badges */}
-                      <div className="absolute top-3 left-3 flex flex-col space-y-2">
-                        {product.bestseller && (
-                          <span className="bg-gray-700 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                            Bestseller
-                          </span>
-                        )}
-                        {!product.inStock && (
-                          <span className="bg-red-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                            Out of Stock
-                          </span>
-                        )}
-                        {product.originalPrice > product.price && (
-                          <span className="bg-green-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                            Sale
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Favorite Button */}
-                      <button
-                        onClick={() => toggleFavorite(product.id)}
-                        className="absolute top-3 right-3 p-2 bg-gray-800/90 rounded-full hover:bg-gray-700 transition-colors"
-                      >
-                        <Heart 
-                          className={`w-4 h-4 ${favorites.includes(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}`} 
-                        />
-                      </button>
-
-                      {/* Cart Count Badge */}
-                      {cart[product.id] && (
-                        <div className="absolute bottom-3 right-3 bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
-                          {cart[product.id]}
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="p-5">
-                      <h3 className="font-semibold text-white mb-2 line-clamp-2">{product.name}</h3>
-                      <p className="text-sm text-gray-400 mb-3 line-clamp-2">{product.description}</p>
-                      
-                      {/* Rating */}
-                      <div className="flex items-center space-x-2 mb-3">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-600'}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-sm text-gray-400">
-                          {product.rating} ({product.reviews})
-                        </span>
-                      </div>
-
-                      {/* Price */}
-                      <div className="flex items-center space-x-2 mb-4">
-                        <span className="text-2xl font-bold text-white">${product.price}</span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                        )}
-                      </div>
-                      
-                      {/* Sizes */}
-                      <div className="mb-4">
-                        <p className="text-xs text-gray-500 mb-2">Available Sizes:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {product.sizes.map((size) => (
-                            <span key={size} className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs">
-                              {size}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* Add to Cart Controls */}
-                      <div className="flex items-center space-x-2">
-                        {cart[product.id] ? (
-                          <div className="flex items-center space-x-2 flex-1">
-                            <button 
-                              onClick={() => removeFromCart(product.id)}
-                              className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition-colors"
-                            >
-                              <Minus className="w-4 h-4" />
-                            </button>
-                            <span className="font-bold text-lg min-w-[2rem] text-center text-white">{cart[product.id]}</span>
-                            <button 
-                              onClick={() => addToCart(product.id)}
-                              disabled={!product.inStock}
-                              className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white p-2 rounded-lg transition-colors"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                        ) : (
-                          <button 
-                            onClick={() => addToCart(product.id)}
-                            disabled={!product.inStock}
-                            className="flex-1 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white py-2 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
-                          >
-                            <ShoppingCart className="w-4 h-4" />
-                            <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    cart={cart}
+                    favorites={favorites}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    toggleFavorite={toggleFavorite}
+                    onSelect={openProductModal}
+                  />
                 ))}
               </div>
 
@@ -560,185 +409,25 @@ const Store = () => {
 
       {/* Product Detail Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-white">{selectedProduct.name}</h2>
-                <button 
-                  onClick={closeProductModal}
-                  className="text-gray-400 hover:text-white text-2xl"
-                >
-                  ×
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Image Gallery */}
-                <div>
-                  <div className="relative mb-4">
-                    <img 
-                      src={selectedProduct.images[selectedImageIndex]} 
-                      alt={selectedProduct.name}
-                      className="w-full h-96 object-cover rounded-lg"
-                    />
-                    {selectedProduct.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
-                        >
-                          <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </>
-                    )}
-                  </div>
-                  
-                  {/* Thumbnail Images */}
-                  <div className="flex space-x-2 overflow-x-auto pb-2">
-                    {selectedProduct.images.map((image, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setSelectedImageIndex(index)}
-                        className={`flex-shrink-0 w-16 h-16 rounded border-2 ${selectedImageIndex === index ? 'border-gray-500' : 'border-gray-700'}`}
-                      >
-                        <img 
-                          src={image} 
-                          alt={`${selectedProduct.name} ${index + 1}`}
-                          className="w-full h-full object-cover rounded"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Product Details */}
-                <div>
-                  <p className="text-gray-400 mb-4">{selectedProduct.description}</p>
-                  
-                  <div className="flex items-center space-x-2 mb-4">
-                    <span className="text-3xl font-bold text-white">${selectedProduct.price}</span>
-                    {selectedProduct.originalPrice > selectedProduct.price && (
-                      <span className="text-xl text-gray-500 line-through">${selectedProduct.originalPrice}</span>
-                    )}
-                  </div>
-
-                  <div className="flex items-center space-x-2 mb-4">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${i < Math.floor(selectedProduct.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-600'}`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-gray-400">
-                      {selectedProduct.rating} ({selectedProduct.reviews} reviews)
-                    </span>
-                  </div>
-
-                  {/* Size Selector */}
-                  <div className="mb-4">
-                    <h4 className="text-white font-semibold mb-1">Select Size:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProduct.sizes.map((size: string) => (
-                        <button
-                          key={size}
-                          onClick={() => setSelectedSize(size)}
-                          className={`px-3 py-1 rounded border ${
-                            selectedSize === size
-                              ? "bg-green-600 text-white border-green-700"
-                              : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"
-                          } font-semibold transition-all`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Color Selector */}
-                  <div className="mb-6">
-                    <h4 className="text-white font-semibold mb-1">Select Color:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProduct.colors.map((color: string) => (
-                        <button
-                          key={color}
-                          onClick={() => setSelectedColor(color)}
-                          className={`px-3 py-1 rounded border ${
-                            selectedColor === color
-                              ? "bg-blue-700 text-white border-blue-500"
-                              : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"
-                          } font-semibold transition-all`}
-                        >
-                          {color}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Buy Now and Cart Controls */}
-                  <div className="flex items-center space-x-4">
-                    <button
-                      className={`bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-bold text-lg transition-colors ${
-                        buyNowLoading ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
-                      disabled={buyNowLoading}
-                      onClick={handleBuyNow}
-                    >
-                      {buyNowLoading ? "Processing..." : "Buy Now"}
-                    </button>
-
-                    {/* Existing Add to Cart/Favorite controls */}
-                    {cart[selectedProduct.id] ? (
-                      <div className="flex items-center space-x-2">
-                        <button 
-                          onClick={() => removeFromCart(selectedProduct.id)}
-                          className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition-colors"
-                        >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="font-bold text-lg min-w-[2rem] text-center text-white">{cart[selectedProduct.id]}</span>
-                        <button 
-                          onClick={() => addToCart(selectedProduct.id)}
-                          disabled={!selectedProduct.inStock}
-                          className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white p-2 rounded-lg transition-colors"
-                        >
-                          <Plus className="w-4 h-4" />
-                        </button>
-                      </div>
-                    ) : (
-                      <button 
-                        onClick={() => addToCart(selectedProduct.id)}
-                        disabled={!selectedProduct.inStock}
-                        className="bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center space-x-2"
-                      >
-                        <ShoppingCart className="w-5 h-5" />
-                        <span>{selectedProduct.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
-                      </button>
-                    )}
-                    
-                    {/* Favorite button */}
-                    <button
-                      onClick={() => toggleFavorite(selectedProduct.id)}
-                      className="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
-                    >
-                      <Heart 
-                        className={`w-5 h-5 ${favorites.includes(selectedProduct.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}`} 
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProductModal
+          product={selectedProduct}
+          selectedImageIndex={selectedImageIndex}
+          setSelectedImageIndex={setSelectedImageIndex}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          cart={cart}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          toggleFavorite={toggleFavorite}
+          favorites={favorites}
+          close={closeProductModal}
+          buyNowLoading={buyNowLoading}
+          handleBuyNow={handleBuyNow}
+          nextImage={nextImage}
+          prevImage={prevImage}
+        />
       )}
 
       {/* Floating Checkout */}
