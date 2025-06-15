@@ -4,6 +4,8 @@ from django.core.files.storage import default_storage
 from django.contrib.auth.models import User
 from .models import Product, ProductImage, Customer, Order, OrderItem
 import json
+from django.views.decorators.http import require_GET
+from django.forms.models import model_to_dict
 
 @csrf_exempt
 def upload_image(request):
@@ -81,3 +83,19 @@ def add_order(request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
     return JsonResponse({"error": "Only POST allowed"}, status=405)
+
+@require_GET
+def list_products(request):
+    products = Product.objects.all().prefetch_related("images")
+    product_list = []
+    for prod in products:
+        prod_dict = model_to_dict(prod)
+        # Ensure correct naming to match React expectations
+        prod_dict['id'] = prod.id
+        prod_dict['inStock'] = prod.in_stock
+        prod_dict['originalPrice'] = prod.original_price
+        prod_dict['bestseller'] = prod.bestseller
+        prod_dict['images'] = [img.image.url for img in prod.images.all()]
+        # Optionally clean up or combine fields if needed
+        product_list.append(prod_dict)
+    return JsonResponse(product_list, safe=False)

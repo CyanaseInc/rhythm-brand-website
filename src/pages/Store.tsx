@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Navigation from '../components/Navigation';
 import FloatingCheckout from '../components/FloatingCheckout';
 import CheckoutModal from '../components/CheckoutModal';
@@ -26,6 +26,31 @@ const Store = () => {
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const { toast } = useToast();
 
+  const [products, setProducts] = useState<any[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+
+  // Fetch products from API on mount
+  useEffect(() => {
+    setLoadingProducts(true);
+    axios
+      .get("http://localhost:8000/api/products/")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        toast({
+          title: "Error loading products",
+          description: "Could not fetch products from server.",
+          variant: "destructive"
+        });
+      })
+      .finally(() => {
+        setLoadingProducts(false);
+      });
+  }, []);
+
+  // comment out or remove the existing static products array
+  /*
   const products = [
     {
       id: 1,
@@ -140,6 +165,7 @@ const Store = () => {
       bestseller: false
     }
   ];
+  */
 
   const categories = [
     { id: 'all', name: 'All Products', count: products.length },
@@ -374,24 +400,30 @@ const Store = () => {
               </div>
 
               {/* Products Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredAndSortedProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    cart={cart}
-                    favorites={favorites}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    toggleFavorite={toggleFavorite}
-                    onSelect={openProductModal}
-                    selectedColor={selectedColors[product.id] || null}
-                    setColor={setProductColor}
-                    selectedSize={selectedSizes[product.id] || null}
-                    setSize={setProductSize}
-                  />
-                ))}
-              </div>
+              {
+                loadingProducts ? (
+                  <div className="p-8 text-center text-white">Loading products...</div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {filteredAndSortedProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        cart={cart}
+                        favorites={favorites}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                        toggleFavorite={toggleFavorite}
+                        onSelect={openProductModal}
+                        selectedColor={selectedColors[product.id] || null}
+                        setColor={setProductColor}
+                        selectedSize={selectedSizes[product.id] || null}
+                        setSize={setProductSize}
+                      />
+                    ))}
+                  </div>
+                )
+              }
 
               {/* Payment Information */}
               <div className="bg-gray-900 rounded-lg shadow-sm p-8 mt-12">
