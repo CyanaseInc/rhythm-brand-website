@@ -270,6 +270,22 @@ const Admin = () => {
     }));
   };
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (
+      credentials.username.trim() === 'admin' &&
+      credentials.password === 'admin123'
+    ) {
+      setIsAuthenticated(true);
+    } else {
+      toast({
+        title: "Invalid Login",
+        description: "Incorrect username or password.",
+        variant: "destructive"
+      });
+    }
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
