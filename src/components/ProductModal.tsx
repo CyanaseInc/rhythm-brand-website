@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Star, Heart, ChevronLeft, ChevronRight, ShoppingCart, Plus, Minus } from "lucide-react";
 

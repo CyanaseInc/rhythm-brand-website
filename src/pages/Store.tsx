@@ -21,6 +21,7 @@ const Store = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedColors, setSelectedColors] = useState<{ [key: number]: string | null }>({});
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const { toast } = useToast();
 
@@ -261,11 +262,15 @@ const Store = () => {
     }
   };
 
+  const setProductColor = (productId: number, color: string) => {
+    setSelectedColors((prev) => ({ ...prev, [productId]: color }));
+  };
+
   const openProductModal = (product: any) => {
     setSelectedProduct(product);
     setSelectedImageIndex(0);
     setSelectedSize(null);
-    setSelectedColor(null);
+    setSelectedColor(selectedColors[product.id] || null); // set to selected color from card
   };
 
   const closeProductModal = () => {
@@ -375,6 +380,8 @@ const Store = () => {
                     removeFromCart={removeFromCart}
                     toggleFavorite={toggleFavorite}
                     onSelect={openProductModal}
+                    selectedColor={selectedColors[product.id] || null}
+                    setColor={setProductColor}
                   />
                 ))}
               </div>

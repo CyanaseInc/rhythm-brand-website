@@ -1,4 +1,3 @@
-
 import React from "react";
 import { ShoppingCart, Plus, Minus, Star, Heart } from "lucide-react";
 
@@ -10,6 +9,8 @@ interface ProductCardProps {
   removeFromCart: (id: number) => void;
   toggleFavorite: (id: number) => void;
   onSelect: (product: any) => void;
+  selectedColor: string | null;
+  setColor: (id: number, color: string) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -19,7 +20,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   addToCart,
   removeFromCart,
   toggleFavorite,
-  onSelect
+  onSelect,
+  selectedColor,
+  setColor,
 }) => (
   <div className="bg-gray-900 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
     <div className="relative">
@@ -95,6 +98,32 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <span key={size} className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs">
               {size}
             </span>
+          ))}
+        </div>
+      </div>
+      {/* Color Selector */}
+      <div className="mb-4">
+        <p className="text-xs text-gray-500 mb-2">Available Colors:</p>
+        <div className="flex flex-wrap gap-2">
+          {product.colors.map((color: string) => (
+            <button
+              key={color}
+              onClick={(e) => {
+                e.stopPropagation();
+                setColor(product.id, color);
+              }}
+              className={`px-3 py-1 rounded border transition-all text-xs font-medium
+                ${selectedColor === color
+                  ? "bg-blue-700 text-white border-blue-500"
+                  : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"}
+              `}
+              style={{
+                // Optionally, add colored dots for more visual color-coding:
+                outline: selectedColor === color ? "2px solid #60a5fa" : undefined,
+              }}
+            >
+              {color}
+            </button>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -98,6 +99,18 @@ const Admin = () => {
     inStock: true,
     bestseller: false
   });
+
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("http://localhost:8000/api/customers/")
+      .then((res) => setCustomers(res.data))
+      .catch((err) => setError("Error fetching customer data"))
+      .finally(() => setLoading(false));
+  }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
