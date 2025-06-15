@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X } from 'lucide-react';
+import { Package, ShoppingCart, BarChart3, Users, Settings, Image, Plus, Edit, Trash2, Search, Filter, X, UploadCloud } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -103,6 +103,7 @@ const Admin = () => {
   const [customers, setCustomers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -211,6 +212,35 @@ const Admin = () => {
         ? prev.colors.filter(c => c !== color)
         : [...(prev.colors || []), color]
     }));
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      // Change the endpoint to your actual Django upload endpoint if different
+      const res = await axios.post("http://localhost:8000/api/upload-image/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      const imgUrl = res.data.url;
+      setProductForm((prev) => ({ ...prev, image: imgUrl }));
+      toast({
+        title: "Image Uploaded",
+        description: "Product image has been uploaded successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Upload Failed",
+        description: "Could not upload product image.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+    }
   };
 
   if (!isAuthenticated) {
@@ -524,7 +554,6 @@ const Admin = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
               <form onSubmit={handleSaveProduct} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -538,7 +567,6 @@ const Admin = () => {
                       required
                     />
                   </div>
-
                   <div>
                     <label className="block text-white font-semibold mb-2">Category</label>
                     <select
@@ -551,7 +579,6 @@ const Admin = () => {
                       <option value="accessories">Accessories</option>
                     </select>
                   </div>
-
                   <div>
                     <label className="block text-white font-semibold mb-2">Price *</label>
                     <input
@@ -565,7 +592,6 @@ const Admin = () => {
                       required
                     />
                   </div>
-
                   <div>
                     <label className="block text-white font-semibold mb-2">Original Price</label>
                     <input
@@ -578,7 +604,6 @@ const Admin = () => {
                       step="0.01"
                     />
                   </div>
-
                   <div>
                     <label className="block text-white font-semibold mb-2">Stock Quantity</label>
                     <input
@@ -590,20 +615,44 @@ const Admin = () => {
                       min="0"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-white font-semibold mb-2">Image URL *</label>
+                    <label className="block text-white font-semibold mb-2 flex items-center gap-2">
+                      Image URL *
+                      <span className="ml-2 text-xs font-normal text-gray-400">(or upload below)</span>
+                    </label>
                     <input
                       type="url"
                       value={productForm.image}
                       onChange={(e) => setProductForm({...productForm, image: e.target.value})}
-                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600"
+                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 mb-2"
                       placeholder="https://example.com/image.jpg"
                       required
                     />
+                    <div className="flex items-center gap-3">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <UploadCloud className="w-5 h-5 text-gray-300" />
+                        <span className="text-sm text-gray-300">Upload Image</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                          disabled={uploading}
+                        />
+                      </label>
+                      {uploading && (
+                        <span className="text-xs text-blue-400 animate-pulse">Uploading...</span>
+                      )}
+                      {productForm.image && 
+                        <img
+                          src={productForm.image}
+                          alt="Product preview"
+                          className="h-12 w-12 object-cover rounded ml-3 border border-gray-900"
+                        />
+                      }
+                    </div>
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-white font-semibold mb-2">Description</label>
                   <textarea
@@ -614,7 +663,6 @@ const Admin = () => {
                     placeholder="Enter product description"
                   />
                 </div>
-
                 <div>
                   <label className="block text-white font-semibold mb-2">Sizes</label>
                   <div className="flex flex-wrap gap-2">
@@ -634,7 +682,6 @@ const Admin = () => {
                     ))}
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-white font-semibold mb-2">Colors</label>
                   <div className="flex flex-wrap gap-2">
@@ -654,7 +701,6 @@ const Admin = () => {
                     ))}
                   </div>
                 </div>
-
                 <div className="flex items-center space-x-6">
                   <label className="flex items-center">
                     <input
@@ -665,7 +711,6 @@ const Admin = () => {
                     />
                     <span className="text-white">In Stock</span>
                   </label>
-
                   <label className="flex items-center">
                     <input
                       type="checkbox"
@@ -676,11 +721,11 @@ const Admin = () => {
                     <span className="text-white">Bestseller</span>
                   </label>
                 </div>
-
                 <div className="flex space-x-4 pt-4">
                   <Button
                     type="submit"
                     className="flex-1 bg-gray-700 hover:bg-gray-600 text-white"
+                    disabled={uploading}
                   >
                     {editingProduct ? 'Update Product' : 'Add Product'}
                   </Button>
@@ -689,6 +734,7 @@ const Admin = () => {
                     onClick={() => setIsProductModalOpen(false)}
                     variant="outline"
                     className="flex-1 border-gray-700 bg-gray-800 text-white hover:bg-gray-700"
+                    disabled={uploading}
                   >
                     Cancel
                   </Button>
