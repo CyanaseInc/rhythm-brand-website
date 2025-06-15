@@ -2,7 +2,7 @@
 import React from "react";
 
 const defaultBg =
-  "/lovable-uploads/543c0b1c-cf86-4d3c-ae93-40b463742a8a.png";
+  "/lovable-uploads/970868ef-a6a5-4b6d-93e1-5d8eb047333d.png";
 
 interface HeroProps {
   overlayImageUrl?: string;
