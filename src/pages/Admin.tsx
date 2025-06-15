@@ -126,7 +126,7 @@ const Admin = () => {
     }
   }, [productToEdit, editProductForm]);
 
-  const { mutate: deleteProduct, isLoading: isDeleteLoading } = useMutation({
+  const { mutate: deleteProduct, isPending: isDeletePending } = useMutation({
     mutationFn: deleteProductApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
@@ -189,22 +189,29 @@ const Admin = () => {
       <main className="flex-1 p-2 sm:p-4 md:p-8 mt-24 md:mt-0">
         <div className="max-w-7xl mx-auto">
           {activeTab === "dashboard" && (
-            <AdminDashboard orders={orders || []} products={products || []} />
+            <AdminDashboard
+              orders={Array.isArray(orders) ? orders : []}
+              products={Array.isArray(products) ? products : []}
+            />
           )}
           {activeTab === "products" && (
             <AdminProducts
-              products={products || []}
+              products={Array.isArray(products) ? products : []}
               openAddProductModal={openAddProductModal}
               openEditProductModal={openEditProductModal}
               handleDeleteProduct={handleDeleteProduct}
             />
           )}
           {activeTab === "orders" && (
-            <AdminOrders orders={orders || []} ordersLoading={ordersLoading} ordersError={ordersError} />
+            <AdminOrders
+              orders={Array.isArray(orders) ? orders : []}
+              ordersLoading={ordersLoading}
+              ordersError={ordersError}
+            />
           )}
           {activeTab === "customers" && (
             <AdminCustomers
-              customers={customers || []}
+              customers={Array.isArray(customers) ? customers : []}
               customersLoading={customersLoading}
               customersError={customersError}
             />
