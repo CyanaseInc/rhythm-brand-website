@@ -605,11 +605,11 @@ const Admin = () => {
 
   // Make outer layout responsive: column on mobile, row on desktop
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Navigation bar stays on all routes */}
       <Navigation />
       <div className="pt-14 md:pt-20">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row w-full max-w-full">
           {/* Sidebar on left, stacks above on mobile */}
           <AdminSidebar
             activeTab={activeTab}
@@ -617,7 +617,7 @@ const Admin = () => {
             onLogout={() => setIsAuthenticated(false)}
           />
           <main
-            className="flex-1 w-full px-2 sm:px-4 md:px-8 pt-4 pb-8 md:pt-8 md:pb-8 overflow-x-auto"
+            className="flex-1 w-full max-w-full px-2 sm:px-2 md:px-6 pt-4 pb-16 md:pt-8 md:pb-8 overflow-x-auto bg-black"
             style={{ minHeight: "100vh" }}
           >
             {renderContent()}

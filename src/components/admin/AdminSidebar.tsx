@@ -55,14 +55,14 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
       {/* Sidebar Drawer Overlay (Mobile) */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/60 z-40 md:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
       {/* Sidebar Drawer (Mobile) */}
       <aside
         className={`
-          fixed z-50 top-0 left-0 h-screen w-56 bg-gray-900 p-6 transform md:translate-x-0 transition-transform duration-200
+          fixed z-50 top-0 left-0 h-screen w-[80vw] max-w-xs bg-gray-900 p-6 transform md:translate-x-0 transition-transform duration-200
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
           md:relative md:top-auto md:left-auto md:h-auto md:w-64 md:translate-x-0 md:block
         `}
@@ -84,7 +84,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                   setActiveTab(item.id);
                   setMobileOpen(false);
                 }}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors text-left ${
                   activeTab === item.id
                     ? 'bg-gray-700 text-white'
                     : 'text-gray-400 hover:bg-gray-800 hover:text-white'
