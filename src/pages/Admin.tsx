@@ -18,6 +18,7 @@ interface Product {
   description: string;
   inStock: boolean;
   bestseller: boolean;
+  images?: string[]; // allow for multiple images
 }
 
 const Admin = () => {
@@ -97,9 +98,12 @@ const Admin = () => {
     colors: [],
     description: '',
     inStock: true,
-    bestseller: false
+    bestseller: false,
+    images: [],
   });
 
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
   const [customers, setCustomers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -113,14 +117,21 @@ const Admin = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simple authentication - in real app, this would be secure
-    if (credentials.username === 'admin' && credentials.password === 'admin123') {
-      setIsAuthenticated(true);
-    } else {
-      alert('Invalid credentials. Use admin/admin123');
-    }
+  // Image file selection: preview and store Files
+  const handleSelectImages = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const files = Array.from(e.target.files);
+    setImageFiles(files);
+
+    // Generate previews
+    const previews = files.map(file => URL.createObjectURL(file));
+    setImagePreviews(previews);
+  };
+
+  // Remove one image from selection
+  const handleRemoveImage = (idx: number) => {
+    setImageFiles(files => files.filter((_, i) => i !== idx));
+    setImagePreviews(previews => previews.filter((_, i) => i !== idx));
   };
 
   const openAddProductModal = () => {
@@ -136,14 +147,19 @@ const Admin = () => {
       colors: [],
       description: '',
       inStock: true,
-      bestseller: false
+      bestseller: false,
+      images: [],
     });
+    setImageFiles([]);
+    setImagePreviews([]);
     setIsProductModalOpen(true);
   };
 
   const openEditProductModal = (product: Product) => {
     setEditingProduct(product);
     setProductForm(product);
+    setImageFiles([]);
+    setImagePreviews(product.images ? product.images : []);
     setIsProductModalOpen(true);
   };
 
@@ -157,49 +173,89 @@ const Admin = () => {
     }
   };
 
-  const handleSaveProduct = (e: React.FormEvent) => {
+  // ------------- CRITICAL: UPLOAD IMAGES THEN SUBMIT PRODUCT ONCE -----------
+  const handleSaveProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!productForm.name || !productForm.price || !productForm.image) {
+
+    if (!productForm.name || !productForm.price || imageFiles.length === 0) {
       toast({
         title: "Error",
-        description: "Please fill in all required fields.",
+        description: "Please fill in all required fields and select at least one image.",
         variant: "destructive"
       });
       return;
     }
 
-    if (editingProduct) {
-      // Update existing product
-      setProducts(prev => prev.map(p => 
-        p.id === editingProduct.id 
-          ? { ...productForm as Product, id: editingProduct.id }
-          : p
-      ));
-      toast({
-        title: "Product Updated",
-        description: "The product has been successfully updated.",
+    setUploading(true);
+
+    try {
+      // 1. Upload images to Django and get back image URLs
+      const formData = new FormData();
+      imageFiles.forEach((file, idx) => {
+        formData.append("images", file);
       });
-    } else {
-      // Add new product
-      const newProduct = {
-        ...productForm as Product,
-        id: Math.max(...products.map(p => p.id)) + 1
-      };
-      setProducts(prev => [...prev, newProduct]);
-      toast({
-        title: "Product Added",
-        description: "The new product has been successfully added.",
+
+      const res = await axios.post("http://localhost:8000/api/upload-image/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
+
+      const imageUrls: string[] = res.data.image_urls;
+
+      // 2. Continue with product creation/update, using the returned URLs
+      let outProduct: Product;
+      if (editingProduct) {
+        // Update (only in local array for demo)
+        const updateObj: Product = {
+          ...productForm as Product,
+          id: editingProduct.id,
+          images: imageUrls,
+          image: imageUrls[0] || "",
+        };
+        setProducts(prev =>
+          prev.map(p => p.id === editingProduct.id ? updateObj : p)
+        );
+        outProduct = updateObj;
+        toast({
+          title: "Product Updated",
+          description: "The product has been successfully updated.",
+        });
+      } else {
+        // Add new (only in local array for demo)
+        const maxId = products.length
+          ? Math.max(...products.map(p => p.id))
+          : 0;
+        const newProduct: Product = {
+          ...productForm as Product,
+          id: maxId + 1,
+          images: imageUrls,
+          image: imageUrls[0] || "",
+        };
+        setProducts(prev => [...prev, newProduct]);
+        outProduct = newProduct;
+        toast({
+          title: "Product Added",
+          description: "The new product has been successfully added.",
+        });
+      }
+
+      setIsProductModalOpen(false);
+      setUploading(false);
+      setImageFiles([]);
+      setImagePreviews([]);
+    } catch (error) {
+      toast({
+        title: "Upload Failed",
+        description: "Could not upload product images.",
+        variant: "destructive",
+      });
+      setUploading(false);
     }
-    
-    setIsProductModalOpen(false);
   };
 
   const handleSizeToggle = (size: string) => {
     setProductForm(prev => ({
       ...prev,
-      sizes: prev.sizes?.includes(size) 
+      sizes: prev.sizes?.includes(size)
         ? prev.sizes.filter(s => s !== size)
         : [...(prev.sizes || []), size]
     }));
@@ -208,39 +264,10 @@ const Admin = () => {
   const handleColorToggle = (color: string) => {
     setProductForm(prev => ({
       ...prev,
-      colors: prev.colors?.includes(color) 
+      colors: prev.colors?.includes(color)
         ? prev.colors.filter(c => c !== color)
         : [...(prev.colors || []), color]
     }));
-  };
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-      // Change the endpoint to your actual Django upload endpoint if different
-      const res = await axios.post("http://localhost:8000/api/upload-image/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      const imgUrl = res.data.url;
-      setProductForm((prev) => ({ ...prev, image: imgUrl }));
-      toast({
-        title: "Image Uploaded",
-        description: "Product image has been uploaded successfully.",
-      });
-    } catch (error) {
-      toast({
-        title: "Upload Failed",
-        description: "Could not upload product image.",
-        variant: "destructive",
-      });
-    } finally {
-      setUploading(false);
-    }
   };
 
   if (!isAuthenticated) {
@@ -389,7 +416,31 @@ const Admin = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <div key={product.id} className="bg-gray-800 rounded-lg p-4">
-              <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <div className="relative w-full h-48 mb-4">
+                {(product.images && product.images.length > 0 ? product.images[0]
+                  : product.image) && (
+                  <img
+                    src={product.images && product.images.length > 0
+                      ? product.images[0]
+                      : product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover rounded-lg mb-2"
+                  />
+                )}
+                {/* Optionally show more images as thumbnails */}
+                {product.images && product.images.length > 1 && (
+                  <div className="flex space-x-1 absolute left-1 bottom-1">
+                    {product.images.slice(1, 3).map((url, idx) => (
+                      <img
+                        key={idx}
+                        src={url}
+                        className="h-8 w-8 rounded border border-gray-900"
+                        alt={`Alt ${idx + 2}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
               <h3 className="font-semibold text-white mb-2">{product.name}</h3>
               <p className="text-sm text-gray-400 mb-2">{product.description}</p>
               <div className="flex justify-between items-center mb-2">
@@ -615,42 +666,46 @@ const Admin = () => {
                       min="0"
                     />
                   </div>
+                  {/* IMAGE FILES UPLOAD + PREVIEW */}
                   <div>
                     <label className="block text-white font-semibold mb-2 flex items-center gap-2">
-                      Image URL *
-                      <span className="ml-2 text-xs font-normal text-gray-400">(or upload below)</span>
+                      Product Images *
+                      <span className="ml-2 text-xs font-normal text-gray-400">(Select one or more)</span>
                     </label>
-                    <input
-                      type="url"
-                      value={productForm.image}
-                      onChange={(e) => setProductForm({...productForm, image: e.target.value})}
-                      className="w-full p-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-600 mb-2"
-                      placeholder="https://example.com/image.jpg"
-                      required
-                    />
-                    <div className="flex items-center gap-3">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <UploadCloud className="w-5 h-5 text-gray-300" />
-                        <span className="text-sm text-gray-300">Upload Image</span>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="hidden"
-                          disabled={uploading}
-                        />
-                      </label>
-                      {uploading && (
-                        <span className="text-xs text-blue-400 animate-pulse">Uploading...</span>
-                      )}
-                      {productForm.image && 
-                        <img
-                          src={productForm.image}
-                          alt="Product preview"
-                          className="h-12 w-12 object-cover rounded ml-3 border border-gray-900"
-                        />
-                      }
-                    </div>
+                    <label className="flex items-center gap-2 cursor-pointer mb-3">
+                      <UploadCloud className="w-5 h-5 text-gray-300" />
+                      <span className="text-sm text-gray-300">Choose Images</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleSelectImages}
+                        className="hidden"
+                        disabled={uploading}
+                      />
+                    </label>
+
+                    {/* Show selected previews */}
+                    {imagePreviews.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {imagePreviews.map((src, idx) => (
+                          <div key={idx} className="relative inline-block">
+                            <img src={src} alt="Preview" className="h-16 w-16 object-cover rounded border border-gray-800" />
+                            <button
+                              type="button"
+                              className="absolute top-0 right-0 bg-black/60 text-white border-none rounded-full p-0.5"
+                              onClick={() => handleRemoveImage(idx)}
+                              title="Remove"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {imagePreviews.length === 0 && (
+                      <span className="text-xs text-gray-400">No images selected</span>
+                    )}
                   </div>
                 </div>
                 <div>
