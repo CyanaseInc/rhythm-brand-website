@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { X, UploadCloud } from "lucide-react";
+import { X, UploadCloud, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Product {
@@ -274,10 +274,17 @@ const ProductModal: React.FC<ProductModalProps> = ({
             <div className="flex space-x-4 pt-4">
               <Button
                 type="submit"
-                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white"
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white flex items-center justify-center"
                 disabled={uploading}
               >
-                {editingProduct ? 'Update Product' : 'Add Product'}
+                {uploading ? (
+                  <>
+                    <Loader className="animate-spin mr-2" />
+                    Processing...
+                  </>
+                ) : (
+                  editingProduct ? 'Update Product' : 'Add Product'
+                )}
               </Button>
               <Button
                 type="button"
