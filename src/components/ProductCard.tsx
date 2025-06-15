@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ShoppingCart, Plus, Minus, Star, Heart } from "lucide-react";
 
@@ -11,6 +12,8 @@ interface ProductCardProps {
   onSelect: (product: any) => void;
   selectedColor: string | null;
   setColor: (id: number, color: string) => void;
+  selectedSize: string | null;
+  setSize: (id: number, size: string) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -23,6 +26,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onSelect,
   selectedColor,
   setColor,
+  selectedSize,
+  setSize,
 }) => (
   <div className="bg-gray-900 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
     <div className="relative">
@@ -90,14 +95,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
         )}
       </div>
-      {/* Sizes */}
+      {/* Sizes Selector (NEW!) */}
       <div className="mb-4">
         <p className="text-xs text-gray-500 mb-2">Available Sizes:</p>
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap gap-2">
           {product.sizes.map((size: string) => (
-            <span key={size} className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs">
+            <button
+              key={size}
+              onClick={e => {
+                e.stopPropagation();
+                setSize(product.id, size);
+              }}
+              className={`px-3 py-1 rounded border transition-all text-xs font-medium
+                ${selectedSize === size
+                  ? "bg-green-700 text-white border-green-500"
+                  : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"}
+              `}
+              style={{
+                outline: selectedSize === size ? "2px solid #22c55e" : undefined,
+              }}
+            >
               {size}
-            </span>
+            </button>
           ))}
         </div>
       </div>
@@ -118,7 +137,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"}
               `}
               style={{
-                // Optionally, add colored dots for more visual color-coding:
                 outline: selectedColor === color ? "2px solid #60a5fa" : undefined,
               }}
             >

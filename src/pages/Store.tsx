@@ -22,6 +22,7 @@ const Store = () => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedColors, setSelectedColors] = useState<{ [key: number]: string | null }>({});
+  const [selectedSizes, setSelectedSizes] = useState<{ [key: number]: string | null }>({});
   const [buyNowLoading, setBuyNowLoading] = useState(false);
   const { toast } = useToast();
 
@@ -266,11 +267,15 @@ const Store = () => {
     setSelectedColors((prev) => ({ ...prev, [productId]: color }));
   };
 
+  const setProductSize = (productId: number, size: string) => {
+    setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
+  };
+
   const openProductModal = (product: any) => {
     setSelectedProduct(product);
     setSelectedImageIndex(0);
-    setSelectedSize(null);
-    setSelectedColor(selectedColors[product.id] || null); // set to selected color from card
+    setSelectedSize(selectedSizes[product.id] || null);
+    setSelectedColor(selectedColors[product.id] || null); 
   };
 
   const closeProductModal = () => {
@@ -382,6 +387,8 @@ const Store = () => {
                     onSelect={openProductModal}
                     selectedColor={selectedColors[product.id] || null}
                     setColor={setProductColor}
+                    selectedSize={selectedSizes[product.id] || null}
+                    setSize={setProductSize}
                   />
                 ))}
               </div>
