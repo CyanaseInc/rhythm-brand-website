@@ -6,6 +6,11 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import ProductModal from "@/components/admin/ProductModal";
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import AdminDashboard from "../components/admin/AdminDashboard";
+import AdminProducts from "../components/admin/AdminProducts";
+import AdminOrders from "../components/admin/AdminOrders";
+import AdminCustomers from "../components/admin/AdminCustomers";
+import AdminSettings from "../components/admin/AdminSettings";
 
 interface Product {
   id: number;
@@ -606,17 +611,44 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-black">
       <Navigation />
-      
+
       <div className="pt-20">
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           <AdminSidebar
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             onLogout={() => setIsAuthenticated(false)}
           />
-          <div className="flex-1 p-8">
-            {renderContent()}
-          </div>
+          <main className="flex-1 p-4 md:p-8 w-full max-w-full">
+            {activeTab === 'dashboard' && (
+              <AdminDashboard orders={orders} products={products} />
+            )}
+            {activeTab === 'products' && (
+              <AdminProducts
+                products={products}
+                openAddProductModal={openAddProductModal}
+                openEditProductModal={openEditProductModal}
+                handleDeleteProduct={handleDeleteProduct}
+              />
+            )}
+            {activeTab === 'orders' && (
+              <AdminOrders
+                orders={orders}
+                ordersLoading={ordersLoading}
+                ordersError={ordersError}
+              />
+            )}
+            {activeTab === 'customers' && (
+              <AdminCustomers
+                customers={customers}
+                customersLoading={customersLoading}
+                customersError={customersError}
+              />
+            )}
+            {activeTab === 'settings' && (
+              <AdminSettings />
+            )}
+          </main>
         </div>
       </div>
       <ProductModal
